@@ -2,8 +2,14 @@ package top.shauna.rpc.common.register;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import top.shauna.rpc.bean.ServiceBean;
 import top.shauna.rpc.common.interfaces.Register;
 import top.shauna.rpc.supports.ZKSupportKit;
+
+import java.lang.reflect.Method;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.Set;
 
 
 /**
@@ -27,19 +33,36 @@ public class ZookeeperRegister implements Register {
     }
 
     @Override
-    public void doRegist(String url,boolean isProvider) {
-        if (isValid(url)){
-            int pin = url.lastIndexOf('/');
-            String node = url.substring(0,pin);
-            String context = url.substring(pin+1);
-            if (!zkSupportKit.isExits(node)) {
-                zkSupportKit.create(node,context,true);
-            }else{
-                zkSupportKit.writeData(node,context);
-            }
-        }else{
-            log.error("url不符合规范!!!");
+    public void doRegist(ServiceBean<?> serviceBean) {
+        String pre = "/shauna/";
+        String classFullName = serviceBean.getInterfaze().getName();
+        String providerIP = serviceBean.getLocalExportBean().getIp();
+        int providerPort = serviceBean.getLocalExportBean().getPort();
+        String providerProtocal = serviceBean.getLocalExportBean().getProtocal();
+        for (String method : serviceBean.getMethods().keySet()) {
+            String url = pre + classFullName + "/"
+                    + method + "/providers/" + providerIP
+                    + ":" + providerPort;
+            doRegist(url,providerProtocal,true);
         }
+    }
+
+    public void doRegist(String url, String context, boolean isEphemeral) {
+        int pin = url.lastIndexOf('/');
+        if(pin==0) {
+            /** 创建根节点 **/
+            zkSupportKit.create(url,context,false);
+            return;
+        }
+        String fatherNode = url.substring(0,pin);
+        if (!zkSupportKit.isExits(fatherNode)) {
+            /**创建父节点**/
+            doRegist(fatherNode,null,false);
+        }
+        if(zkSupportKit.isExits(url))
+            zkSupportKit.writeData(url,context);
+        else
+            zkSupportKit.create(url,context,isEphemeral);
     }
 
     @Override
@@ -47,8 +70,9 @@ public class ZookeeperRegister implements Register {
         zkSupportKit = new ZKSupportKit(url,5000);
     }
 
-    public static void main(String[] args) {
-        String url = "1234/567/89";
-        System.out.println(url.lastIndexOf('/'));
+    public static void main(String[] args) throws MalformedURLException {
+        URL url = new URL("shauna://shauna/test/test/okk");
+        System.out.println(url.getHost());
+
     }
 }

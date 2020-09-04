@@ -3,24 +3,32 @@ package top.shauna.rpc.bean;
 import top.shauna.rpc.config.PubConfig;
 
 import java.lang.reflect.Method;
-import java.net.URL;
 import java.util.Map;
 
 public class ServiceBean<T> {
-    private URL url;
+    private Class interfaze;
     private T interfaceImpl;
     private Map<String,Method> methods;
     private PubConfig pubConfig;
+    private LocalExportBean localExportBean;
+
+    public Class getInterfaze() {
+        return interfaze;
+    }
+
+    public void setInterfaze(Class interfaze) {
+        this.interfaze = interfaze;
+    }
+
+    public LocalExportBean getLocalExportBean() {
+        return localExportBean;
+    }
+
+    public void setLocalExportBean(LocalExportBean localExportBean) {
+        this.localExportBean = localExportBean;
+    }
 
     public ServiceBean() {
-    }
-
-    public URL getUrl() {
-        return url;
-    }
-
-    public void setUrl(URL url) {
-        this.url = url;
     }
 
     public T getInterfaceImpl() {

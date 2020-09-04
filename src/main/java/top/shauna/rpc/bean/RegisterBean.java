@@ -5,15 +5,21 @@ public class RegisterBean {
     private String url;
     private String loc;
 
+    public RegisterBean() {
+    }
+
+    public RegisterBean(String potocol, String url, String loc) {
+        this.potocol = potocol;
+        this.url = url;
+        this.loc = loc;
+    }
+
     public String getLoc() {
         return loc;
     }
 
     public void setLoc(String loc) {
         this.loc = loc;
-    }
-
-    public RegisterBean() {
     }
 
     public String getPotocol() {

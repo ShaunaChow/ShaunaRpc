@@ -6,9 +6,9 @@ public class PubConfig {
 
     private PubConfig(){}
 
-    private volatile PubConfig pubConfig;
+    private static volatile PubConfig pubConfig;
 
-    public PubConfig getInstance(){
+    public static PubConfig getInstance(){
         if(pubConfig==null){
             synchronized (PubConfig.class){
                 if(pubConfig==null){
@@ -21,33 +21,6 @@ public class PubConfig {
 
     private String applicationName;
     private RegisterBean registerBean;
-    private String ipaddr;
-
-    public String getIpaddr() {
-        return ipaddr;
-    }
-
-    public void setIpaddr(String ipaddr) {
-        this.ipaddr = ipaddr;
-    }
-
-    private String exportPort;
-
-    public String getApplicationName() {
-        return applicationName;
-    }
-
-    public void setApplicationName(String applicationName) {
-        this.applicationName = applicationName;
-    }
-
-    public String getExportPort() {
-        return exportPort;
-    }
-
-    public void setExportPort(String exportPort) {
-        this.exportPort = exportPort;
-    }
 
     public RegisterBean getRegisterBean() {
         return registerBean;
@@ -55,5 +28,13 @@ public class PubConfig {
 
     public void setRegisterBean(RegisterBean registerBean) {
         this.registerBean = registerBean;
+    }
+
+    public String getApplicationName() {
+        return applicationName;
+    }
+
+    public void setApplicationName(String applicationName) {
+        this.applicationName = applicationName;
     }
 }
