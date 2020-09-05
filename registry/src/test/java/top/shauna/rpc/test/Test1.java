@@ -44,6 +44,5 @@ public class Test1 {
         LocalExportBean o = (LocalExportBean) aClass.newInstance();
         System.out.println(o);
 
-        System.in.read();
     }
 }
