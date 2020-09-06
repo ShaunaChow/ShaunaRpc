@@ -1,5 +1,6 @@
 package top.shauna.rpc.common.register;
 
+import com.alibaba.fastjson.JSON;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import top.shauna.rpc.bean.ServiceBean;
@@ -38,7 +39,7 @@ public class ZookeeperRegister implements Register {
         String classFullName = serviceBean.getInterfaze().getName();
         String providerIP = serviceBean.getLocalExportBean().getIp();
         int providerPort = serviceBean.getLocalExportBean().getPort();
-        String providerProtocal = serviceBean.getLocalExportBean().getProtocal();
+        String providerProtocal = JSON.toJSONString(serviceBean.getLocalExportBean());
         for (String method : serviceBean.getMethods().keySet()) {
             String url = pre + classFullName + "/"
                     + method + "/providers/" + providerIP
@@ -68,11 +69,5 @@ public class ZookeeperRegister implements Register {
     @Override
     public void connect(String url) {
         zkSupportKit = new ZKSupportKit(url,5000);
-    }
-
-    public static void main(String[] args) throws MalformedURLException {
-        URL url = new URL("shauna://shauna/test/test/okk");
-        System.out.println(url.getHost());
-
     }
 }

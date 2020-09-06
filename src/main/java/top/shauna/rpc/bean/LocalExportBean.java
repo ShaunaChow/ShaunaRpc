@@ -5,6 +5,7 @@ public class LocalExportBean {
     private String protocal;
     private int port;
     private String ip;
+    private String loc;
 
     public LocalExportBean() {
     }
@@ -13,6 +14,14 @@ public class LocalExportBean {
         this.protocal = protocal;
         this.port = port;
         this.ip = ip;
+    }
+
+    public String getLoc() {
+        return loc;
+    }
+
+    public void setLoc(String loc) {
+        this.loc = loc;
     }
 
     public String getProtocal() {
