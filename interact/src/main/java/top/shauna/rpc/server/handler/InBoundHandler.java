@@ -23,6 +23,7 @@ public class InBoundHandler extends ChannelInboundHandlerAdapter {
         ResponseBean response = MethodParser.getMethodParser().getResponse(responseBean);
 
         String res = JSON.toJSONString(response);
+        System.out.println(res);
 
         ctx.channel().writeAndFlush(Unpooled.copiedBuffer(res,CharsetUtil.UTF_8));
 

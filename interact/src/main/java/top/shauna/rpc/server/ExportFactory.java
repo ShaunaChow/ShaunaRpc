@@ -17,7 +17,7 @@ public class ExportFactory {
 
         String protocal = serviceBean.getLocalExportBean().getProtocal();
         if(protocal==null) protocal = "netty";
-        String className = "top.shauna.rpc.export.exporter."
+        String className = "top.shauna.rpc.server.exporter."
                 +protocal.substring(0,1).toUpperCase()
                 +protocal.substring(1)+"Exporter";
         Class clazz = Class.forName(className);

@@ -152,8 +152,11 @@ public class Test1 {
         Class<Test1> testClass = Test1.class;
         Method okk = testClass.getMethod("okk", int.class, String.class);
         for (Parameter parameter : okk.getParameters()) {
-            System.out.println(parameter);
+            System.out.println(parameter.getType());
         }
+
+        double integer = JSON.parseObject("23", double.class);
+        System.out.println(integer);
     }
 
     public String okk(int b, String a){

@@ -1,5 +1,6 @@
 package top.shauna.rpc.server.parser;
 
+import com.alibaba.fastjson.JSON;
 import top.shauna.rpc.bean.RequestBean;
 import top.shauna.rpc.bean.ResponseBean;
 import top.shauna.rpc.bean.ServiceBean;
@@ -38,11 +39,17 @@ public class MethodParser {
         Parameter[] parameters = method.getParameters();
         List<String> values = request.getValues();
         if(values.size()!=parameters.length) return new ResponseBean(ResponseEnum.MISSING_PARAMS,null);
+
         Object[] args = new Object[values.size()];
-        for (Parameter parameter : parameters) {
-
+        Object res = null;
+        try {
+            for (int i = 0; i < parameters.length; i++) {
+                args[i] = JSON.parseObject(values.get(i), parameters[i].getType());
+            }
+            res = method.invoke(serviceBean.getInterfaceImpl(), args);
+        }catch (Exception e){
+            return new ResponseBean(ResponseEnum.PARAM_ERROR,e.getMessage());
         }
-
-        return null;
+        return new ResponseBean(ResponseEnum.SUCCESS,res);
     }
 }
