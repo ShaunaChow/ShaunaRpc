@@ -5,7 +5,8 @@ public class LocalExportBean {
     private String protocal;
     private int port;
     private String ip;
-    private String loc;
+    private String serverClassLoc;
+    private String clientClassLoc;
 
     public LocalExportBean() {
     }
@@ -16,12 +17,12 @@ public class LocalExportBean {
         this.ip = ip;
     }
 
-    public String getLoc() {
-        return loc;
+    public String getServerClassLoc() {
+        return serverClassLoc;
     }
 
-    public void setLoc(String loc) {
-        this.loc = loc;
+    public void setServerClassLoc(String serverClassLoc) {
+        this.serverClassLoc = serverClassLoc;
     }
 
     public String getProtocal() {
@@ -46,5 +47,13 @@ public class LocalExportBean {
 
     public void setIp(String ip) {
         this.ip = ip;
+    }
+
+    public String getClientClassLoc() {
+        return clientClassLoc;
+    }
+
+    public void setClientClassLoc(String clientClassLoc) {
+        this.clientClassLoc = clientClassLoc;
     }
 }

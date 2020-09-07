@@ -1,16 +1,10 @@
 package top.shauna.rpc.common.register;
 
 import com.alibaba.fastjson.JSON;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import top.shauna.rpc.bean.ServiceBean;
 import top.shauna.rpc.common.interfaces.Register;
 import top.shauna.rpc.supports.ZKSupportKit;
 
-import java.lang.reflect.Method;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.Set;
 
 
 /**
@@ -20,7 +14,6 @@ public class ZookeeperRegister implements Register {
 
     private String urlPatten = "/shauna/";
     private ZKSupportKit zkSupportKit;
-    private static Logger log = LogManager.getLogger(ZookeeperRegister.class);
 
     public ZookeeperRegister(String zkServers){
         zkSupportKit = new ZKSupportKit(zkServers);

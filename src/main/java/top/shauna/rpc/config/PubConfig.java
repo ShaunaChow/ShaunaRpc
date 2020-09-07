@@ -21,6 +21,15 @@ public class PubConfig {
 
     private String applicationName;
     private RegisterBean registerBean;
+    private Integer threadPoolNums;
+
+    public Integer getThreadPoolNums() {
+        return threadPoolNums;
+    }
+
+    public void setThreadPoolNums(Integer threadPoolNums) {
+        this.threadPoolNums = threadPoolNums;
+    }
 
     public RegisterBean getRegisterBean() {
         return registerBean;

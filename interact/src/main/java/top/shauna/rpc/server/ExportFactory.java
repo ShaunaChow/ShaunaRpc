@@ -6,7 +6,7 @@ import top.shauna.rpc.interfaces.LocalExporter;
 public class ExportFactory {
 
     public static LocalExporter getExporter(ServiceBean<?> serviceBean) throws Exception {
-        String loc = serviceBean.getLocalExportBean().getLoc();
+        String loc = serviceBean.getLocalExportBean().getServerClassLoc();
         if(loc!=null){
             Class clazz = Class.forName(loc);
             Object exporter = clazz.newInstance();

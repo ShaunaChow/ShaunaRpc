@@ -8,16 +8,19 @@ import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import top.shauna.rpc.bean.LocalExportBean;
+import top.shauna.rpc.common.ShaunaThreadPool;
 import top.shauna.rpc.server.handler.InBoundHandler;
 import top.shauna.rpc.interfaces.LocalExporter;
 
 
 public class NettyExporter implements LocalExporter {
+    private NioEventLoopGroup boss;
+    private NioEventLoopGroup work;
 
     @Override
     public void init(LocalExportBean localExportBean) throws Exception {
-        NioEventLoopGroup boss = new NioEventLoopGroup(1);
-        NioEventLoopGroup work = new NioEventLoopGroup();
+        boss = new NioEventLoopGroup(1);
+        work = new NioEventLoopGroup();
         ServerBootstrap serverBootstrap = new ServerBootstrap();
 
         try {
@@ -32,13 +35,28 @@ public class NettyExporter implements LocalExporter {
                         }
                     });
 
-            ChannelFuture sync = serverBootstrap.bind(localExportBean.getPort()).sync();
-            sync.channel().closeFuture().sync();
+            ShaunaThreadPool.threadPool.execute(()->{
+                ChannelFuture sync = null;
+                try {
+                    sync = serverBootstrap.bind(localExportBean.getPort()).sync();
+                    sync.channel().closeFuture().sync();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }finally {
+                    boss.shutdownGracefully();
+                    work.shutdownGracefully();
+                }
+            });
         }catch (Exception e){
             throw new Exception("本地暴露失败, "+e.getMessage());
-        }finally {
-            boss.shutdownGracefully();
-            work.shutdownGracefully();
         }
+    }
+
+    @Override
+    public void destory() {
+        if(boss!=null)
+            boss.shutdownGracefully();
+        if(work!=null)
+            work.shutdownGracefully();
     }
 }

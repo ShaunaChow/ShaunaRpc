@@ -12,30 +12,34 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.util.CharsetUtil;
 import org.junit.Test;
-import top.shauna.rpc.bean.LocalExportBean;
-import top.shauna.rpc.bean.RegisterBean;
-import top.shauna.rpc.bean.ServiceBean;
+import top.shauna.rpc.bean.*;
+import top.shauna.rpc.client.ClientFactory;
+import top.shauna.rpc.client.connecter.holder.ConnecterHolder;
+import top.shauna.rpc.common.ShaunaThreadPool;
 import top.shauna.rpc.common.factory.RegistryFactory;
 import top.shauna.rpc.common.interfaces.Register;
 import top.shauna.rpc.config.PubConfig;
+import top.shauna.rpc.interfaces.ClientStarter;
 import top.shauna.rpc.server.ExportFactory;
 import top.shauna.rpc.interfaces.LocalExporter;
 import top.shauna.rpc.supports.ZKSupportKit;
+import top.shauna.rpc.test.impl.HelloImpl;
 import top.shauna.rpc.type.ResponseEnum;
 
 import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
+import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.concurrent.ExecutionException;
 
 public class Test1 {
 
     @Test
     public void test1() throws Exception {
-        ServiceBean<?> bean = new ServiceBean<>();
+        ServiceBean bean = new ServiceBean<>();
         bean.setInterfaze(Hello.class);
-        bean.setInterfaceImpl(null);
-        LocalExportBean localExportBean = new LocalExportBean("netty",8008,"39.105.89.185");
+        bean.setInterfaceImpl(new HelloImpl());
+        LocalExportBean localExportBean = new LocalExportBean("netty",8008,"127.0.0.1");
         bean.setLocalExportBean(localExportBean);
         Map<String,Method> map = new HashMap<>();
         for (Method method : Hello.class.getMethods()) {
@@ -45,21 +49,23 @@ public class Test1 {
         PubConfig config = PubConfig.getInstance();
         config.setApplicationName("testtttt");
         config.setRegisterBean(new RegisterBean("zookeeper","39.105.89.185:2181",null));
-        bean.setPubConfig(config);
 
         Register register = RegistryFactory.getRegister(bean);
         register.doRegist(bean);
         LocalExporter exporter = ExportFactory.getExporter(bean);
         exporter.init(localExportBean);
 
-        ZKSupportKit zkSupportKit = new ZKSupportKit("39.105.89.185");
-        System.out.println(zkSupportKit.readData("/shauna/top.shauna.rpc.test.Hello/helloCat/providers/39.105.89.185:8008"));
+        Thread.sleep(5000);
+//        ZKSupportKit zkSupportKit = new ZKSupportKit("39.105.89.185");
+//        System.out.println(zkSupportKit.readData("/shauna/top.shauna.rpc.test.Hello/helloCat/providers/39.105.89.185:8008"));
 
         Class<?> aClass = Class.forName("top.shauna.rpc.bean.LocalExportBean");
         System.out.println(aClass.getName());
         System.out.println(aClass.getMethod("getProtocal").getName());
         LocalExportBean o = (LocalExportBean) aClass.newInstance();
         System.out.println(o);
+
+        System.in.read();
 
     }
 
@@ -68,28 +74,71 @@ public class Test1 {
         NioEventLoopGroup boss = new NioEventLoopGroup(1);
         NioEventLoopGroup work = new NioEventLoopGroup();
         ServerBootstrap serverBootstrap = new ServerBootstrap();
-        try {
-            serverBootstrap.group(boss, work)
-                    .channel(NioServerSocketChannel.class)
-                    .option(ChannelOption.SO_BACKLOG, 128)
-                    .childOption(ChannelOption.SO_KEEPALIVE, true)
-                    .childHandler(new ChannelInitializer<SocketChannel>() {
-                        @Override
-                        protected void initChannel(SocketChannel socketChannel) throws Exception {
-                            socketChannel.pipeline().addLast(new MyHandler("111"));
-                            socketChannel.pipeline().addLast(new MyHandler("222"));
-                            socketChannel.pipeline().addLast(new Out1());
-                        }
-                    });
-            ChannelFuture sync = serverBootstrap.bind(8008).sync();
-            sync.channel().closeFuture().sync();
-        }finally {
-            boss.shutdownGracefully();
-            work.shutdownGracefully();
-        }
+
+        serverBootstrap.group(boss, work)
+                .channel(NioServerSocketChannel.class)
+                .option(ChannelOption.SO_BACKLOG, 128)
+                .childOption(ChannelOption.SO_KEEPALIVE, true)
+                .childHandler(new ChannelInitializer<SocketChannel>() {
+                    @Override
+                    protected void initChannel(SocketChannel socketChannel) throws Exception {
+                        socketChannel.pipeline().addLast(new MyHandler("111"));
+                        socketChannel.pipeline().addLast(new MyHandler("222"));
+                        socketChannel.pipeline().addLast(new Out1());
+                    }
+                });
+
+        ShaunaThreadPool.threadPool.execute(()->{
+            try {
+                ChannelFuture sync = serverBootstrap.bind(8008).sync();
+                System.out.println("connect done");
+                sync.channel().closeFuture().sync();
+                System.out.println("closeFuture");
+            }catch (Exception e){
+                e.printStackTrace();
+            }finally {
+                boss.shutdownGracefully();
+                work.shutdownGracefully();
+            }
+        });
+        System.out.println("done");
     }
 
-    class MyHandler extends ChannelInboundHandlerAdapter{
+    public static void main(String[] args) throws InterruptedException {
+        NioEventLoopGroup boss = new NioEventLoopGroup(1);
+        NioEventLoopGroup work = new NioEventLoopGroup();
+        ServerBootstrap serverBootstrap = new ServerBootstrap();
+
+        serverBootstrap.group(boss, work)
+                .channel(NioServerSocketChannel.class)
+                .option(ChannelOption.SO_BACKLOG, 128)
+                .childOption(ChannelOption.SO_KEEPALIVE, true)
+                .childHandler(new ChannelInitializer<SocketChannel>() {
+                    @Override
+                    protected void initChannel(SocketChannel socketChannel) throws Exception {
+                        socketChannel.pipeline().addLast(new MyHandler("111"));
+                        socketChannel.pipeline().addLast(new MyHandler("222"));
+                        socketChannel.pipeline().addLast(new Out1());
+                    }
+                });
+
+        ShaunaThreadPool.threadPool.execute(()->{
+            try {
+                ChannelFuture sync = serverBootstrap.bind(8008).sync();
+                System.out.println("connect done");
+                sync.channel().closeFuture().sync();
+                System.out.println("closeFuture");
+            }catch (Exception e){
+                e.printStackTrace();
+            }finally {
+                boss.shutdownGracefully();
+                work.shutdownGracefully();
+            }
+        });
+        System.out.println("done");
+    }
+
+    static class MyHandler extends ChannelInboundHandlerAdapter{
         private String ss;
         public MyHandler(String s){
             ss = s;
@@ -104,7 +153,7 @@ public class Test1 {
     }
 
     @Test
-    public void test3() throws InterruptedException {
+    public void test3() throws InterruptedException, ExecutionException {
         NioEventLoopGroup group = new NioEventLoopGroup(1);
         Bootstrap bootstrap = new Bootstrap();
         bootstrap.group(group)
@@ -112,19 +161,43 @@ public class Test1 {
                 .handler(new ChannelInitializer<SocketChannel>() {
                     @Override
                     protected void initChannel(SocketChannel socketChannel) throws Exception {
-                        socketChannel.pipeline().addLast(new MyHandler1());
+                        socketChannel.pipeline().addLast("nameeeeeeeeeeeeeeeeee",new MyHandler1());
+                        socketChannel.pipeline().addLast(new Out1());
                     }
                 });
-        ChannelFuture sync = bootstrap.connect("127.0.0.1", 8008).sync();
-        sync.channel().closeFuture().sync();
+        ShaunaThreadPool.threadPool.execute(()->{
+            ChannelFuture sync = null;
+            try {
+                sync = bootstrap.connect("localhost", 8008).sync();
+                sync.channel().closeFuture().sync();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }finally {
+                group.shutdownGracefully();
+            }
+        });
+        System.out.println("okkkkkkkkkkkkkkkkkkkkkk");
+        while(true){
+            Thread.sleep(2000);
+            if(ch!=null){
+                System.out.println("ceshi111");
+                ChannelFuture future = ch.writeAndFlush(Unpooled.copiedBuffer("测试1", CharsetUtil.UTF_8));
+                System.out.println("ansss = "+future.get());
+                System.out.println("ceshi222");
+//                break;
+            }
+        }
     }
+    private static volatile Channel ch = null;
 
     class MyHandler1 extends ChannelInboundHandlerAdapter{
         @Override
         public void channelActive(ChannelHandlerContext ctx) throws Exception {
             Channel channel = ctx.channel();
+            ch = channel;
             channel.writeAndFlush(Unpooled.copiedBuffer("你好",CharsetUtil.UTF_8));
             System.out.println("客户端ok");
+            System.out.println(ctx.name());
         }
 
         @Override
@@ -134,7 +207,7 @@ public class Test1 {
         }
     }
 
-    class Out1 extends ChannelOutboundHandlerAdapter{
+    static class Out1 extends ChannelOutboundHandlerAdapter{
         @Override
         public void write(ChannelHandlerContext ctx, Object msg, ChannelPromise promise) throws Exception {
             System.out.println("out");
@@ -157,6 +230,79 @@ public class Test1 {
 
         double integer = JSON.parseObject("23", double.class);
         System.out.println(integer);
+    }
+
+    @Test
+    public void test5() throws NoSuchMethodException {
+        ServiceBean bean = new ServiceBean<>();
+        bean.setInterfaze(Hello.class);
+        bean.setInterfaceImpl(new HelloImpl());
+        LocalExportBean localExportBean = new LocalExportBean("netty",8008,"39.105.89.185");
+        bean.setLocalExportBean(localExportBean);
+        Map<String,Method> map = new HashMap<>();
+        for (Method method : Hello.class.getMethods()) {
+            map.put(method.getName(),method);
+        }
+        bean.setMethods(map);
+        PubConfig config = PubConfig.getInstance();
+        config.setApplicationName("testtttt");
+        config.setRegisterBean(new RegisterBean("zookeeper","39.105.89.185:2181",null));
+
+//        Method method = null;
+//        HelloImpl hello = new HelloImpl();
+//        method = Hello.class.getMethod("helloCat",String.class,LocalExportBean.class);
+//        List<String> values = Arrays.asList(JSON.toJSONString("shauna"),JSON.toJSONString(localExportBean));
+        Method method = null;
+        HelloImpl hello = new HelloImpl();
+        method = Hello.class.getMethod("helloDog",int.class);
+        List<String> values = Arrays.asList(JSON.toJSONString(500));
+
+        Parameter[] parameters = method.getParameters();
+        Object[] args = new Object[values.size()];
+        Object res = null;
+        try {
+            for (int i = 0; i < parameters.length; i++) {
+                System.out.println(values.get(i)+"  "+parameters[i].getType());
+                args[i] = JSON.parseObject(values.get(i), parameters[i].getType());
+            }
+            res = method.invoke(hello, args);
+            System.out.println("ans = "+JSON.toJSONString(res));
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void test6() throws Exception {
+        ServiceBean bean = new ServiceBean<>();
+        bean.setInterfaze(Hello.class);
+        bean.setInterfaceImpl(new HelloImpl());
+        LocalExportBean localExportBean = new LocalExportBean("netty",8008,"127.0.0.1");
+        bean.setLocalExportBean(localExportBean);
+        Map<String,Method> map = new HashMap<>();
+        for (Method method : Hello.class.getMethods()) {
+            map.put(method.getName(),method);
+        }
+        bean.setMethods(map);
+        PubConfig config = PubConfig.getInstance();
+        config.setApplicationName("testtttt");
+        config.setRegisterBean(new RegisterBean("zookeeper","39.105.89.185:2181",null));
+
+        ReferenceBean referenceBean = new ReferenceBean();
+        referenceBean.setRemoteClients(new CopyOnWriteArrayList<>());
+        ConnecterHolder.put("abc",referenceBean);
+
+        ClientStarter clientStarter = ClientFactory.getClientStarter(localExportBean);
+        clientStarter.connect(localExportBean,"abc");
+
+        ReferenceBean abc = ConnecterHolder.get("abc");
+        while(abc.getRemoteClients().size()==0);
+        Thread.sleep(5000);
+        RemoteClient client = abc.getRemoteClients().get(0);
+        Channel channel = (Channel) client.getChannel();
+
+        channel.writeAndFlush(Unpooled.copiedBuffer("222222222458692222222222222222",CharsetUtil.UTF_8));
+        System.in.read();
     }
 
     public String okk(int b, String a){
