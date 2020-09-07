@@ -4,7 +4,7 @@ import com.alibaba.fastjson.JSON;
 import top.shauna.rpc.bean.RequestBean;
 import top.shauna.rpc.bean.ResponseBean;
 import top.shauna.rpc.bean.ServiceBean;
-import top.shauna.rpc.server.methods.MethodsHolder;
+import top.shauna.rpc.holder.MethodsHolder;
 import top.shauna.rpc.type.ResponseEnum;
 
 import java.lang.reflect.Method;

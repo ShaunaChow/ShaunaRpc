@@ -14,7 +14,8 @@ import io.netty.util.CharsetUtil;
 import org.junit.Test;
 import top.shauna.rpc.bean.*;
 import top.shauna.rpc.client.ClientFactory;
-import top.shauna.rpc.client.connecter.holder.ConnecterHolder;
+import top.shauna.rpc.common.found.ZookeeperFounder;
+import top.shauna.rpc.holder.ConnecterHolder;
 import top.shauna.rpc.common.ShaunaThreadPool;
 import top.shauna.rpc.common.factory.RegistryFactory;
 import top.shauna.rpc.common.interfaces.Register;
@@ -22,7 +23,6 @@ import top.shauna.rpc.config.PubConfig;
 import top.shauna.rpc.interfaces.ClientStarter;
 import top.shauna.rpc.server.ExportFactory;
 import top.shauna.rpc.interfaces.LocalExporter;
-import top.shauna.rpc.supports.ZKSupportKit;
 import top.shauna.rpc.test.impl.HelloImpl;
 import top.shauna.rpc.type.ResponseEnum;
 
@@ -302,10 +302,49 @@ public class Test1 {
         Channel channel = (Channel) client.getChannel();
 
         channel.writeAndFlush(Unpooled.copiedBuffer("222222222458692222222222222222",CharsetUtil.UTF_8));
+        channel.close();
         System.in.read();
     }
 
     public String okk(int b, String a){
         return "1";
+    }
+
+    @Test
+    public void test7() throws Exception {
+        ServiceBean bean = new ServiceBean<>();
+        bean.setInterfaze(Hello.class);
+        bean.setInterfaceImpl(new HelloImpl());
+        LocalExportBean localExportBean = new LocalExportBean("netty",8008,"127.0.0.1");
+        bean.setLocalExportBean(localExportBean);
+        Map<String,Method> map = new HashMap<>();
+        for (Method method : Hello.class.getMethods()) {
+            map.put(method.getName(),method);
+        }
+        bean.setMethods(map);
+        PubConfig config = PubConfig.getInstance();
+        config.setApplicationName("testtttt");
+        config.setRegisterBean(new RegisterBean("zookeeper","39.105.89.185:2181",null));
+
+        ReferenceBean referenceBean = new ReferenceBean();
+        referenceBean.setRemoteClients(new CopyOnWriteArrayList<>());
+        ConnecterHolder.put("top.shauna.rpc.test.Hello",referenceBean);
+
+        ReferenceBean abc = ConnecterHolder.get("top.shauna.rpc.test.Hello");
+
+        ZookeeperFounder zookeeperFounder = new ZookeeperFounder();
+        zookeeperFounder.connect("39.105.89.185:2181");
+        zookeeperFounder.listen("/shauna/top.shauna.rpc.test.Hello/providers");
+
+        CopyOnWriteArrayList<RemoteClient> remoteClients = abc.getRemoteClients();
+
+        while(true){
+            Thread.sleep(2000);
+            for (RemoteClient remoteClient : remoteClients) {
+                System.out.println(remoteClient.getHostName()+":"+remoteClient.getPort());
+            }
+            System.out.println("=================================");
+        }
+
     }
 }

@@ -33,12 +33,11 @@ public class ZookeeperRegister implements Register {
         String providerIP = serviceBean.getLocalExportBean().getIp();
         int providerPort = serviceBean.getLocalExportBean().getPort();
         String providerProtocal = JSON.toJSONString(serviceBean.getLocalExportBean());
-        for (String method : serviceBean.getMethods().keySet()) {
-            String url = pre + classFullName + "/"
-                    + method + "/providers/" + providerIP
-                    + ":" + providerPort;
-            doRegist(url,providerProtocal,true);
-        }
+        String url = pre + classFullName + "/"
+                + "providers/" + providerIP
+                + ":" + providerPort;
+        doRegist(url,providerProtocal,true);
+
     }
 
     public void doRegist(String url, String context, boolean isEphemeral) {

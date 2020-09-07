@@ -1,15 +1,15 @@
 package top.shauna.rpc.bean;
 
-import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 public class ReferenceBean {
     private String className;
     private Class<?> interfaze;
-    private List<LocalExportBean> localExportBeanList;
+    private CopyOnWriteArrayList<LocalExportBean> localExportBeanList;
+    private CopyOnWriteArrayList<String> localExportAddrList;
     private CopyOnWriteArrayList<RemoteClient> remoteClients;
 
-    public ReferenceBean(String className, Class<?> interfaze, List<LocalExportBean> localExportBeanList, CopyOnWriteArrayList<RemoteClient> remoteClients) {
+    public ReferenceBean(String className, Class<?> interfaze, CopyOnWriteArrayList<LocalExportBean> localExportBeanList, CopyOnWriteArrayList<RemoteClient> remoteClients) {
         this.className = className;
         this.interfaze = interfaze;
         this.localExportBeanList = localExportBeanList;
@@ -35,11 +35,11 @@ public class ReferenceBean {
         this.interfaze = interfaze;
     }
 
-    public List<LocalExportBean> getLocalExportBeanList() {
+    public CopyOnWriteArrayList<LocalExportBean> getLocalExportBeanList() {
         return localExportBeanList;
     }
 
-    public void setLocalExportBeanList(List<LocalExportBean> localExportBeanList) {
+    public void setLocalExportBeanList(CopyOnWriteArrayList<LocalExportBean> localExportBeanList) {
         this.localExportBeanList = localExportBeanList;
     }
 
@@ -49,5 +49,13 @@ public class ReferenceBean {
 
     public void setRemoteClients(CopyOnWriteArrayList<RemoteClient> remoteClients) {
         this.remoteClients = remoteClients;
+    }
+
+    public CopyOnWriteArrayList<String> getLocalExportAddrList() {
+        return localExportAddrList;
+    }
+
+    public void setLocalExportAddrList(CopyOnWriteArrayList<String> localExportAddrList) {
+        this.localExportAddrList = localExportAddrList;
     }
 }

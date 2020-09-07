@@ -1,4 +1,4 @@
-package top.shauna.rpc.server.methods;
+package top.shauna.rpc.holder;
 
 import top.shauna.rpc.bean.ServiceBean;
 

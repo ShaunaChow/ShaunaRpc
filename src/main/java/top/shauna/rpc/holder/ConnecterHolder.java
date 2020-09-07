@@ -1,4 +1,4 @@
-package top.shauna.rpc.client.connecter.holder;
+package top.shauna.rpc.holder;
 
 import top.shauna.rpc.bean.ReferenceBean;
 

@@ -24,7 +24,7 @@ public class NettyClientStarter implements ClientStarter {
                 .handler(new ChannelInitializer<SocketChannel>() {
                     @Override
                     protected void initChannel(SocketChannel socketChannel) throws Exception {
-                        socketChannel.pipeline().addLast(interfaze, new NettyHandler(interfaze));
+                        socketChannel.pipeline().addLast(interfaze, new NettyHandler(interfaze,localExportBean));
                     }
                 });
 
@@ -32,11 +32,13 @@ public class NettyClientStarter implements ClientStarter {
             ChannelFuture sync = null;
             try {
                 sync = bootstrap.connect(localExportBean.getIp(), localExportBean.getPort()).sync();
+                System.out.println("连接成功");
                 sync.channel().closeFuture().sync();
             } catch (Exception e) {
                 e.printStackTrace();
             }finally {
                 group.shutdownGracefully();
+                System.out.println("推出了");
             }
         });
     }

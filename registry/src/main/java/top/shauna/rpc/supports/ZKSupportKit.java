@@ -1,5 +1,7 @@
 package top.shauna.rpc.supports;
 
+import org.I0Itec.zkclient.IZkChildListener;
+import org.I0Itec.zkclient.IZkDataListener;
 import org.I0Itec.zkclient.ZkClient;
 import org.apache.zookeeper.CreateMode;
 
@@ -42,5 +44,13 @@ public class ZKSupportKit {
 
     public void writeData(String path, String data){
         zkClient.writeData(path,data);
+    }
+
+    public void subscribeDataChanges(String path, IZkDataListener zkDataListener){
+        zkClient.subscribeDataChanges(path,zkDataListener);
+    }
+
+    public void subscribeChildChanges(String path, IZkChildListener zkChildListener){
+        zkClient.subscribeChildChanges(path, zkChildListener);
     }
 }
