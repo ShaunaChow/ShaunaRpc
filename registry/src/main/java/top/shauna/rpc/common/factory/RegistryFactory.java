@@ -6,7 +6,7 @@ import top.shauna.rpc.config.PubConfig;
 
 public class RegistryFactory {
 
-    public static Register getRegister(ServiceBean<?> serviceBean) throws Exception {
+    public static Register getRegister() throws Exception {
         /** 使用用户自定义的Register类 **/
         String loc = PubConfig.getInstance().getRegisterBean().getLoc();
         String url = PubConfig.getInstance().getRegisterBean().getUrl();

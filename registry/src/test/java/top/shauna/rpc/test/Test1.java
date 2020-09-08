@@ -14,7 +14,9 @@ import io.netty.util.CharsetUtil;
 import org.junit.Test;
 import top.shauna.rpc.bean.*;
 import top.shauna.rpc.client.ClientFactory;
+import top.shauna.rpc.common.factory.FounderFactory;
 import top.shauna.rpc.common.found.ZookeeperFounder;
+import top.shauna.rpc.common.interfaces.Founder;
 import top.shauna.rpc.holder.ConnecterHolder;
 import top.shauna.rpc.common.ShaunaThreadPool;
 import top.shauna.rpc.common.factory.RegistryFactory;
@@ -39,7 +41,7 @@ public class Test1 {
         ServiceBean bean = new ServiceBean<>();
         bean.setInterfaze(Hello.class);
         bean.setInterfaceImpl(new HelloImpl());
-        LocalExportBean localExportBean = new LocalExportBean("netty",8008,"127.0.0.1");
+        LocalExportBean localExportBean = new LocalExportBean("netty",8009,"127.0.0.2");
         bean.setLocalExportBean(localExportBean);
         Map<String,Method> map = new HashMap<>();
         for (Method method : Hello.class.getMethods()) {
@@ -50,10 +52,10 @@ public class Test1 {
         config.setApplicationName("testtttt");
         config.setRegisterBean(new RegisterBean("zookeeper","39.105.89.185:2181",null));
 
-        Register register = RegistryFactory.getRegister(bean);
-        register.doRegist(bean);
         LocalExporter exporter = ExportFactory.getExporter(bean);
         exporter.init(localExportBean);
+        Register register = RegistryFactory.getRegister();
+        register.doRegist(bean);
 
         Thread.sleep(5000);
 //        ZKSupportKit zkSupportKit = new ZKSupportKit("39.105.89.185");
@@ -315,20 +317,21 @@ public class Test1 {
         ServiceBean bean = new ServiceBean<>();
         bean.setInterfaze(Hello.class);
         bean.setInterfaceImpl(new HelloImpl());
-        LocalExportBean localExportBean = new LocalExportBean("netty",8008,"127.0.0.1");
+        LocalExportBean localExportBean = new LocalExportBean("netty", 8008, "127.0.0.1");
         bean.setLocalExportBean(localExportBean);
-        Map<String,Method> map = new HashMap<>();
+        Map<String, Method> map = new HashMap<>();
         for (Method method : Hello.class.getMethods()) {
-            map.put(method.getName(),method);
+            map.put(method.getName(), method);
         }
         bean.setMethods(map);
         PubConfig config = PubConfig.getInstance();
         config.setApplicationName("testtttt");
-        config.setRegisterBean(new RegisterBean("zookeeper","39.105.89.185:2181",null));
+        config.setRegisterBean(new RegisterBean("zookeeper", "39.105.89.185:2181", null));
 
         ReferenceBean referenceBean = new ReferenceBean();
+        referenceBean.setClassName("top.shauna.rpc.test.Hello");
         referenceBean.setRemoteClients(new CopyOnWriteArrayList<>());
-        ConnecterHolder.put("top.shauna.rpc.test.Hello",referenceBean);
+        ConnecterHolder.put("top.shauna.rpc.test.Hello", referenceBean);
 
         ReferenceBean abc = ConnecterHolder.get("top.shauna.rpc.test.Hello");
 
@@ -338,13 +341,53 @@ public class Test1 {
 
         CopyOnWriteArrayList<RemoteClient> remoteClients = abc.getRemoteClients();
 
-        while(true){
+        while (true) {
             Thread.sleep(2000);
             for (RemoteClient remoteClient : remoteClients) {
-                System.out.println(remoteClient.getHostName()+":"+remoteClient.getPort());
+                System.out.println(remoteClient.getHostName() + ":" + remoteClient.getPort());
             }
             System.out.println("=================================");
         }
+    }
 
+
+    @Test
+    public void test8() throws Exception {
+        ServiceBean bean = new ServiceBean<>();
+        bean.setInterfaze(Hello.class);
+        bean.setInterfaceImpl(new HelloImpl());
+        LocalExportBean localExportBean = new LocalExportBean("netty", 8008, "127.0.0.1");
+        bean.setLocalExportBean(localExportBean);
+        Map<String, Method> map = new HashMap<>();
+        for (Method method : Hello.class.getMethods()) {
+            map.put(method.getName(), method);
+        }
+        bean.setMethods(map);
+        PubConfig config = PubConfig.getInstance();
+        config.setApplicationName("testtttt");
+        config.setRegisterBean(new RegisterBean("zookeeper", "39.105.89.185:2181", null));
+        config.setFoundBean(new FoundBean("zookeeper", "39.105.89.185:2181", null));
+
+        ReferenceBean referenceBean = new ReferenceBean();
+        referenceBean.setClassName("top.shauna.rpc.test.Hello");
+        referenceBean.setRemoteClients(new CopyOnWriteArrayList<>());
+        ConnecterHolder.put("top.shauna.rpc.test.Hello", referenceBean);
+
+        ReferenceBean abc = ConnecterHolder.get("top.shauna.rpc.test.Hello");
+
+        Founder founder = FounderFactory.getFounder();
+        founder.found("/shauna/top.shauna.rpc.test.Hello/providers");
+
+        founder.listen("/shauna/top.shauna.rpc.test.Hello/providers");
+
+        CopyOnWriteArrayList<RemoteClient> remoteClients = abc.getRemoteClients();
+
+        while (true) {
+            Thread.sleep(2000);
+            for (RemoteClient remoteClient : remoteClients) {
+                System.out.println(remoteClient.getHostName() + ":" + remoteClient.getPort());
+            }
+            System.out.println("=================================");
+        }
     }
 }

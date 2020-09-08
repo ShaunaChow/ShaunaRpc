@@ -34,11 +34,11 @@ public class NettyExporter implements LocalExporter {
                             socketChannel.pipeline().addLast("handler1",new InBoundHandler());
                         }
                     });
-
+            /** 此处必须等待建立连接！防止服务注册后第一时间连接的客户端连接不上 **/
+            ChannelFuture sync = serverBootstrap.bind(localExportBean.getPort()).sync();
+            /** 此处必须开起一个线程监听服务器状态，必要时刻shutdownGracefully **/
             ShaunaThreadPool.threadPool.execute(()->{
-                ChannelFuture sync = null;
                 try {
-                    sync = serverBootstrap.bind(localExportBean.getPort()).sync();
                     sync.channel().closeFuture().sync();
                 } catch (InterruptedException e) {
                     e.printStackTrace();

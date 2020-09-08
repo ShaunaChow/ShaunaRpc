@@ -1,5 +1,6 @@
 package top.shauna.rpc.config;
 
+import top.shauna.rpc.bean.FoundBean;
 import top.shauna.rpc.bean.RegisterBean;
 
 public class PubConfig {
@@ -21,6 +22,7 @@ public class PubConfig {
 
     private String applicationName;
     private RegisterBean registerBean;
+    private FoundBean foundBean;
     private Integer threadPoolNums;
 
     public Integer getThreadPoolNums() {
@@ -45,5 +47,13 @@ public class PubConfig {
 
     public void setApplicationName(String applicationName) {
         this.applicationName = applicationName;
+    }
+
+    public FoundBean getFoundBean() {
+        return foundBean;
+    }
+
+    public void setFoundBean(FoundBean foundBean) {
+        this.foundBean = foundBean;
     }
 }

@@ -1,6 +1,7 @@
 package top.shauna.rpc.common.found;
 
 import com.alibaba.fastjson.JSON;
+import io.netty.channel.Channel;
 import top.shauna.rpc.bean.LocalExportBean;
 import top.shauna.rpc.bean.ReferenceBean;
 import top.shauna.rpc.bean.RemoteClient;
@@ -11,7 +12,6 @@ import top.shauna.rpc.interfaces.ClientStarter;
 import top.shauna.rpc.supports.ZKSupportKit;
 
 import java.io.IOException;
-import java.nio.channels.Channel;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.CopyOnWriteArraySet;
@@ -21,16 +21,19 @@ public class ZookeeperFounder implements Founder {
 
     @Override
     public void listen(String path) {
-        zkSupportKit.subscribeChildChanges(path, (parentPath, currentChilds) -> {
-            System.out.println("before");
-            doChange(path,currentChilds);
-            System.out.println("after");
-        });
+        zkSupportKit.subscribeChildChanges(path, (parentPath, currentChilds) -> doChange(parentPath,currentChilds));
     }
 
+    /**
+     * @Param: path 约定为/shauna/className/providers
+     * **/
     @Override
-    public void found(String path) {
-
+    public void found(String path) throws Exception {
+        if(!path.startsWith("/shauna/")) throw new Exception("发现功能监听路径错误 [doChange]");
+        String className = path.substring(8);
+        className = className.substring(0,className.indexOf("/"));
+        ReferenceBean referenceBean = ConnecterHolder.get(className);
+        doPut(referenceBean,path,new CopyOnWriteArraySet(zkSupportKit.readChildren(path)));
     }
 
     private void doChange(String path, List<String> currentChilds) throws Exception {
@@ -52,8 +55,20 @@ public class ZookeeperFounder implements Founder {
     private void doPut(ReferenceBean referenceBean, String path, CopyOnWriteArraySet<String> current) throws Exception {
         for(String str:current){
             LocalExportBean localExportBean = JSON.parseObject(zkSupportKit.readData(path + "/" + str), LocalExportBean.class);
-            referenceBean.getLocalExportAddrList().add(str);
-            referenceBean.getLocalExportBeanList().add(localExportBean);
+            if(referenceBean.getLocalExportAddrList()!=null)
+                referenceBean.getLocalExportAddrList().add(str);
+            else{
+                CopyOnWriteArrayList<String> tmp = new CopyOnWriteArrayList<>();
+                tmp.add(str);
+                referenceBean.setLocalExportAddrList(tmp);
+            }
+            if(referenceBean.getLocalExportBeanList()!=null)
+                referenceBean.getLocalExportBeanList().add(localExportBean);
+            else{
+                CopyOnWriteArrayList<LocalExportBean> tmp = new CopyOnWriteArrayList<>();
+                tmp.add(localExportBean);
+                referenceBean.setLocalExportBeanList(tmp);
+            }
             ClientStarter clientStarter = ClientFactory.getClientStarter(localExportBean);
             clientStarter.connect(localExportBean,referenceBean.getClassName());
         }
