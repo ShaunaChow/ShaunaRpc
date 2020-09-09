@@ -8,8 +8,9 @@ import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.util.CharsetUtil;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import top.shauna.rpc.bean.RequestBean;
+import top.shauna.rpc.bean.RequestBeanWrapper;
 import top.shauna.rpc.bean.ResponseBean;
+import top.shauna.rpc.bean.ResponseBeanWrapper;
 import top.shauna.rpc.server.parser.MethodParser;
 
 
@@ -21,12 +22,14 @@ public class InBoundHandler extends ChannelInboundHandlerAdapter {
 
         ByteBuf buf = (ByteBuf) msg;
         String request = buf.toString(CharsetUtil.UTF_8);
-        System.out.println(request);
-        RequestBean responseBean = JSON.parseObject(request, RequestBean.class);
 
-        ResponseBean response = MethodParser.getMethodParser().getResponse(responseBean);
+        RequestBeanWrapper requestBeanWrapper = JSON.parseObject(request, RequestBeanWrapper.class);
 
-        String res = JSON.toJSONString(response);
+        ResponseBean response = MethodParser.getMethodParser().getResponse(requestBeanWrapper.getRequestBean());
+
+        ResponseBeanWrapper responseBeanWrapper = new ResponseBeanWrapper(requestBeanWrapper.getUuid(), response);
+
+        String res = JSON.toJSONString(responseBeanWrapper);
 
         ctx.channel().writeAndFlush(Unpooled.copiedBuffer(res,CharsetUtil.UTF_8));
 

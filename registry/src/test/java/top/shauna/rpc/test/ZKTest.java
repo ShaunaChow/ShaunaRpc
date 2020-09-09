@@ -6,6 +6,7 @@ import org.junit.Test;
 import top.shauna.rpc.supports.ZKSupportKit;
 
 import java.util.List;
+import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
 public class ZKTest {
@@ -46,5 +47,7 @@ public class ZKTest {
         String className = path.substring(8);
         className = className.substring(0,className.indexOf("/"));
         System.out.println(className);
+
+        System.out.println(UUID.randomUUID());
     }
 }

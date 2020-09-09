@@ -6,6 +6,7 @@ import top.shauna.rpc.interfaces.LoadBalance;
 
 public class ShaunaPollBalance implements LoadBalance {
     private static int pin;
+    private static String id;
 
     public ShaunaPollBalance() {
         pin = 0;
@@ -13,6 +14,7 @@ public class ShaunaPollBalance implements LoadBalance {
 
     @Override
     public RemoteClient getRemoteClient(ReferenceBean referenceBean) {
-        return referenceBean.getRemoteClients().get(pin%referenceBean.getRemoteClients().size());
+        if (referenceBean.getRemoteClients().size()==0) return null;
+        else return referenceBean.getRemoteClients().get(pin%referenceBean.getRemoteClients().size());
     }
 }

@@ -22,7 +22,9 @@ import top.shauna.rpc.common.ShaunaThreadPool;
 import top.shauna.rpc.common.factory.RegistryFactory;
 import top.shauna.rpc.common.interfaces.Register;
 import top.shauna.rpc.config.PubConfig;
+import top.shauna.rpc.holder.MethodsHolder;
 import top.shauna.rpc.interfaces.ClientStarter;
+import top.shauna.rpc.proxy.ReferenceProxyFactory;
 import top.shauna.rpc.server.ExportFactory;
 import top.shauna.rpc.interfaces.LocalExporter;
 import top.shauna.rpc.test.impl.HelloImpl;
@@ -39,6 +41,7 @@ public class Test1 {
     @Test
     public void test1() throws Exception {
         ServiceBean bean = new ServiceBean<>();
+        MethodsHolder.putMethod(Hello.class.getTypeName(),bean);
         bean.setInterfaze(Hello.class);
         bean.setInterfaceImpl(new HelloImpl());
         LocalExportBean localExportBean = new LocalExportBean("netty",8009,"127.0.0.2");
@@ -388,6 +391,56 @@ public class Test1 {
                 System.out.println(remoteClient.getHostName() + ":" + remoteClient.getPort());
             }
             System.out.println("=================================");
+        }
+    }
+
+    @Test
+    public void test9() throws Exception {
+        ServiceBean bean = new ServiceBean<>();
+        bean.setInterfaze(Hello.class);
+        bean.setInterfaceImpl(new HelloImpl());
+        LocalExportBean localExportBean = new LocalExportBean("netty", 8008, "127.0.0.1");
+        bean.setLocalExportBean(localExportBean);
+        Map<String, Method> map = new HashMap<>();
+        for (Method method : Hello.class.getMethods()) {
+            map.put(method.getName(), method);
+        }
+        bean.setMethods(map);
+        PubConfig config = PubConfig.getInstance();
+        config.setApplicationName("testtttt");
+        config.setRegisterBean(new RegisterBean("zookeeper", "39.105.89.185:2181", null));
+        config.setFoundBean(new FoundBean("zookeeper", "39.105.89.185:2181", null));
+        config.setTimeout(2000L);
+
+        ReferenceBean referenceBean = new ReferenceBean();
+        referenceBean.setClassName("top.shauna.rpc.test.Hello");
+        referenceBean.setInterfaze(Hello.class);
+        referenceBean.setRemoteClients(new CopyOnWriteArrayList<>());
+        ConnecterHolder.put("top.shauna.rpc.test.Hello", referenceBean);
+
+        ReferenceBean abc = ConnecterHolder.get("top.shauna.rpc.test.Hello");
+
+        Founder founder = FounderFactory.getFounder();
+        founder.found("/shauna/top.shauna.rpc.test.Hello/providers");
+
+        founder.listen("/shauna/top.shauna.rpc.test.Hello/providers");
+
+        CopyOnWriteArrayList<RemoteClient> remoteClients = abc.getRemoteClients();
+
+        while (true) {
+            Thread.sleep(2000);
+            int i = 0;
+            for (RemoteClient remoteClient : remoteClients) {
+                System.out.println(remoteClient.getHostName() + ":" + remoteClient.getPort());
+                i = 1;
+            }
+            System.out.println("=================================");
+            if(i==1) break;
+        }
+        Hello proxy = ReferenceProxyFactory.getProxy(referenceBean);
+        while(true) {
+//            Thread.sleep(1000);
+            System.out.println(proxy.helloCat("shauna", new LocalExportBean("shaunaaaaa", 2020, "haha")));
         }
     }
 }

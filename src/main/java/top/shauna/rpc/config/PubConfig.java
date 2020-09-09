@@ -24,6 +24,15 @@ public class PubConfig {
     private RegisterBean registerBean;
     private FoundBean foundBean;
     private Integer threadPoolNums;
+    private Long timeout;
+
+    public Long getTimeout() {
+        return timeout;
+    }
+
+    public void setTimeout(Long timeout) {
+        this.timeout = timeout;
+    }
 
     public Integer getThreadPoolNums() {
         return threadPoolNums;

@@ -56,4 +56,15 @@ public class LocalExportBean {
     public void setClientClassLoc(String clientClassLoc) {
         this.clientClassLoc = clientClassLoc;
     }
+
+    @Override
+    public String toString() {
+        return "LocalExportBean{" +
+                "protocal='" + protocal + '\'' +
+                ", port=" + port +
+                ", ip='" + ip + '\'' +
+                ", serverClassLoc='" + serverClassLoc + '\'' +
+                ", clientClassLoc='" + clientClassLoc + '\'' +
+                '}';
+    }
 }
