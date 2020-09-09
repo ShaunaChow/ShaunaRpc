@@ -11,5 +11,23 @@
 
     <artifactId>proxy</artifactId>
 
+    <dependencies>
+        <dependency>
+            <groupId>top.shauna</groupId>
+            <artifactId>ShaunaRpc</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>top.shauna</groupId>
+            <artifactId>interact</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>top.shauna</groupId>
+            <artifactId>cluster</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+    </dependencies>
 
 </project>

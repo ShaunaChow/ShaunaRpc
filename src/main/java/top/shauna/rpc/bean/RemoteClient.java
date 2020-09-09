@@ -1,9 +1,11 @@
 package top.shauna.rpc.bean;
 
-public class RemoteClient<T> {
+import top.shauna.rpc.interfaces.Channel;
+
+public class RemoteClient {
     private String hostName;
     private Integer port;
-    private T channel;
+    private Channel channel;
     private Integer invokeNums;
     private Double avgTimeMills;
     private Double factor;
@@ -12,7 +14,7 @@ public class RemoteClient<T> {
         factor = 0.4;
     }
 
-    public RemoteClient(String hostName, Integer port, T channel, Integer invokeNums, Double avgTimeMills, Double factor) {
+    public RemoteClient(String hostName, Integer port, Channel channel, Integer invokeNums, Double avgTimeMills, Double factor) {
         this.hostName = hostName;
         this.port = port;
         this.channel = channel;
@@ -21,7 +23,7 @@ public class RemoteClient<T> {
         this.factor = factor;
     }
 
-    public RemoteClient(String hostName, Integer port, T channel, Integer invokeNums, Double avgTimeMills) {
+    public RemoteClient(String hostName, Integer port, Channel channel, Integer invokeNums, Double avgTimeMills) {
         this();
         this.hostName = hostName;
         this.port = port;
@@ -44,11 +46,11 @@ public class RemoteClient<T> {
         this.hostName = hostName;
     }
 
-    public T getChannel() {
+    public Channel getChannel() {
         return channel;
     }
 
-    public void setChannel(T channel) {
+    public void setChannel(Channel channel) {
         this.channel = channel;
     }
 

@@ -5,6 +5,7 @@ import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import top.shauna.rpc.bean.LocalExportBean;
 import top.shauna.rpc.bean.RemoteClient;
+import top.shauna.rpc.client.channel.NettyChannel;
 import top.shauna.rpc.holder.ConnecterHolder;
 
 public class NettyHandler extends ChannelInboundHandlerAdapter {
@@ -21,7 +22,8 @@ public class NettyHandler extends ChannelInboundHandlerAdapter {
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
         Channel channel = ctx.channel();
-        RemoteClient client = new RemoteClient(localExportBean.getIp(), localExportBean.getPort(), channel, 0, 0.0);
+        NettyChannel nettyChannel = new NettyChannel(channel);
+        RemoteClient client = new RemoteClient(localExportBean.getIp(), localExportBean.getPort(), nettyChannel, 0, 0.0);
         if(ConnecterHolder.contains(interfaze)){
             ConnecterHolder.get(interfaze).getRemoteClients().add(client);
         }else{
