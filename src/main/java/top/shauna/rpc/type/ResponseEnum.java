@@ -1,5 +1,10 @@
 package top.shauna.rpc.type;
 
+/**
+ * @Author   Shauna.Chou
+ * @E-Mail   z1023778132@icloud.com
+ */
+
 public enum ResponseEnum {
     SUCCESS(200,"success"),
     MISSING_PARAMS(400,"missing_params"),

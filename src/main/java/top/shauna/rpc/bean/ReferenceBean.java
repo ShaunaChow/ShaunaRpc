@@ -2,6 +2,11 @@ package top.shauna.rpc.bean;
 
 import java.util.concurrent.CopyOnWriteArrayList;
 
+/**
+ * @Author   Shauna.Chou
+ * @E-Mail   z1023778132@icloud.com
+ */
+
 public class ReferenceBean {
     private String className;
     private Class<?> interfaze;

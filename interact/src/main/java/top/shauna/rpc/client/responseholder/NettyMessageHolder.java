@@ -1,8 +1,12 @@
 package top.shauna.rpc.client.responseholder;
 
 import top.shauna.rpc.bean.MessageBean;
-
 import java.util.concurrent.ConcurrentHashMap;
+
+/**
+ * @Author   Shauna.Chou
+ * @E-Mail   z1023778132@icloud.com
+ */
 
 public class NettyMessageHolder {
     private static ConcurrentHashMap<String,MessageBean> map = new ConcurrentHashMap<>();

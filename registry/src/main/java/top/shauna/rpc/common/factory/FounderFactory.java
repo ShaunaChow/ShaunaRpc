@@ -3,6 +3,11 @@ package top.shauna.rpc.common.factory;
 import top.shauna.rpc.common.interfaces.Founder;
 import top.shauna.rpc.config.PubConfig;
 
+/**
+ * @Author   Shauna.Chou
+ * @E-Mail   z1023778132@icloud.com
+ */
+
 public class FounderFactory {
 
     public static Founder getFounder() throws Exception {

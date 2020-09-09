@@ -3,6 +3,11 @@ package top.shauna.rpc.client;
 import top.shauna.rpc.bean.LocalExportBean;
 import top.shauna.rpc.interfaces.ClientStarter;
 
+/**
+ * @Author   Shauna.Chou
+ * @E-Mail   z1023778132@icloud.com
+ */
+
 public class ClientFactory {
 
     public static ClientStarter getClientStarter(LocalExportBean localExportBean) throws Exception {

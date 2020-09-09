@@ -1,9 +1,13 @@
 package top.shauna.rpc.bean;
 
 import lombok.NoArgsConstructor;
-
 import java.lang.reflect.Method;
 import java.util.Map;
+
+/**
+ * @Author   Shauna.Chou
+ * @E-Mail   z1023778132@icloud.com
+ */
 
 @NoArgsConstructor
 public class ServiceBean<T> {

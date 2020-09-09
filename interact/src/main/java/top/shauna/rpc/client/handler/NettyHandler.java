@@ -16,6 +16,11 @@ import top.shauna.rpc.holder.ConnecterHolder;
 
 import java.util.concurrent.locks.Lock;
 
+/**
+ * @Author   Shauna.Chou
+ * @E-Mail   z1023778132@icloud.com
+ */
+
 public class NettyHandler extends ChannelInboundHandlerAdapter {
 
     private String interfaze;

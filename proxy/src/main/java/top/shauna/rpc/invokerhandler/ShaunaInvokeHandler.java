@@ -8,7 +8,6 @@ import top.shauna.rpc.config.PubConfig;
 import top.shauna.rpc.interfaces.Channel;
 import top.shauna.rpc.interfaces.LoadBalance;
 import top.shauna.rpc.loadbalance.ShaunaPollBalance;
-
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -17,6 +16,11 @@ import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
+
+/**
+ * @Author   Shauna.Chou
+ * @E-Mail   z1023778132@icloud.com
+ */
 
 @Slf4j
 public class ShaunaInvokeHandler implements InvocationHandler {

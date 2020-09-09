@@ -2,6 +2,11 @@ package top.shauna.rpc.type;
 
 import io.netty.channel.Channel;
 
+/**
+ * @Author   Shauna.Chou
+ * @E-Mail   z1023778132@icloud.com
+ */
+
 public enum ClientType {
     Netty(Channel.class);
 

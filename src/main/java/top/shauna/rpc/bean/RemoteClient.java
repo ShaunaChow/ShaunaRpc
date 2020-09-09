@@ -2,6 +2,11 @@ package top.shauna.rpc.bean;
 
 import top.shauna.rpc.interfaces.Channel;
 
+/**
+ * @Author   Shauna.Chou
+ * @E-Mail   z1023778132@icloud.com
+ */
+
 public class RemoteClient {
     private String hostName;
     private Integer port;

@@ -12,6 +12,11 @@ import top.shauna.rpc.client.handler.NettyHandler;
 import top.shauna.rpc.common.ShaunaThreadPool;
 import top.shauna.rpc.interfaces.ClientStarter;
 
+/**
+ * @Author   Shauna.Chou
+ * @E-Mail   z1023778132@icloud.com
+ */
+
 @NoArgsConstructor
 public class NettyClientStarter implements ClientStarter {
     @Override

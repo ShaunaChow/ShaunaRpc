@@ -4,6 +4,11 @@ import io.netty.buffer.Unpooled;
 import io.netty.util.CharsetUtil;
 import top.shauna.rpc.interfaces.Channel;
 
+/**
+ * @Author   Shauna.Chou
+ * @E-Mail   z1023778132@icloud.com
+ */
+
 public class NettyChannel implements Channel {
     private io.netty.channel.Channel channel;
 

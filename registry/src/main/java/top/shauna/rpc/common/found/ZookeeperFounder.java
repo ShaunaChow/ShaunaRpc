@@ -10,11 +10,15 @@ import top.shauna.rpc.common.interfaces.Founder;
 import top.shauna.rpc.holder.ConnecterHolder;
 import top.shauna.rpc.interfaces.ClientStarter;
 import top.shauna.rpc.supports.ZKSupportKit;
-
 import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.CopyOnWriteArraySet;
+
+/**
+ * @Author   Shauna.Chou
+ * @E-Mail   z1023778132@icloud.com
+ */
 
 public class ZookeeperFounder implements Founder {
     private ZKSupportKit zkSupportKit;

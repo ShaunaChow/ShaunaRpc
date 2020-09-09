@@ -8,8 +8,10 @@ import top.shauna.rpc.supports.ZKSupportKit;
 
 
 /**
- * Zk注测组件
+ * @Author   Shauna.Chou
+ * @E-Mail   z1023778132@icloud.com
  */
+
 public class ZookeeperRegister implements Register {
 
     private String urlPatten = "/shauna/";

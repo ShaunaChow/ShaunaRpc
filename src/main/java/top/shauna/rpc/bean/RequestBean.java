@@ -2,6 +2,11 @@ package top.shauna.rpc.bean;
 
 import java.util.List;
 
+/**
+ * @Author   Shauna.Chou
+ * @E-Mail   z1023778132@icloud.com
+ */
+
 public class RequestBean {
 
     private String clazzName;

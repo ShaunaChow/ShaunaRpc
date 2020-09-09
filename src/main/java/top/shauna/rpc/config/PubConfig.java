@@ -3,6 +3,11 @@ package top.shauna.rpc.config;
 import top.shauna.rpc.bean.FoundBean;
 import top.shauna.rpc.bean.RegisterBean;
 
+/**
+ * @Author   Shauna.Chou
+ * @E-Mail   z1023778132@icloud.com
+ */
+
 public class PubConfig {
 
     private PubConfig(){}

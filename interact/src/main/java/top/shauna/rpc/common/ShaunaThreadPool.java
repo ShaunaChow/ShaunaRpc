@@ -4,6 +4,11 @@ import top.shauna.rpc.config.PubConfig;
 
 import java.util.concurrent.*;
 
+/**
+ * @Author   Shauna.Chou
+ * @E-Mail   z1023778132@icloud.com
+ */
+
 public class ShaunaThreadPool {
 
     public static ExecutorService threadPool;

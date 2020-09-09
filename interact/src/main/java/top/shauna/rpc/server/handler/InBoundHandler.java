@@ -13,6 +13,10 @@ import top.shauna.rpc.bean.ResponseBean;
 import top.shauna.rpc.bean.ResponseBeanWrapper;
 import top.shauna.rpc.server.parser.MethodParser;
 
+/**
+ * @Author   Shauna.Chou
+ * @E-Mail   z1023778132@icloud.com
+ */
 
 public class InBoundHandler extends ChannelInboundHandlerAdapter {
     private static Logger log = LogManager.getLogger(InBoundHandler.class);

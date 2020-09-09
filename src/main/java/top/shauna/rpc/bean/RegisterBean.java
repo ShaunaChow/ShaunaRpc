@@ -1,5 +1,10 @@
 package top.shauna.rpc.bean;
 
+/**
+ * @Author   Shauna.Chou
+ * @E-Mail   z1023778132@icloud.com
+ */
+
 public class RegisterBean {
     private String potocol;
     private String url;

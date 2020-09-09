@@ -3,6 +3,11 @@ package top.shauna.rpc.bean;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 
+/**
+ * @Author   Shauna.Chou
+ * @E-Mail   z1023778132@icloud.com
+ */
+
 public class MessageBean<T> {
     private Lock lock;
     private Condition condition;

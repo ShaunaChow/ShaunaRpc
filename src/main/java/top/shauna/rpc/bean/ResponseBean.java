@@ -2,6 +2,11 @@ package top.shauna.rpc.bean;
 
 import top.shauna.rpc.type.ResponseEnum;
 
+/**
+ * @Author   Shauna.Chou
+ * @E-Mail   z1023778132@icloud.com
+ */
+
 public class ResponseBean<R> {
     private ResponseEnum code;
     private R res;

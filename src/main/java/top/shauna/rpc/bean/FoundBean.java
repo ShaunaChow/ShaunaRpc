@@ -2,6 +2,11 @@ package top.shauna.rpc.bean;
 
 import lombok.NoArgsConstructor;
 
+/**
+ * @Author   Shauna.Chou
+ * @E-Mail   z1023778132@icloud.com
+ */
+
 @NoArgsConstructor
 public class FoundBean {
     private String potocol;
