@@ -1,0 +1,15 @@
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:shauna="http://www.shauna.top/schema/shauna"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.shauna.top/schema/shauna
+        http://www.shauna.top/schema/shauna/shauna.xsd">
+
+    <shauna:pubconfig appname="okkk"/>
+
+</beans>
