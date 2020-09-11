@@ -7,7 +7,7 @@ package top.shauna.rpc.bean;
 
 public class LocalExportBean {
 
-    private String protocal;
+    private String protocol;
     private int port;
     private String ip;
     private String serverClassLoc;
@@ -16,8 +16,8 @@ public class LocalExportBean {
     public LocalExportBean() {
     }
 
-    public LocalExportBean(String protocal, int port, String ip) {
-        this.protocal = protocal;
+    public LocalExportBean(String protocol, int port, String ip) {
+        this.protocol = protocol;
         this.port = port;
         this.ip = ip;
     }
@@ -30,12 +30,12 @@ public class LocalExportBean {
         this.serverClassLoc = serverClassLoc;
     }
 
-    public String getProtocal() {
-        return protocal;
+    public String getProtocol() {
+        return protocol;
     }
 
-    public void setProtocal(String protocal) {
-        this.protocal = protocal;
+    public void setProtocol(String protocol) {
+        this.protocol = protocol;
     }
 
     public int getPort() {
@@ -65,7 +65,7 @@ public class LocalExportBean {
     @Override
     public String toString() {
         return "LocalExportBean{" +
-                "protocal='" + protocal + '\'' +
+                "protocol='" + protocol + '\'' +
                 ", port=" + port +
                 ", ip='" + ip + '\'' +
                 ", serverClassLoc='" + serverClassLoc + '\'' +

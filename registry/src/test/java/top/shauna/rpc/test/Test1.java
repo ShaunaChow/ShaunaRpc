@@ -70,7 +70,7 @@ public class Test1 {
 
         Class<?> aClass = Class.forName("top.shauna.rpc.bean.LocalExportBean");
         System.out.println(aClass.getName());
-        System.out.println(aClass.getMethod("getProtocal").getName());
+        System.out.println(aClass.getMethod("getProtocol").getName());
         LocalExportBean o = (LocalExportBean) aClass.newInstance();
         System.out.println(o);
 

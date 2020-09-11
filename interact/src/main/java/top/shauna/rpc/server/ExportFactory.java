@@ -20,7 +20,7 @@ public class ExportFactory {
             }else throw new Exception("Exporter指定的类必须实现LocalExporter接口!!!");
         }
 
-        String protocal = serviceBean.getLocalExportBean().getProtocal();
+        String protocal = serviceBean.getLocalExportBean().getProtocol();
         if(protocal==null) protocal = "netty";
         String className = "top.shauna.rpc.server.exporter."
                 +protocal.substring(0,1).toUpperCase()

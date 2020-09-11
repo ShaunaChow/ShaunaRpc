@@ -5,77 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="72453e51-d97a-4d95-b619-723551c9d9d9" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/service/src/main/java/top/shauna/rpc/parser/ShaunaBeanParser.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service/src/main/java/top/shauna/rpc/service/ShaunaNamespaceHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/META-INF/example.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/META-INF/shauna.xsd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/META-INF/spring.handlers" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/META-INF/spring.schemas" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/src/main/java/top/shauna/rpc/insertinvokers/ServiceBeanHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/src/test/java/top/shauna/rpc/test/ServiceTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cluster/target/classes/top/shauna/rpc/interfaces/LoadBalance.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cluster/target/classes/top/shauna/rpc/loadbalance/ShaunaPollBalance.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/interact/target/classes/top/shauna/rpc/client/ClientFactory.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/interact/target/classes/top/shauna/rpc/client/channel/NettyChannel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/interact/target/classes/top/shauna/rpc/client/connecter/NettyClientStarter$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/interact/target/classes/top/shauna/rpc/client/connecter/NettyClientStarter.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/interact/target/classes/top/shauna/rpc/client/handler/NettyHandler.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/interact/target/classes/top/shauna/rpc/client/responseholder/NettyMessageHolder.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/interact/target/classes/top/shauna/rpc/common/ShaunaThreadPool.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/interact/target/classes/top/shauna/rpc/interfaces/ClientStarter.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/interact/target/classes/top/shauna/rpc/interfaces/LocalExporter.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/interact/target/classes/top/shauna/rpc/server/ExportFactory.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/interact/target/classes/top/shauna/rpc/server/exporter/NettyExporter$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/interact/target/classes/top/shauna/rpc/server/exporter/NettyExporter.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/interact/target/classes/top/shauna/rpc/server/handler/InBoundHandler.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/interact/target/classes/top/shauna/rpc/server/parser/MethodParser.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/proxy/target/classes/top/shauna/rpc/invokerhandler/ShaunaInvokeHandler$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/proxy/target/classes/top/shauna/rpc/invokerhandler/ShaunaInvokeHandler.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/proxy/target/classes/top/shauna/rpc/proxy/ReferenceProxyFactory.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/proxy/target/maven-archiver/pom.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/proxy/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/proxy/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/proxy/target/proxy-1.0-SNAPSHOT.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/registry/target/classes/top/shauna/rpc/common/factory/FounderFactory.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/registry/target/classes/top/shauna/rpc/common/factory/RegistryFactory.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/registry/target/classes/top/shauna/rpc/common/found/ZookeeperFounder.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/registry/target/classes/top/shauna/rpc/common/interfaces/Founder.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/registry/target/classes/top/shauna/rpc/common/interfaces/Register.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/registry/target/classes/top/shauna/rpc/common/register/ZookeeperRegister.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/registry/target/classes/top/shauna/rpc/supports/ZKSupportKit.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/registry/target/test-classes/top/shauna/rpc/test/Test1$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/registry/target/test-classes/top/shauna/rpc/test/Test1$2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/registry/target/test-classes/top/shauna/rpc/test/Test1$3.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/registry/target/test-classes/top/shauna/rpc/test/Test1$MyHandler.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/registry/target/test-classes/top/shauna/rpc/test/Test1$MyHandler1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/registry/target/test-classes/top/shauna/rpc/test/Test1$Out1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/registry/target/test-classes/top/shauna/rpc/test/Test1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/registry/target/test-classes/top/shauna/rpc/test/ZKTest$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/registry/target/test-classes/top/shauna/rpc/test/ZKTest$2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/registry/target/test-classes/top/shauna/rpc/test/ZKTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/service/target/maven-archiver/pom.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/service/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/target/service-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/service/target/service-1.0-SNAPSHOT.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/top/shauna/rpc/bean/FoundBean.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/top/shauna/rpc/bean/LocalExportBean.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/top/shauna/rpc/bean/MessageBean.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/top/shauna/rpc/bean/ReferenceBean.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/top/shauna/rpc/bean/RegisterBean.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/top/shauna/rpc/bean/RemoteClient.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/top/shauna/rpc/bean/RequestBean.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/top/shauna/rpc/bean/RequestBeanWrapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/top/shauna/rpc/bean/ResponseBean.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/top/shauna/rpc/bean/ResponseBeanWrapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/top/shauna/rpc/bean/ServiceBean.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/top/shauna/rpc/config/PubConfig.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/top/shauna/rpc/holder/ConnecterHolder.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/top/shauna/rpc/holder/MethodsHolder.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/top/shauna/rpc/interfaces/Channel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/top/shauna/rpc/test/Hello.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/top/shauna/rpc/test/impl/HelloImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/top/shauna/rpc/type/ClientType.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/top/shauna/rpc/type/ResponseEnum.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/interact/src/main/java/top/shauna/rpc/client/ClientFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/interact/src/main/java/top/shauna/rpc/client/ClientFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/interact/src/main/java/top/shauna/rpc/server/ExportFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/interact/src/main/java/top/shauna/rpc/server/ExportFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/registry/src/test/java/top/shauna/rpc/test/Test1.java" beforeDir="false" afterPath="$PROJECT_DIR$/registry/src/test/java/top/shauna/rpc/test/Test1.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/main/java/top/shauna/rpc/parser/ShaunaBeanParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/main/java/top/shauna/rpc/parser/ShaunaBeanParser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/target/classes/top/shauna/rpc/service/ShaunaNamespaceHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/service/target/classes/top/shauna/rpc/service/ShaunaNamespaceHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/top/shauna/rpc/bean/LocalExportBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/top/shauna/rpc/bean/LocalExportBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/top/shauna/rpc/bean/ReferenceBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/top/shauna/rpc/bean/ReferenceBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/top/shauna/rpc/bean/RegisterBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/top/shauna/rpc/bean/RegisterBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/top/shauna/rpc/bean/ServiceBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/top/shauna/rpc/bean/ServiceBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/top/shauna/rpc/config/PubConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/top/shauna/rpc/config/PubConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/top/shauna/rpc/test/Hello.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/top/shauna/rpc/test/Hello.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/example.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/example.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/shauna.xsd" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/shauna.xsd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/spring.handlers" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/spring.handlers" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -92,61 +38,19 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FavoritesManager">
+    <favorites_list name="ShaunaRpc" />
+  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Test1.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/registry/src/test/java/top/shauna/rpc/test/Test1.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="43" selection-start-line="43" selection-end-line="43" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#3590#4026#0" expanded="true" />
-                <element signature="e#4025#4026#0" expanded="true" />
-                <element signature="e#5076#5512#0" expanded="true" />
-                <element signature="e#5511#5512#0" expanded="true" />
-                <element signature="e#6828#7204#0" expanded="true" />
-                <element signature="e#7203#7204#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="ShaunaNamespaceHandler.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/service/src/main/java/top/shauna/rpc/service/ShaunaNamespaceHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="486">
-              <caret line="18" column="83" selection-start-line="18" selection-start-column="83" selection-end-line="18" selection-end-column="83" />
+            <state relative-caret-position="567">
+              <caret line="21" column="80" selection-start-line="21" selection-start-column="69" selection-end-line="21" selection-end-column="80" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="example.xml" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/META-INF/example.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="297">
-              <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LocalExportBean.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/top/shauna/rpc/bean/LocalExportBean.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="189">
-              <caret line="7" column="28" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="28" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RegisterBean.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/top/shauna/rpc/bean/RegisterBean.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="189">
-              <caret line="7" column="25" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="25" />
             </state>
           </provider>
         </entry>
@@ -154,12 +58,72 @@
       <file leaf-file-name="ShaunaBeanParser.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/service/src/main/java/top/shauna/rpc/parser/ShaunaBeanParser.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="324">
-              <caret line="12" column="29" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="29" />
+            <state relative-caret-position="391">
+              <caret line="81" column="18" lean-forward="true" selection-start-line="81" selection-start-column="18" selection-end-line="81" selection-end-column="18" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#472#473#0" expanded="true" />
-                <element signature="e#501#502#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ServiceBeanHandler.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/service/src/main/java/top/shauna/rpc/insertinvokers/ServiceBeanHandler.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="157">
+              <caret line="46" column="53" lean-forward="true" selection-start-line="46" selection-start-column="53" selection-end-line="46" selection-end-column="53" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ServiceBean.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/top/shauna/rpc/bean/ServiceBean.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="294">
+              <caret line="16" column="39" lean-forward="true" selection-start-line="16" selection-start-column="39" selection-end-line="16" selection-end-column="39" />
+              <folding>
+                <element signature="e#1153#1154#0" expanded="true" />
+                <element signature="e#1179#1180#0" expanded="true" />
+                <element signature="e#1217#1218#0" expanded="true" />
+                <element signature="e#1247#1248#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ReferenceBean.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/top/shauna/rpc/bean/ReferenceBean.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="270">
+              <caret line="10" column="31" selection-start-line="10" selection-start-column="31" selection-end-line="10" selection-end-column="31" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ReferenceProxyFactory.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/proxy/src/main/java/top/shauna/rpc/proxy/ReferenceProxyFactory.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="270">
+              <caret line="10" selection-start-line="10" selection-end-line="10" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ServiceTest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/service/src/test/java/top/shauna/rpc/test/ServiceTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="364">
+              <caret line="30" column="36" lean-forward="true" selection-start-line="30" selection-start-column="36" selection-end-line="30" selection-end-column="36" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#1480#1481#0" expanded="true" />
+                <element signature="e#1516#1517#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -170,9 +134,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="FxmlFile" />
         <option value="Enum" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -183,11 +147,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/interact/src/main/java/top/shauna/rpc/client/responseholder/NettyResponseHolder.java" />
-        <option value="$PROJECT_DIR$/interact/src/main/java/top/shauna/rpc/client/responseholder/NettyConditionHolder.java" />
-        <option value="$PROJECT_DIR$/interact/src/main/java/top/shauna/rpc/client/connecter/NettyClientStarter.java" />
-        <option value="$PROJECT_DIR$/interact/src/main/java/top/shauna/rpc/client/channel/NettyChannel.java" />
-        <option value="$PROJECT_DIR$/cluster/src/main/java/top/shauna/rpc/loadbalance/ShaunaPollBalance.java" />
         <option value="$PROJECT_DIR$/cluster/src/main/java/top/shauna/rpc/interfaces/LoadBalance.java" />
         <option value="$PROJECT_DIR$/interact/src/main/java/top/shauna/rpc/client/handler/NettyHandler.java" />
         <option value="$PROJECT_DIR$/interact/src/main/java/top/shauna/rpc/client/responseholder/NettyMessageHolder.java" />
@@ -211,29 +170,34 @@
         <option value="$PROJECT_DIR$/registry/src/test/java/top/shauna/rpc/test/Test1.java" />
         <option value="$PROJECT_DIR$/registry/src/test/java/top/shauna/rpc/test/ZKTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/top/shauna/rpc/bean/FoundBean.java" />
-        <option value="$PROJECT_DIR$/src/main/java/top/shauna/rpc/bean/LocalExportBean.java" />
         <option value="$PROJECT_DIR$/src/main/java/top/shauna/rpc/bean/MessageBean.java" />
-        <option value="$PROJECT_DIR$/src/main/java/top/shauna/rpc/bean/ReferenceBean.java" />
-        <option value="$PROJECT_DIR$/src/main/java/top/shauna/rpc/bean/RegisterBean.java" />
         <option value="$PROJECT_DIR$/src/main/java/top/shauna/rpc/bean/RemoteClient.java" />
         <option value="$PROJECT_DIR$/src/main/java/top/shauna/rpc/bean/RequestBean.java" />
         <option value="$PROJECT_DIR$/src/main/java/top/shauna/rpc/bean/RequestBeanWrapper.java" />
         <option value="$PROJECT_DIR$/src/main/java/top/shauna/rpc/bean/ResponseBean.java" />
         <option value="$PROJECT_DIR$/src/main/java/top/shauna/rpc/bean/ResponseBeanWrapper.java" />
-        <option value="$PROJECT_DIR$/src/main/java/top/shauna/rpc/bean/ServiceBean.java" />
-        <option value="$PROJECT_DIR$/src/main/java/top/shauna/rpc/config/PubConfig.java" />
         <option value="$PROJECT_DIR$/src/main/java/top/shauna/rpc/holder/ConnecterHolder.java" />
         <option value="$PROJECT_DIR$/src/main/java/top/shauna/rpc/holder/MethodsHolder.java" />
         <option value="$PROJECT_DIR$/src/main/java/top/shauna/rpc/interfaces/Channel.java" />
         <option value="$PROJECT_DIR$/src/main/java/top/shauna/rpc/test/impl/HelloImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/top/shauna/rpc/test/Hello.java" />
         <option value="$PROJECT_DIR$/src/main/java/top/shauna/rpc/type/ClientType.java" />
         <option value="$PROJECT_DIR$/src/main/java/top/shauna/rpc/type/ResponseEnum.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/service/src/main/java/top/shauna/rpc/parser/ShaunaBeanParser.java" />
         <option value="$PROJECT_DIR$/service/pom.xml" />
         <option value="$PROJECT_DIR$/service/src/main/java/top/shauna/rpc/service/ShaunaNamespaceHandler.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/META-INF/shauna.xsd" />
+        <option value="$PROJECT_DIR$/src/main/java/top/shauna/rpc/bean/LocalExportBean.java" />
+        <option value="$PROJECT_DIR$/src/main/java/top/shauna/rpc/config/PubConfig.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/META-INF/spring.handlers" />
+        <option value="$PROJECT_DIR$/src/main/java/top/shauna/rpc/bean/RegisterBean.java" />
+        <option value="$PROJECT_DIR$/src/main/java/top/shauna/rpc/bean/ServiceBean.java" />
+        <option value="$PROJECT_DIR$/service/src/main/java/top/shauna/rpc/parser/ShaunaBeanParser.java" />
         <option value="$PROJECT_DIR$/src/main/resources/META-INF/example.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/top/shauna/rpc/test/ReferenceBeanTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/top/shauna/rpc/bean/ReferenceBean.java" />
+        <option value="$PROJECT_DIR$/src/main/java/top/shauna/rpc/test/Hello.java" />
+        <option value="$PROJECT_DIR$/service/src/test/java/top/shauna/rpc/test/ServiceTest.java" />
+        <option value="$PROJECT_DIR$/service/src/main/java/top/shauna/rpc/insertinvokers/ServiceBeanHandler.java" />
       </list>
     </option>
   </component>
@@ -744,7 +708,51 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="rpc" type="462c0819:PsiDirectoryNode" />
+              <item name="insertinvokers" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ShaunaRpc" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ShaunaRpc" type="462c0819:PsiDirectoryNode" />
+              <item name="service" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="rpc" type="462c0819:PsiDirectoryNode" />
               <item name="parser" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ShaunaRpc" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ShaunaRpc" type="462c0819:PsiDirectoryNode" />
+              <item name="service" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="rpc" type="462c0819:PsiDirectoryNode" />
+              <item name="service" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ShaunaRpc" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ShaunaRpc" type="462c0819:PsiDirectoryNode" />
+              <item name="service" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ShaunaRpc" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ShaunaRpc" type="462c0819:PsiDirectoryNode" />
+              <item name="service" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ShaunaRpc" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ShaunaRpc" type="462c0819:PsiDirectoryNode" />
+              <item name="service" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="ShaunaRpc" type="b2602c69:ProjectViewProjectNode" />
@@ -861,7 +869,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="F:/IDEA/dubbo" />
+    <property name="last_opened_file_path" value="F:/IDEA/test" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="project.structure.last.edited" value="Modules" />
@@ -892,9 +900,32 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.Test1.test9">
+  <component name="RunManager" selected="JUnit.ServiceTest.test">
     <configuration default="true" type="Application" factoryName="Application">
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+    </configuration>
+    <configuration name="ServiceTest.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="service" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="top.shauna.rpc.test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="top.shauna.rpc.test" />
+      <option name="MAIN_CLASS_NAME" value="top.shauna.rpc.test.ServiceTest" />
+      <option name="METHOD_NAME" value="test" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <patterns />
     </configuration>
     <configuration name="Test1.test1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="registry" />
@@ -909,29 +940,6 @@
       <option name="PACKAGE_NAME" value="top.shauna.rpc.test" />
       <option name="MAIN_CLASS_NAME" value="top.shauna.rpc.test.Test1" />
       <option name="METHOD_NAME" value="test1" />
-      <option name="TEST_OBJECT" value="method" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <patterns />
-    </configuration>
-    <configuration name="Test1.test6" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="registry" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="top.shauna.rpc.test.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="top.shauna.rpc.test" />
-      <option name="MAIN_CLASS_NAME" value="top.shauna.rpc.test.Test1" />
-      <option name="METHOD_NAME" value="test6" />
       <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" />
@@ -1051,18 +1059,18 @@
     </configuration>
     <list>
       <item itemvalue="JUnit.Test1.test1" />
-      <item itemvalue="JUnit.Test1.test6" />
       <item itemvalue="JUnit.Test1.test7" />
       <item itemvalue="JUnit.Test1.test8" />
       <item itemvalue="JUnit.Test1.test9" />
+      <item itemvalue="JUnit.ServiceTest.test" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.ServiceTest.test" />
         <item itemvalue="JUnit.Test1.test9" />
         <item itemvalue="JUnit.Test1.test1" />
         <item itemvalue="JUnit.Test1.test8" />
         <item itemvalue="JUnit.Test1.test7" />
-        <item itemvalue="JUnit.Test1.test6" />
       </list>
     </recent_temporary>
   </component>
@@ -1086,44 +1094,45 @@
       <workItem from="1599641874073" duration="3899000" />
       <workItem from="1599648041499" duration="145000" />
       <workItem from="1599648289066" duration="3334000" />
-      <workItem from="1599708052916" duration="6798000" />
+      <workItem from="1599708052916" duration="10093000" />
+      <workItem from="1599792771589" duration="12980000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Test1_test9 - 2020.09.09 at 17h 05m 29s.xml">
-      <configuration name="Test1.test9" configurationId="JUnit" />
+    <history-entry file="ServiceTest_test - 2020.09.11 at 19h 36m 21s.xml">
+      <configuration name="ServiceTest.test" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Test1_test9 - 2020.09.09 at 17h 06m 04s.xml">
-      <configuration name="Test1.test9" configurationId="JUnit" />
+    <history-entry file="ServiceTest_test - 2020.09.11 at 19h 37m 54s.xml">
+      <configuration name="ServiceTest.test" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Test1_test1 - 2020.09.09 at 17h 06m 37s.xml">
-      <configuration name="Test1.test1" configurationId="JUnit" />
+    <history-entry file="ServiceTest_test - 2020.09.11 at 19h 38m 45s.xml">
+      <configuration name="ServiceTest.test" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Test1_test9 - 2020.09.09 at 18h 22m 07s.xml">
-      <configuration name="Test1.test9" configurationId="JUnit" />
+    <history-entry file="ServiceTest_test - 2020.09.11 at 19h 40m 18s.xml">
+      <configuration name="ServiceTest.test" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Test1_test9 - 2020.09.09 at 18h 23m 22s.xml">
-      <configuration name="Test1.test9" configurationId="JUnit" />
+    <history-entry file="ServiceTest_test - 2020.09.11 at 19h 42m 34s.xml">
+      <configuration name="ServiceTest.test" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Test1_test9 - 2020.09.09 at 19h 53m 26s.xml">
-      <configuration name="Test1.test9" configurationId="JUnit" />
+    <history-entry file="ServiceTest_test - 2020.09.11 at 21h 21m 06s.xml">
+      <configuration name="ServiceTest.test" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Test1_test9 - 2020.09.09 at 19h 54m 44s.xml">
-      <configuration name="Test1.test9" configurationId="JUnit" />
+    <history-entry file="ServiceTest_test - 2020.09.11 at 22h 26m 59s.xml">
+      <configuration name="ServiceTest.test" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Test1_test1 - 2020.09.09 at 21h 56m 30s.xml">
-      <configuration name="Test1.test1" configurationId="JUnit" />
+    <history-entry file="ServiceTest_test - 2020.09.11 at 22h 28m 27s.xml">
+      <configuration name="ServiceTest.test" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Test1_test1 - 2020.09.09 at 22h 36m 51s.xml">
-      <configuration name="Test1.test1" configurationId="JUnit" />
+    <history-entry file="ServiceTest_test - 2020.09.11 at 22h 32m 57s.xml">
+      <configuration name="ServiceTest.test" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Test1_test9 - 2020.09.09 at 22h 36m 51s.xml">
-      <configuration name="Test1.test9" configurationId="JUnit" />
+    <history-entry file="ServiceTest_test - 2020.09.11 at 22h 35m 59s.xml">
+      <configuration name="ServiceTest.test" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="120833000" />
+    <option name="totallyTimeSpent" value="137108000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1139,34 +1148,34 @@
     <layout>
       <window_info anchor="right" id="PlantUML" order="9" />
       <window_info anchor="right" id="Palette" order="3" />
-      <window_info anchor="bottom" id="TODO" order="6" weight="0.3291536" />
-      <window_info anchor="right" id="Palette&#9;" order="6" />
-      <window_info id="Image Layers" order="6" />
-      <window_info anchor="right" id="Capture Analysis" order="4" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="right" id="Maven Projects" order="8" weight="0.32910696" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="7" weight="0.3291536" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.4033438" />
-      <window_info anchor="bottom" id="Spring" order="12" />
-      <window_info anchor="bottom" id="Terminal" order="9" weight="0.2045929" />
       <window_info id="Capture Tool" order="3" />
       <window_info id="Designer" order="2" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19029851" />
       <window_info anchor="right" id="Database" order="7" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="4" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.3085221" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.3291536" />
+      <window_info anchor="bottom" id="Messages" order="11" weight="0.32810867" />
+      <window_info anchor="right" id="Palette&#9;" order="6" />
+      <window_info id="Image Layers" order="6" />
+      <window_info anchor="right" id="Capture Analysis" order="4" />
+      <window_info anchor="bottom" id="Version Control" order="7" weight="0.3291536" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.390507" />
+      <window_info anchor="bottom" id="Spring" order="12" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="9" visible="true" weight="0.43581447" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49946064" visible="true" weight="0.1924307" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.48651564" />
       <window_info anchor="right" id="Theme Preview" order="5" />
-      <window_info id="Favorites" order="5" side_tool="true" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.47648904" />
+      <window_info id="Favorites" order="5" sideWeight="0.50053936" side_tool="true" weight="0.1924307" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Messages" order="11" weight="0.32810867" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.24972437" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.48694316" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1210,6 +1219,18 @@
           <properties />
           <option name="timeStamp" value="9" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>jar://F:/maven/apache-maven-3.5.4/repository/org/springframework/spring-context/5.2.6.RELEASE/spring-context-5.2.6.RELEASE-sources.jar!/org/springframework/context/support/AbstractApplicationContext.java</url>
+          <line>877</line>
+          <properties />
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>jar://F:/maven/apache-maven-3.5.4/repository/org/springframework/spring-beans/5.2.6.RELEASE/spring-beans-5.2.6.RELEASE-sources.jar!/org/springframework/beans/factory/support/DefaultListableBeanFactory.java</url>
+          <line>894</line>
+          <properties />
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/registry/src/main/java/top/shauna/rpc/common/found/ZookeeperFounder.java</url>
           <line>34</line>
@@ -1219,125 +1240,10 @@
           <option name="timeStamp" value="10" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="11" />
+      <option name="time" value="13" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/interact/src/main/java/top/shauna/rpc/client/connecter/NettyClientStarter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="243">
-          <caret line="15" column="24" lean-forward="true" selection-start-line="15" selection-start-column="24" selection-end-line="15" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interact/src/main/java/top/shauna/rpc/client/channel/NettyChannel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="10" selection-start-line="10" selection-end-line="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cluster/src/main/java/top/shauna/rpc/loadbalance/ShaunaPollBalance.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="10" selection-start-line="10" selection-end-line="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cluster/src/main/java/top/shauna/rpc/interfaces/LoadBalance.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="243">
-          <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interact/src/main/java/top/shauna/rpc/client/handler/NettyHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interact/src/main/java/top/shauna/rpc/client/responseholder/NettyMessageHolder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interact/src/main/java/top/shauna/rpc/client/ClientFactory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="6" column="24" lean-forward="true" selection-start-line="6" selection-start-column="24" selection-end-line="6" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interact/src/main/java/top/shauna/rpc/common/ShaunaThreadPool.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="6" column="3" lean-forward="true" selection-start-line="6" selection-start-column="3" selection-end-line="6" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interact/src/main/java/top/shauna/rpc/interfaces/ClientStarter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="8" selection-start-line="8" selection-end-line="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interact/src/main/java/top/shauna/rpc/interfaces/LocalExporter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="8" selection-start-line="8" selection-end-line="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interact/src/main/java/top/shauna/rpc/server/exporter/NettyExporter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="14" column="3" lean-forward="true" selection-start-line="14" selection-start-column="3" selection-end-line="14" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interact/src/main/java/top/shauna/rpc/server/handler/InBoundHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="19" selection-start-line="19" selection-end-line="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interact/src/main/java/top/shauna/rpc/server/parser/MethodParser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="12" column="3" lean-forward="true" selection-start-line="12" selection-start-column="3" selection-end-line="12" selection-end-column="3" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interact/src/main/java/top/shauna/rpc/server/ExportFactory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="9" selection-start-line="9" selection-end-line="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/proxy/src/main/java/top/shauna/rpc/proxy/ReferenceProxyFactory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="81">
-          <caret line="3" column="57" selection-start-line="3" selection-start-column="57" selection-end-line="3" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/registry/src/main/java/top/shauna/rpc/common/factory/FounderFactory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="243">
-          <caret line="9" selection-start-line="9" selection-end-line="9" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/registry/src/main/java/top/shauna/rpc/common/factory/RegistryFactory.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="189">
@@ -1400,13 +1306,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/top/shauna/rpc/bean/ReferenceBean.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="8" selection-start-line="8" selection-end-line="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/top/shauna/rpc/bean/RequestBean.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="81">
@@ -1435,13 +1334,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/top/shauna/rpc/bean/ServiceBean.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="124">
-          <caret line="13" column="28" lean-forward="true" selection-start-line="13" selection-start-column="28" selection-end-line="13" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/top/shauna/rpc/holder/MethodsHolder.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
@@ -1463,13 +1355,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/top/shauna/rpc/test/Hello.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="81">
-          <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/top/shauna/rpc/type/ClientType.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="81">
@@ -1481,22 +1366,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="108">
           <caret line="4" column="31" selection-start-line="4" selection-start-column="31" selection-end-line="4" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/registry/src/test/java/top/shauna/rpc/test/Test1.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="43" selection-start-line="43" selection-end-line="43" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#3590#4026#0" expanded="true" />
-            <element signature="e#4025#4026#0" expanded="true" />
-            <element signature="e#5076#5512#0" expanded="true" />
-            <element signature="e#5511#5512#0" expanded="true" />
-            <element signature="e#6828#7204#0" expanded="true" />
-            <element signature="e#7203#7204#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1535,35 +1404,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/proxy/src/main/java/top/shauna/rpc/invokerhandler/ShaunaInvokeHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="243">
-          <caret line="63" column="9" lean-forward="true" selection-start-line="63" selection-start-column="9" selection-end-line="63" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/top/shauna/rpc/config/PubConfig.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="243">
-          <caret line="10" column="22" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/service/src/main/java/top/shauna/rpc/parser/ShaunaBeanParser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="12" column="29" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="29" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#472#473#0" expanded="true" />
-            <element signature="e#501#502#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/registry/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="310">
@@ -1578,27 +1418,58 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/top/shauna/rpc/bean/RegisterBean.java">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/META-INF/spring.schemas">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/META-INF/spring.handlers">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="7" column="25" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="25" />
+        <state>
+          <caret column="69" selection-start-column="69" selection-end-column="69" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/top/shauna/rpc/config/PubConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1201">
+          <caret line="74" column="18" selection-start-line="74" selection-start-column="18" selection-end-line="74" selection-end-column="18" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/top/shauna/rpc/bean/LocalExportBean.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="7" column="28" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="28" />
+        <state relative-caret-position="243">
+          <caret line="9" column="28" lean-forward="true" selection-start-line="9" selection-start-column="28" selection-end-line="9" selection-end-column="28" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/service/src/main/java/top/shauna/rpc/service/ShaunaNamespaceHandler.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/top/shauna/rpc/bean/RegisterBean.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="486">
-          <caret line="18" column="83" selection-start-line="18" selection-start-column="83" selection-end-line="18" selection-end-column="83" />
+        <state relative-caret-position="181">
+          <caret line="45" column="13" lean-forward="true" selection-start-line="45" selection-start-column="13" selection-end-line="45" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/META-INF/shauna.xsd">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="337">
+          <caret line="22" column="56" lean-forward="true" selection-start-line="22" selection-start-column="56" selection-end-line="22" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/registry/src/test/java/top/shauna/rpc/test/Test1.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="432">
+          <caret line="43" selection-start-line="43" selection-end-line="43" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/top/shauna/rpc/test/ReferenceBeanTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="27">
+          <caret line="1" selection-start-line="1" selection-end-line="1" />
         </state>
       </provider>
     </entry>
@@ -1606,6 +1477,161 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="297">
           <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/proxy/src/main/java/top/shauna/rpc/invokerhandler/ShaunaInvokeHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="324">
+          <caret line="30" column="43" lean-forward="true" selection-start-line="30" selection-start-column="43" selection-end-line="30" selection-end-column="43" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/proxy/src/main/java/top/shauna/rpc/proxy/ReferenceProxyFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="10" selection-start-line="10" selection-end-line="10" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/top/shauna/rpc/test/Hello.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="7" column="3" lean-forward="true" selection-start-line="7" selection-start-column="3" selection-end-line="7" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/top/shauna/rpc/bean/ReferenceBean.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="10" column="31" selection-start-line="10" selection-start-column="31" selection-end-line="10" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://F:/maven/apache-maven-3.5.4/repository/org/springframework/spring-context/5.2.6.RELEASE/spring-context-5.2.6.RELEASE.jar!/org/springframework/context/support/ClassPathXmlApplicationContext.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="45" column="20" lean-forward="true" selection-start-line="45" selection-start-column="20" selection-end-line="45" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://F:/maven/apache-maven-3.5.4/repository/org/springframework/spring-context/5.2.6.RELEASE/spring-context-5.2.6.RELEASE.jar!/org/springframework/context/support/AbstractApplicationContext.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="246">
+          <caret line="261" column="50" lean-forward="true" selection-start-line="261" selection-start-column="50" selection-end-line="261" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://F:/maven/apache-maven-3.5.4/repository/org/springframework/spring-beans/5.2.6.RELEASE/spring-beans-5.2.6.RELEASE.jar!/org/springframework/beans/factory/config/ConfigurableListableBeanFactory.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="675">
+          <caret line="32" column="9" selection-start-line="32" selection-start-column="9" selection-end-line="32" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://F:/maven/apache-maven-3.5.4/repository/org/springframework/spring-beans/5.2.6.RELEASE/spring-beans-5.2.6.RELEASE-sources.jar!/org/springframework/beans/factory/config/ConfigurableListableBeanFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="658">
+          <caret line="159" column="9" selection-start-line="159" selection-start-column="9" selection-end-line="159" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://F:/maven/apache-maven-3.5.4/repository/org/springframework/spring-context/5.2.6.RELEASE/spring-context-5.2.6.RELEASE-sources.jar!/org/springframework/context/support/AbstractApplicationContext.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="145">
+          <caret line="877" selection-start-line="877" selection-end-line="877" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://F:/maven/apache-maven-3.5.4/repository/org/springframework/spring-beans/5.2.6.RELEASE/spring-beans-5.2.6.RELEASE-sources.jar!/org/springframework/beans/factory/support/AbstractBeanFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="197">
+          <caret line="201" selection-start-line="201" selection-end-line="201" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://F:/maven/apache-maven-3.5.4/repository/org/springframework/spring-beans/5.2.6.RELEASE/spring-beans-5.2.6.RELEASE-sources.jar!/org/springframework/beans/factory/support/DefaultListableBeanFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="369">
+          <caret line="906" column="69" lean-forward="true" selection-start-line="906" selection-start-column="69" selection-end-line="906" selection-end-column="69" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/service/src/main/java/top/shauna/rpc/parser/ShaunaBeanParser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="81" column="18" lean-forward="true" selection-start-line="81" selection-start-column="18" selection-end-line="81" selection-end-column="18" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/service/src/main/java/top/shauna/rpc/service/ShaunaNamespaceHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="567">
+          <caret line="21" column="80" selection-start-line="21" selection-start-column="69" selection-end-line="21" selection-end-column="80" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/service/src/test/java/top/shauna/rpc/test/ServiceTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="364">
+          <caret line="30" column="36" lean-forward="true" selection-start-line="30" selection-start-column="36" selection-end-line="30" selection-end-column="36" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1480#1481#0" expanded="true" />
+            <element signature="e#1516#1517#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interact/src/main/java/top/shauna/rpc/server/parser/MethodParser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="337">
+          <caret line="42" column="56" lean-forward="true" selection-start-line="42" selection-start-column="56" selection-end-line="42" selection-end-column="56" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interact/src/main/java/top/shauna/rpc/server/handler/InBoundHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="243">
+          <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/top/shauna/rpc/bean/ServiceBean.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="294">
+          <caret line="16" column="39" lean-forward="true" selection-start-line="16" selection-start-column="39" selection-end-line="16" selection-end-column="39" />
+          <folding>
+            <element signature="e#1153#1154#0" expanded="true" />
+            <element signature="e#1179#1180#0" expanded="true" />
+            <element signature="e#1217#1218#0" expanded="true" />
+            <element signature="e#1247#1248#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/service/src/main/java/top/shauna/rpc/insertinvokers/ServiceBeanHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="157">
+          <caret line="46" column="53" lean-forward="true" selection-start-line="46" selection-start-column="53" selection-end-line="46" selection-end-column="53" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1666,6 +1692,7 @@
             <option name="proportions">
               <list>
                 <option value="0.2" />
+                <option value="0.6" />
               </list>
             </option>
           </splitter-proportions>

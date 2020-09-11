@@ -42,4 +42,13 @@ public class RegisterBean {
     public void setUrl(String url) {
         this.url = url;
     }
+
+    @Override
+    public String toString() {
+        return "RegisterBean{" +
+                "potocol='" + potocol + '\'' +
+                ", url='" + url + '\'' +
+                ", loc='" + loc + '\'' +
+                '}';
+    }
 }

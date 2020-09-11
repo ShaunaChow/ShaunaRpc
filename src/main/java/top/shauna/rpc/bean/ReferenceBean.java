@@ -6,7 +6,6 @@ import java.util.concurrent.CopyOnWriteArrayList;
  * @Author   Shauna.Chou
  * @E-Mail   z1023778132@icloud.com
  */
-
 public class ReferenceBean {
     private String className;
     private Class<?> interfaze;
@@ -62,5 +61,16 @@ public class ReferenceBean {
 
     public void setLocalExportAddrList(CopyOnWriteArrayList<String> localExportAddrList) {
         this.localExportAddrList = localExportAddrList;
+    }
+
+    @Override
+    public String toString() {
+        return "ReferenceBean{" +
+                "className='" + className + '\'' +
+                ", interfaze=" + interfaze +
+                ", localExportBeanList=" + localExportBeanList +
+                ", localExportAddrList=" + localExportAddrList +
+                ", remoteClients=" + remoteClients +
+                '}';
     }
 }

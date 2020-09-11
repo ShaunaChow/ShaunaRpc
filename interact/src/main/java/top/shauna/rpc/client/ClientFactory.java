@@ -20,7 +20,7 @@ public class ClientFactory {
             }else throw new Exception("ClientStarter指定的类必须实现ClientStarter接口!!!");
         }
 
-        String protocal = localExportBean.getProtocal();
+        String protocal = localExportBean.getProtocol();
         if(protocal==null) protocal = "netty";
         String className = "top.shauna.rpc.client.connecter."
                 +protocal.substring(0,1).toUpperCase()

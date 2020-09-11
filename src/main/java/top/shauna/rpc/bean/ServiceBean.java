@@ -12,6 +12,7 @@ import java.util.Map;
 @NoArgsConstructor
 public class ServiceBean<T> {
     private Class interfaze;
+    private String ref;
     private T interfaceImpl;
     private Map<String,Method> methods;
     private LocalExportBean localExportBean;
@@ -46,5 +47,24 @@ public class ServiceBean<T> {
 
     public void setMethods(Map<String, Method> methods) {
         this.methods = methods;
+    }
+
+    public String getRef() {
+        return ref;
+    }
+
+    public void setRef(String ref) {
+        this.ref = ref;
+    }
+
+    @Override
+    public String toString() {
+        return "ServiceBean{" +
+                "interfaze=" + interfaze +
+                ", ref='" + ref + '\'' +
+                ", interfaceImpl=" + interfaceImpl +
+                ", methods=" + methods +
+                ", localExportBean=" + localExportBean +
+                '}';
     }
 }

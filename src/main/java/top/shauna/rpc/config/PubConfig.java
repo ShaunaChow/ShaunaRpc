@@ -70,4 +70,15 @@ public class PubConfig {
     public void setFoundBean(FoundBean foundBean) {
         this.foundBean = foundBean;
     }
+
+    @Override
+    public String toString() {
+        return "PubConfig{" +
+                "applicationName='" + applicationName + '\'' +
+                ", registerBean=" + registerBean +
+                ", foundBean=" + foundBean +
+                ", threadPoolNums=" + threadPoolNums +
+                ", timeout=" + timeout +
+                '}';
+    }
 }
