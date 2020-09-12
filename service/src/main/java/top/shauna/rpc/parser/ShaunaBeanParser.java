@@ -11,6 +11,7 @@ import top.shauna.rpc.bean.ReferenceBean;
 import top.shauna.rpc.bean.RegisterBean;
 import top.shauna.rpc.bean.ServiceBean;
 import top.shauna.rpc.config.PubConfig;
+import top.shauna.rpc.insertinvokers.ServiceBeanHandler;
 
 /**
  * @Author Shauna.Chou
@@ -107,6 +108,11 @@ public class ShaunaBeanParser implements BeanDefinitionParser {
             }
             parserContext.getRegistry().registerBeanDefinition("ShaunaReference:"+clazz,reference);
             return reference;
+        }
+        if(!parserContext.getRegistry().containsBeanDefinition("ServiceBeanHandler")){
+            parserContext.getRegistry().registerBeanDefinition(
+                    "ServiceBeanHandler",
+                    new RootBeanDefinition(ServiceBeanHandler.class));
         }
         return null;
     }
