@@ -26,20 +26,5 @@ public class ServiceTest {
         System.out.println(bean3);
         Object bean4 = classPathXmlApplicationContext.getBean(ReferenceBean.class);
         System.out.println(bean4);
-        Object a = new A();
-        Class b = B.class;
-        b.getMethod("ok").invoke(a);
     }
-}
-
-class A implements B{
-
-    @Override
-    public void ok() {
-        System.out.println(this.hashCode());
-    }
-}
-
-interface B {
-void ok();
 }

@@ -12,6 +12,7 @@
         <module name="monitor" />
         <module name="proxy" />
         <module name="registry" />
+        <module name="root" />
         <module name="service" />
       </profile>
     </annotationProcessing>

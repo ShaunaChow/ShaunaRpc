@@ -30,17 +30,20 @@ public class ServiceBeanHandler implements BeanPostProcessor, ApplicationContext
     public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
         if(bean instanceof ServiceBean){
             dealWithServiceBean((ServiceBean) bean);
-            System.out.println(bean);
         }else if(bean instanceof ReferenceBean){
-            System.out.println(bean);
+            dealWithReferenceBean((ReferenceBean) bean);
         }
         return bean;
+    }
+
+    private void dealWithReferenceBean(ReferenceBean bean) {
+
     }
 
     private void dealWithServiceBean(ServiceBean bean){
         Class interfaze = bean.getInterfaze();
         Object impl = null;
-        if (applicationContext.containsBean(bean.getRef())) {
+        if (bean.getRef()!=null&&applicationContext.containsBean(bean.getRef())) {
             impl = applicationContext.getBean(bean.getRef());
         }
         if(impl==null){
@@ -48,6 +51,7 @@ public class ServiceBeanHandler implements BeanPostProcessor, ApplicationContext
                 impl = Class.forName(bean.getRef()).newInstance();
             } catch (Exception e) {
                 log.error("ServiceBean的实现类解析错误 "+e.getMessage());
+                return;
             }
         }
         if(!isValid(impl,interfaze)){

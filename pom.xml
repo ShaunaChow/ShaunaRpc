@@ -15,6 +15,7 @@
         <module>cluster</module>
         <module>monitor</module>
         <module>interact</module>
+        <module>root</module>
     </modules>
 
     <dependencies>
