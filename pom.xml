@@ -16,6 +16,7 @@
         <module>monitor</module>
         <module>interact</module>
         <module>root</module>
+        <module>common</module>
     </modules>
 
     <dependencies>
@@ -69,7 +70,6 @@
             <artifactId>spring-context</artifactId>
             <version>5.2.6.RELEASE</version>
         </dependency>
-
 
     </dependencies>
 

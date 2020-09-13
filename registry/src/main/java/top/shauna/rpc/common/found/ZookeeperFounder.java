@@ -24,19 +24,22 @@ public class ZookeeperFounder implements Founder {
     private ZKSupportKit zkSupportKit;
 
     @Override
-    public void listen(String path) {
-        zkSupportKit.subscribeChildChanges(path, (parentPath, currentChilds) -> doChange(parentPath,currentChilds));
+    public void listen(Class interfaze) {
+        zkSupportKit.subscribeChildChanges(getZookeeperPath(interfaze), (parentPath, currentChilds) -> doChange(parentPath,currentChilds));
+    }
+
+    private String getZookeeperPath(Class interfaze) {
+        return "/shauna/"+interfaze.getName()+"/providers";
     }
 
     /**
      * @Param: path 约定为/shauna/className/providers
      * **/
     @Override
-    public void found(String path) throws Exception {
-        if(!path.startsWith("/shauna/")) throw new Exception("发现功能监听路径错误 [doChange]");
-        String className = path.substring(8);
-        className = className.substring(0,className.indexOf("/"));
+    public void found(Class interfaze) throws Exception {
+        String className = interfaze.getName();
         ReferenceBean referenceBean = ConnecterHolder.get(className);
+        String path = getZookeeperPath(interfaze);
         doPut(referenceBean,path,new CopyOnWriteArraySet(zkSupportKit.readChildren(path)));
     }
 

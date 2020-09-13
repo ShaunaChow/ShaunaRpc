@@ -5,15 +5,15 @@ import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
-import top.shauna.rpc.bean.LocalExportBean;
-import top.shauna.rpc.bean.ReferenceBean;
-import top.shauna.rpc.bean.ServiceBean;
+import top.shauna.rpc.bean.*;
+import top.shauna.rpc.common.factory.FounderFactory;
 import top.shauna.rpc.common.factory.RegistryFactory;
+import top.shauna.rpc.common.interfaces.Founder;
 import top.shauna.rpc.common.interfaces.Register;
+import top.shauna.rpc.config.PubConfig;
 import top.shauna.rpc.holder.MethodsHolder;
 import top.shauna.rpc.interfaces.LocalExporter;
 import top.shauna.rpc.server.ExportFactory;
-
 import java.lang.reflect.Method;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -32,12 +32,38 @@ public class ServiceBeanHandler implements BeanPostProcessor, ApplicationContext
             dealWithServiceBean((ServiceBean) bean);
         }else if(bean instanceof ReferenceBean){
             dealWithReferenceBean((ReferenceBean) bean);
+        }else if(bean instanceof RegisterBean){
+            dealWithRegisterBean((RegisterBean) bean);
+        }else if(bean instanceof LocalExportBean){
+            dealWithLocalExportBean((LocalExportBean) bean);
+        }else if(bean instanceof FoundBean){
+            dealWithFoundBean((FoundBean) bean);
         }
         return bean;
     }
 
-    private void dealWithReferenceBean(ReferenceBean bean) {
+    private void dealWithFoundBean(FoundBean bean) {
+        PubConfig.getInstance().setFoundBean(bean);
+    }
 
+    private void dealWithLocalExportBean(LocalExportBean bean) {
+        /** To Be Finshed!!! */
+    }
+
+    private void dealWithRegisterBean(RegisterBean bean) {
+        PubConfig.getInstance().setRegisterBean(bean);
+    }
+
+    private void dealWithReferenceBean(ReferenceBean bean){
+        Class interfaze = bean.getInterfaze();
+        try {
+            Founder founder = FounderFactory.getFounder();
+            founder.found(interfaze);
+            founder.listen(interfaze);
+        } catch (Exception e) {
+            log.error("ReferenceBean:"+bean.getClassName()+"服务发现出错："+e.getMessage());
+            return;
+        }
     }
 
     private void dealWithServiceBean(ServiceBean bean){

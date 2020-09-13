@@ -65,7 +65,7 @@ public class ShaunaInvokeHandler implements InvocationHandler {
     }
 
     private MessageBean getResponse(Method method, Object[] args) throws Exception {
-        RemoteClient client = loadBalancer.getRemoteClient(referenceBean);
+        RemoteClient client = loadBalancer.getRemoteClient(referenceBean.getRemoteClients());
         if(client==null) {
             log.info("远端服务器未准备好!!!");
             return null;

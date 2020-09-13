@@ -20,6 +20,6 @@
 
     <shauna:service interface="top.shauna.rpc.common.interfaces.Founder" ref="top.shauna.rpc.common.found.ZookeeperFounder"/>
 
-    <shauna:reference interface="ok"/>
+    <shauna:reference interface="top.shauna.rpc.common.interfaces.Founder"/>
 
 </beans>

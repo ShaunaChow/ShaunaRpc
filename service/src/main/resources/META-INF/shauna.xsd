@@ -17,6 +17,13 @@
             <xsd:attribute name="loc" type="xsd:string"/>
         </xsd:complexType>
     </xsd:element>
+    <xsd:element name="found">
+        <xsd:complexType>
+            <xsd:attribute name="protocol" type="xsd:string"/>
+            <xsd:attribute name="url" type="xsd:string"/>
+            <xsd:attribute name="loc" type="xsd:string"/>
+        </xsd:complexType>
+    </xsd:element>
     <xsd:element name="export">
         <xsd:complexType>
             <xsd:attribute name="protocol" type="xsd:string"/>

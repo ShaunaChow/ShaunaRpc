@@ -6,6 +6,7 @@ import top.shauna.rpc.bean.LocalExportBean;
 import top.shauna.rpc.bean.ReferenceBean;
 import top.shauna.rpc.bean.RegisterBean;
 import top.shauna.rpc.bean.ServiceBean;
+import top.shauna.rpc.common.interfaces.Founder;
 import top.shauna.rpc.config.PubConfig;
 
 /**
@@ -26,5 +27,10 @@ public class ServiceTest {
         System.out.println(bean3);
         Object bean4 = classPathXmlApplicationContext.getBean(ReferenceBean.class);
         System.out.println(bean4);
+
+        Class interfaze = Founder.class;
+        Object bean1 = classPathXmlApplicationContext.getBean(interfaze);
+        System.out.println(bean1);
+
     }
 }

@@ -344,7 +344,7 @@ public class Test1 {
 
         ZookeeperFounder zookeeperFounder = new ZookeeperFounder();
         zookeeperFounder.connect("39.105.89.185:2181");
-        zookeeperFounder.listen("/shauna/top.shauna.rpc.test.Hello/providers");
+        zookeeperFounder.listen(abc.getInterfaze());
 
         CopyOnWriteArrayList<RemoteClient> remoteClients = abc.getRemoteClients();
 
@@ -383,9 +383,9 @@ public class Test1 {
         ReferenceBean abc = ConnecterHolder.get("top.shauna.rpc.test.Hello");
 
         Founder founder = FounderFactory.getFounder();
-        founder.found("/shauna/top.shauna.rpc.test.Hello/providers");
+        founder.found(abc.getInterfaze());
 
-        founder.listen("/shauna/top.shauna.rpc.test.Hello/providers");
+        founder.listen(abc.getInterfaze());
 
         CopyOnWriteArrayList<RemoteClient> remoteClients = abc.getRemoteClients();
 
@@ -425,9 +425,9 @@ public class Test1 {
         ReferenceBean abc = ConnecterHolder.get("top.shauna.rpc.test.Hello");
 
         Founder founder = FounderFactory.getFounder();
-        founder.found("/shauna/top.shauna.rpc.test.Hello/providers");
+        founder.found(abc.getInterfaze());
 
-        founder.listen("/shauna/top.shauna.rpc.test.Hello/providers");
+        founder.listen(abc.getInterfaze());
 
         CopyOnWriteArrayList<RemoteClient> remoteClients = abc.getRemoteClients();
 
