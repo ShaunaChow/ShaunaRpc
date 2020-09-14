@@ -54,7 +54,7 @@ public class ShaunaInvokeHandler implements InvocationHandler {
         ResponseBean msg = (ResponseBean) messageBean.getMsg();
         switch (msg.getCode()){
             case SUCCESS:
-                return JSON.parseObject(msg.getRes().toString(),method.getReturnType());
+                return JSON.parseObject(msg.getRes().toString(),method.getGenericReturnType());
             case PARAM_ERROR:
                 throw new Exception(msg.getRes().toString());
             case NO_SUCH_CLASS:
