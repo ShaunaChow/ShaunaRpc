@@ -10,6 +10,7 @@ import top.shauna.rpc.interfaces.LoadBalance;
 import top.shauna.rpc.loadbalance.ShaunaPollBalance;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
+import java.lang.reflect.Parameter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -39,13 +40,16 @@ public class ShaunaInvokeHandler implements InvocationHandler {
 
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+        Object filter = methodFilter(method);
+        if(filter!=null) return filter;
+
         MessageBean messageBean = getResponse(method, args);
 
         if(messageBean==null||messageBean.getMsg()==null) {
             /** 远端调用失败了!!!
              * 容错程序在此插入
              * **/
-            throw new Exception("远端调用失败!!!");
+            throw new Exception(method.getName()+"远端调用失败!!!");
         }
         ResponseBean msg = (ResponseBean) messageBean.getMsg();
         switch (msg.getCode()){
@@ -64,6 +68,12 @@ public class ShaunaInvokeHandler implements InvocationHandler {
         }
     }
 
+    /** 对一般方法的过滤  比如toString **/
+    private Object methodFilter(Method method) {
+        if(method.getName().equals("toString")) return referenceBean.toString();
+        return null;
+    }
+
     private MessageBean getResponse(Method method, Object[] args) throws Exception {
         RemoteClient client = loadBalancer.getRemoteClient(referenceBean.getRemoteClients());
         if(client==null) {
@@ -75,7 +85,7 @@ public class ShaunaInvokeHandler implements InvocationHandler {
         for (Object arg : args) {
             values.add(JSON.toJSONString(arg));
         }
-        RequestBean requestBean = new RequestBean(referenceBean.getClassName(),method.getName(), values);
+        RequestBean requestBean = new RequestBean(referenceBean.getClassName(),getMethodFullName(method), values);
         String uuid = UUID.randomUUID().toString();
         RequestBeanWrapper requestBeanWrapper = new RequestBeanWrapper(uuid, requestBean);
 
@@ -98,5 +108,17 @@ public class ShaunaInvokeHandler implements InvocationHandler {
         NettyMessageHolder.remote(uuid);
 
         return messageBean;
+    }
+
+    private String getMethodFullName(Method method) {
+        StringBuilder sb = new StringBuilder(method.getReturnType().getName()+" "+method.getName()+"(");
+        Parameter[] parameters = method.getParameters();
+        for (int i = 0; i < parameters.length; i++) {
+            Parameter parameter = parameters[i];
+            if(i==method.getParameters().length-1){
+                sb.append(parameter.getType().getName()+")");
+            }else sb.append(parameter.getType().getName()+" ,");
+        }
+        return sb.toString();
     }
 }

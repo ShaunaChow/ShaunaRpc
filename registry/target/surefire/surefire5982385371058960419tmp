@@ -1,5 +1,5 @@
 #surefire
-#Sun Sep 13 13:41:09 CST 2020
+#Mon Sep 14 16:28:15 CST 2020
 enableAssertions=true
 testSuiteDefinitionTestSourceDirectory=F\:\\java\u9879\u76EE\\ShaunaRpc\\registry\\src\\test\\java
 surefireClassPathUrl.1=F\:\\maven\\apache-maven-3.5.4\\repository\\org\\apache\\maven\\surefire\\surefire-api\\2.12.4\\surefire-api-2.12.4.jar

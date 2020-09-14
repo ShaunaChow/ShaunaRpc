@@ -18,8 +18,8 @@
 
     <shauna:export protocol="netty" port="8008" ip="127.0.0.1"/>
 
-    <shauna:service interface="top.shauna.rpc.common.interfaces.Founder" ref="top.shauna.rpc.common.found.ZookeeperFounder"/>
+    <shauna:service interface="top.shauna.rpc.test.services.Hello" ref="top.shauna.rpc.test.services.impl.HelloCat"/>
 
-    <shauna:reference interface="top.shauna.rpc.common.interfaces.Founder"/>
+    <shauna:reference interface="top.shauna.rpc.test.services.Hello"/>
 
 </beans>

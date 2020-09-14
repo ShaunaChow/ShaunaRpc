@@ -15,6 +15,7 @@ import top.shauna.rpc.holder.MethodsHolder;
 import top.shauna.rpc.interfaces.LocalExporter;
 import top.shauna.rpc.server.ExportFactory;
 import java.lang.reflect.Method;
+import java.lang.reflect.Parameter;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
@@ -88,7 +89,7 @@ public class ServiceBeanHandler implements BeanPostProcessor, ApplicationContext
         Method[] interfaceMethods = interfaze.getMethods();
         ConcurrentHashMap<String,Method> methods = new ConcurrentHashMap<>();
         for(Method method:interfaceMethods){
-            methods.put(method.getName(),method);
+            methods.put(getMethodFullName(method),method);
         }
         bean.setMethods(methods);
         LocalExportBean localExportBean = null;
@@ -99,6 +100,18 @@ public class ServiceBeanHandler implements BeanPostProcessor, ApplicationContext
         MethodsHolder.putMethod(interfaze.getName(), bean);
         doExport(bean);
         doRegister(bean);
+    }
+
+    private String getMethodFullName(Method method) {
+        StringBuilder sb = new StringBuilder(method.getReturnType().getName()+" "+method.getName()+"(");
+        Parameter[] parameters = method.getParameters();
+        for (int i = 0; i < parameters.length; i++) {
+            Parameter parameter = parameters[i];
+            if(i==method.getParameters().length-1){
+                sb.append(parameter.getType().getName()+")");
+            }else sb.append(parameter.getType().getName()+" ,");
+        }
+        return sb.toString();
     }
 
     private void doRegister(ServiceBean bean) {

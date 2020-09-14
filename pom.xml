@@ -16,7 +16,6 @@
         <module>monitor</module>
         <module>interact</module>
         <module>root</module>
-        <module>common</module>
     </modules>
 
     <dependencies>

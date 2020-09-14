@@ -8,6 +8,7 @@ import org.springframework.beans.factory.xml.ParserContext;
 import org.w3c.dom.Element;
 import top.shauna.rpc.bean.*;
 import top.shauna.rpc.config.PubConfig;
+import top.shauna.rpc.factorybeans.ReferenceBeanFactory;
 import top.shauna.rpc.finalhelper.FinshAllHelper;
 import top.shauna.rpc.insertinvokers.ServiceBeanHandler;
 
@@ -72,20 +73,24 @@ public class ShaunaBeanParser implements BeanDefinitionParser {
     }
 
     private BeanDefinition dealWithReferenceBean(Element element, ParserContext parserContext) {
-        RootBeanDefinition reference = new RootBeanDefinition(tar);
+        RootBeanDefinition reference = new RootBeanDefinition(ReferenceBeanFactory.class);
         reference.setLazyInit(false);
         String clazz = null;
+        ReferenceBean referenceBean = new ReferenceBean();
         if(element.hasAttribute("interface")){
             try{
                 clazz = element.getAttribute("interface");
                 Class interfaze = Class.forName(clazz);
-                reference.getPropertyValues().addPropertyValue("interfaze",interfaze);
-                reference.getPropertyValues().addPropertyValue("className",clazz);
+                referenceBean.setClassName(clazz);
+                referenceBean.setInterfaze(interfaze);
+                reference.getPropertyValues().addPropertyValue("bean",referenceBean);
             }catch (Exception e){
                 log.error("shauna:reference定义的接口未找到!");
+                return null;
             }
         }else{
             log.error("shauna:reference接口未给出定义");
+            return null;
         }
         parserContext.getRegistry().registerBeanDefinition("ShaunaReference:"+clazz,reference);
         return reference;

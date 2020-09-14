@@ -54,6 +54,6 @@ public class MethodParser {
         }catch (Exception e){
             return new ResponseBean(ResponseEnum.PARAM_ERROR,e.getMessage());
         }
-        return new ResponseBean(ResponseEnum.SUCCESS,res);
+        return new ResponseBean(ResponseEnum.SUCCESS,JSON.toJSONString(res));
     }
 }
