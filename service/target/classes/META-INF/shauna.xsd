@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns="http://www.shauna.top/schema/shauna"
+            targetNamespace="http://www.shauna.top/schema/shauna"
+            elementFormDefault="qualified">
+    <xsd:element name="pubconfig">
+        <xsd:complexType>
+            <xsd:attribute name="appname" type="xsd:string"/>
+            <xsd:attribute name="threadnums" type="xsd:int"/>
+            <xsd:attribute name="timeout" type="xsd:long"/>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="register">
+        <xsd:complexType>
+            <xsd:attribute name="protocol" type="xsd:string"/>
+            <xsd:attribute name="url" type="xsd:string"/>
+            <xsd:attribute name="loc" type="xsd:string"/>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="found">
+        <xsd:complexType>
+            <xsd:attribute name="protocol" type="xsd:string"/>
+            <xsd:attribute name="url" type="xsd:string"/>
+            <xsd:attribute name="loc" type="xsd:string"/>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="export">
+        <xsd:complexType>
+            <xsd:attribute name="protocol" type="xsd:string"/>
+            <xsd:attribute name="ip" type="xsd:string"/>
+            <xsd:attribute name="port" type="xsd:string" />
+            <xsd:attribute name="serverclassloc" type="xsd:string" />
+            <xsd:attribute name="clientclassloc" type="xsd:string"/>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="service">
+        <xsd:complexType>
+            <xsd:attribute name="interface" type="xsd:string"/>
+            <xsd:attribute name="ref" type="xsd:string"/>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="reference">
+        <xsd:complexType>
+            <xsd:attribute name="interface" type="xsd:string"/>
+        </xsd:complexType>
+    </xsd:element>
+</xsd:schema>
