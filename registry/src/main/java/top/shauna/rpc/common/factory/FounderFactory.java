@@ -23,7 +23,7 @@ public class FounderFactory {
             }else throw new Exception("founder指定的类必须实现Founder接口!!!");
         }
         /** 使用指定的系统类 **/
-        String founder = PubConfig.getInstance().getRegisterBean().getPotocol();
+        String founder = PubConfig.getInstance().getFoundBean().getPotocol();
         if(founder==null) founder = "zookeeper";
         String className = "top.shauna.rpc.common.found."
                 +founder.substring(0,1).toUpperCase()

@@ -11,20 +11,14 @@ import top.shauna.rpc.config.PubConfig;
  * @Date 2020/9/13 22:26
  * @E-Mail z1023778132@icloud.com
  */
-public class FinshAllHelper implements ApplicationListener<ContextRefreshedEvent> {
-    @Override
-    public void onApplicationEvent(ContextRefreshedEvent event) {
-        preparePubConfig(event);
+public class FinshAllHelper {
 
-        /** To Be Finshed **/
-    }
-
-    private void preparePubConfig(ContextRefreshedEvent event) {
+    public static void preparePubConfig(ContextRefreshedEvent event) {
         PubConfig pubConfig = PubConfig.getInstance();
         if (pubConfig.getRegisterBean()==null) {
             RegisterBean registerBean = event.getApplicationContext().containsBean("ShaunaRegister")
                                         ?(RegisterBean) event.getApplicationContext().getBean("ShaunaRegister")
-                                        :new RegisterBean();
+                                        :new RegisterBean("zookeeper","127.0.0.1:2181",null);
             pubConfig.setRegisterBean(registerBean);
         }
 

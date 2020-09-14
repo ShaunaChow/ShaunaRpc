@@ -33,16 +33,20 @@ public class NettyClientStarter implements ClientStarter {
                     }
                 });
 
-        ShaunaThreadPool.threadPool.execute(()->{
-            ChannelFuture sync = null;
-            try {
-                sync = bootstrap.connect(localExportBean.getIp(), localExportBean.getPort()).sync();
-                sync.channel().closeFuture().sync();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }finally {
-                group.shutdownGracefully();
-            }
-        });
+        try {
+            ChannelFuture sync = bootstrap.connect(localExportBean.getIp(), localExportBean.getPort()).sync();
+            while(!sync.isDone()) ;
+            ShaunaThreadPool.threadPool.execute(() -> {
+                try {
+                    sync.channel().closeFuture().sync();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                } finally {
+                    group.shutdownGracefully();
+                }
+            });
+        } catch (InterruptedException e) {
+        e.printStackTrace();
+    }
     }
 }

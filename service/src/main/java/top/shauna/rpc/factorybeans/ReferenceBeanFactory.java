@@ -4,9 +4,13 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.FactoryBean;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
+import top.shauna.rpc.bean.FoundBean;
 import top.shauna.rpc.bean.ReferenceBean;
+import top.shauna.rpc.bean.RegisterBean;
 import top.shauna.rpc.common.factory.FounderFactory;
 import top.shauna.rpc.common.interfaces.Founder;
+import top.shauna.rpc.config.PubConfig;
+import top.shauna.rpc.finalhelper.FinshAllHelper;
 import top.shauna.rpc.holder.ConnecterHolder;
 import top.shauna.rpc.proxy.ReferenceProxyFactory;
 
@@ -45,6 +49,7 @@ public class ReferenceBeanFactory implements FactoryBean, ApplicationListener<Co
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
+        FinshAllHelper.preparePubConfig(event);
         String interfazeName = bean.getClassName();
         if(interfazeName==null){
             log.error("ReferenceBean必须指定一个接口");

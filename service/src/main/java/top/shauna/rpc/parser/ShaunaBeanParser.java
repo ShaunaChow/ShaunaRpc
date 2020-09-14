@@ -9,7 +9,6 @@ import org.w3c.dom.Element;
 import top.shauna.rpc.bean.*;
 import top.shauna.rpc.config.PubConfig;
 import top.shauna.rpc.factorybeans.ReferenceBeanFactory;
-import top.shauna.rpc.finalhelper.FinshAllHelper;
 import top.shauna.rpc.insertinvokers.ServiceBeanHandler;
 
 
@@ -46,11 +45,6 @@ public class ShaunaBeanParser implements BeanDefinitionParser {
                     "ServiceBeanHandler",
                     new RootBeanDefinition(ServiceBeanHandler.class));
         }
-        if(!parserContext.getRegistry().containsBeanDefinition("ShaunaFinshAllHelper")){
-            parserContext.getRegistry().registerBeanDefinition(
-                    "ShaunaFinshAllHelper",
-                    new RootBeanDefinition(FinshAllHelper.class));
-        }
         return null;
     }
 
@@ -68,7 +62,7 @@ public class ShaunaBeanParser implements BeanDefinitionParser {
         if(element.hasAttribute("loc")){
             founder.getPropertyValues().addPropertyValue("loc",element.getAttribute("loc"));
         }
-        parserContext.getRegistry().registerBeanDefinition("ShaunaRegister",founder);
+        parserContext.getRegistry().registerBeanDefinition("ShaunaFounder",founder);
         return founder;
     }
 
@@ -80,10 +74,18 @@ public class ShaunaBeanParser implements BeanDefinitionParser {
         if(element.hasAttribute("interface")){
             try{
                 clazz = element.getAttribute("interface");
+                String id;
+                if(element.hasAttribute("id")){
+                    id = element.getAttribute("id");
+                }else{
+                    String singleName = clazz.substring(clazz.lastIndexOf(".")+1);
+                    id = singleName.substring(0,1).toLowerCase()+singleName.substring(1);
+                }
                 Class interfaze = Class.forName(clazz);
                 referenceBean.setClassName(clazz);
                 referenceBean.setInterfaze(interfaze);
                 reference.getPropertyValues().addPropertyValue("bean",referenceBean);
+                parserContext.getRegistry().registerBeanDefinition(id,reference);
             }catch (Exception e){
                 log.error("shauna:reference定义的接口未找到!");
                 return null;
@@ -92,7 +94,6 @@ public class ShaunaBeanParser implements BeanDefinitionParser {
             log.error("shauna:reference接口未给出定义");
             return null;
         }
-        parserContext.getRegistry().registerBeanDefinition("ShaunaReference:"+clazz,reference);
         return reference;
     }
 
@@ -176,7 +177,7 @@ public class ShaunaBeanParser implements BeanDefinitionParser {
         }
         PubConfig.getInstance().setThreadPoolNums(cores);
         Long timeout;
-        if (!element.hasAttribute("threadnums")) {
+        if (!element.hasAttribute("timeout")) {
             timeout = 5000L;
         }else{
             timeout = Long.parseLong(element.getAttribute("timeout"));

@@ -82,8 +82,10 @@ public class ShaunaInvokeHandler implements InvocationHandler {
         }
         Channel channel = client.getChannel();
         List<String> values = new ArrayList<>();
-        for (Object arg : args) {
-            values.add(JSON.toJSONString(arg));
+        if(args!=null) {
+            for (Object arg : args) {
+                values.add(JSON.toJSONString(arg));
+            }
         }
         RequestBean requestBean = new RequestBean(referenceBean.getClassName(),getMethodFullName(method), values);
         String uuid = UUID.randomUUID().toString();
