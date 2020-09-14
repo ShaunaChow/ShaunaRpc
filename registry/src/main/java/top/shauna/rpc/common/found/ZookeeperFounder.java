@@ -2,6 +2,7 @@ package top.shauna.rpc.common.found;
 
 import com.alibaba.fastjson.JSON;
 import io.netty.channel.Channel;
+import lombok.extern.slf4j.Slf4j;
 import top.shauna.rpc.bean.LocalExportBean;
 import top.shauna.rpc.bean.ReferenceBean;
 import top.shauna.rpc.bean.RemoteClient;
@@ -14,12 +15,14 @@ import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.CopyOnWriteArraySet;
+import java.util.concurrent.locks.Condition;
+import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * @Author   Shauna.Chou
  * @E-Mail   z1023778132@icloud.com
  */
-
+@Slf4j
 public class ZookeeperFounder implements Founder {
     private ZKSupportKit zkSupportKit;
 
@@ -78,6 +81,25 @@ public class ZookeeperFounder implements Founder {
             }
             ClientStarter clientStarter = ClientFactory.getClientStarter(localExportBean);
             clientStarter.connect(localExportBean,referenceBean.getClassName());
+            if(referenceBean.getRemoteClients().size()==0){
+                ReentrantLock lock = new ReentrantLock();
+                Condition condition = lock.newCondition();
+                lock.lock();
+                try{
+                    int count = 10;
+                    while(referenceBean.getRemoteClients().size()==0&&count>0){
+                        condition.wait(1000);
+                    }
+                    if(count==0) {
+                        log.error("连接第一个服务提供者（" +
+                                localExportBean.getProtocol() + "://" +
+                                localExportBean.getIp() + ":" +
+                                localExportBean.getPort() + "）失败！");
+                    }
+                }finally {
+                    lock.unlock();
+                }
+            }
         }
     }
 
