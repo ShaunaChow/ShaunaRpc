@@ -5,7 +5,7 @@
 
 ## 一个例子：
 
-** 1.引入maven依赖：**
+**1.引入maven依赖：
 ```
 <dependency>
     <groupId>top.shauna</groupId>
@@ -13,7 +13,7 @@
     <version>1.0-SNAPSHOT</version>
 </dependency>
 ```
-** 2.编写Provider和consumer的配置文件
+**2.编写Provider和consumer的配置文件
 ```
 <beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns="http://www.springframework.org/schema/beans"
@@ -59,7 +59,7 @@
     <shauna:reference interface="top.shauna.example.interfaces.TeacherInfo"/>
 </beans>
 ```
-** 3. 编写Provider和consumer启动类：
+**3. 编写Provider和consumer启动类：
 ```
 public class Provider {
     public static void main(String[] args) throws IOException {
@@ -78,4 +78,4 @@ public class Consumer {
     }
 }
 ```
-** 4. 启动Provider,在启动consumer即可实现远程调用！
+**4. 启动Provider,在启动consumer即可实现远程调用！
