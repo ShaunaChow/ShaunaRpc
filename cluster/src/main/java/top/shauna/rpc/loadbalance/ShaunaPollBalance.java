@@ -20,6 +20,6 @@ public class ShaunaPollBalance implements LoadBalance {
     @Override
     public RemoteClient getRemoteClient(CopyOnWriteArrayList<RemoteClient> remoteClients) {
         if (remoteClients.size()==0) return null;
-        else return remoteClients.get(pin++%remoteClients.size());
+        return remoteClients.get(pin++%remoteClients.size());
     }
 }

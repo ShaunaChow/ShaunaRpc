@@ -119,7 +119,7 @@ public class ZookeeperFounder implements Founder {
                 RemoteClient client = remoteClients.get(i);
                 if(addr.equals(client.getHostName()+":"+client.getPort())){
                     /** 务必要断开服务器连接！！！！！！！！！！！！ **/
-                    ((Channel)client.getChannel()).close();
+                    client.getChannel().close();
                     remoteClients.remove(i);
                     break;
                 }

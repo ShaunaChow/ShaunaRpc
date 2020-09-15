@@ -20,4 +20,9 @@ public class NettyChannel implements Channel {
     public void write(String msg) throws Exception {
         channel.writeAndFlush(Unpooled.copiedBuffer(msg,CharsetUtil.UTF_8));
     }
+
+    @Override
+    public void close() {
+        channel.close();
+    }
 }

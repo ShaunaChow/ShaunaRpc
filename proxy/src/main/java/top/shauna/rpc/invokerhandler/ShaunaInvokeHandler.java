@@ -44,13 +44,19 @@ public class ShaunaInvokeHandler implements InvocationHandler {
         if(filter!=null) return filter;
 
         MessageBean messageBean = getResponse(method, args);
-
-        if(messageBean==null||messageBean.getMsg()==null) {
-            /** 远端调用失败了!!!
-             * 容错程序在此插入
-             * **/
-            throw new Exception(method.getName()+"远端调用失败!!!");
+        if(messageBean==null){
+            throw new Exception(method.getName()+"远端服务器未准备好!!!");
         }
+        int count = 1;
+        while(messageBean.getMsg()==null) {
+            messageBean = getResponse(method,args);
+            count++;
+            /** 启动两倍容错！ **/
+            if(messageBean==null||count>referenceBean.getRemoteClients().size()*2){
+                throw new Exception(method.getName()+"远端服务器未准备好!!!");
+            }
+        }
+
         ResponseBean msg = (ResponseBean) messageBean.getMsg();
         switch (msg.getCode()){
             case SUCCESS:
@@ -74,10 +80,9 @@ public class ShaunaInvokeHandler implements InvocationHandler {
         return null;
     }
 
-    private MessageBean getResponse(Method method, Object[] args) throws Exception {
+    private MessageBean getResponse(Method method, Object[] args){
         RemoteClient client = loadBalancer.getRemoteClient(referenceBean.getRemoteClients());
         if(client==null) {
-            log.info("远端服务器未准备好!!!");
             return null;
         }
         Channel channel = client.getChannel();
@@ -93,15 +98,18 @@ public class ShaunaInvokeHandler implements InvocationHandler {
 
         ReentrantLock lock = new ReentrantLock();
         Condition condition = lock.newCondition();
-        NettyMessageHolder.put(uuid,new MessageBean(lock,condition,null));
+        MessageBean sendMessage = new MessageBean(lock, condition, null);
+        NettyMessageHolder.put(uuid, sendMessage);
         /**启动远端调用
          * 在此插入监视器代码或其他！！！
          * **/
-        channel.write(JSON.toJSONString(requestBeanWrapper));
-
-        lock.lock();
-        try {
+        try{
+            lock.lock();
+            channel.write(JSON.toJSONString(requestBeanWrapper));
             condition.await(PubConfig.getInstance().getTimeout(), TimeUnit.MILLISECONDS);
+        }catch (Exception e){
+            log.error("远端调用失败！！！！");
+            return sendMessage;
         }finally{
             lock.unlock();
         }
