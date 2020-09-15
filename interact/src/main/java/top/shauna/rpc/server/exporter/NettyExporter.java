@@ -23,6 +23,9 @@ public class NettyExporter implements LocalExporter {
 
     @Override
     public void init(LocalExportBean localExportBean) throws Exception {
+        if (localExportBean.getExported()!=null&&localExportBean.getExported()==true) {
+            return;
+        }
         boss = new NioEventLoopGroup(1);
         work = new NioEventLoopGroup();
         ServerBootstrap serverBootstrap = new ServerBootstrap();
@@ -52,6 +55,7 @@ public class NettyExporter implements LocalExporter {
                     work.shutdownGracefully();
                 }
             });
+            localExportBean.setExported(true);
         }catch (Exception e){
             throw new Exception("本地暴露失败, "+e.getMessage());
         }

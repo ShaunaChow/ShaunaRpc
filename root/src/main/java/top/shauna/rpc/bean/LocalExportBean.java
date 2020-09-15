@@ -12,6 +12,7 @@ public class LocalExportBean {
     private String ip;
     private String serverClassLoc;
     private String clientClassLoc;
+    private Boolean isExported;
 
     public LocalExportBean() {
     }
@@ -60,6 +61,14 @@ public class LocalExportBean {
 
     public void setClientClassLoc(String clientClassLoc) {
         this.clientClassLoc = clientClassLoc;
+    }
+
+    public Boolean getExported() {
+        return isExported;
+    }
+
+    public void setExported(Boolean exported) {
+        isExported = exported;
     }
 
     @Override

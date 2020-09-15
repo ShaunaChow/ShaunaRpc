@@ -11,16 +11,15 @@ import java.util.concurrent.CopyOnWriteArrayList;
  */
 
 public class ShaunaPollBalance implements LoadBalance {
-    private static int pin;
+    private static int pin = 0;
     private static String id;
 
     public ShaunaPollBalance() {
-        pin = 0;
     }
 
     @Override
     public RemoteClient getRemoteClient(CopyOnWriteArrayList<RemoteClient> remoteClients) {
         if (remoteClients.size()==0) return null;
-        else return remoteClients.get(pin%remoteClients.size());
+        else return remoteClients.get(pin++%remoteClients.size());
     }
 }

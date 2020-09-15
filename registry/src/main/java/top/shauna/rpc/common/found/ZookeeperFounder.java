@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.CopyOnWriteArraySet;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -43,7 +44,12 @@ public class ZookeeperFounder implements Founder {
         String className = interfaze.getName();
         ReferenceBean referenceBean = ConnecterHolder.get(className);
         String path = getZookeeperPath(interfaze);
-        doPut(referenceBean,path,new CopyOnWriteArraySet(zkSupportKit.readChildren(path)));
+        CopyOnWriteArraySet providers = new CopyOnWriteArraySet(zkSupportKit.readChildren(path));
+        if(providers.size()==0) {
+            log.info("服务 "+interfaze+" 未找到提供者");
+            return;
+        }
+        doPut(referenceBean,path, providers);
     }
 
     private void doChange(String path, List<String> currentChilds) throws Exception {
@@ -82,22 +88,15 @@ public class ZookeeperFounder implements Founder {
             ClientStarter clientStarter = ClientFactory.getClientStarter(localExportBean);
             clientStarter.connect(localExportBean,referenceBean.getClassName());
             if(referenceBean.getRemoteClients().size()==0){
-                ReentrantLock lock = new ReentrantLock();
-                Condition condition = lock.newCondition();
-                lock.lock();
-                try{
-                    int count = 10;
-                    while(referenceBean.getRemoteClients().size()==0&&count>0){
-                        condition.wait(1000);
-                    }
-                    if(count==0) {
-                        log.error("连接第一个服务提供者（" +
-                                localExportBean.getProtocol() + "://" +
-                                localExportBean.getIp() + ":" +
-                                localExportBean.getPort() + "）失败！");
-                    }
-                }finally {
-                    lock.unlock();
+                int count = 10;
+                while(referenceBean.getRemoteClients().size()==0&&count>0){
+                    TimeUnit.SECONDS.sleep(1);
+                }
+                if(count==0) {
+                    log.error("连接第一个服务提供者（" +
+                            localExportBean.getProtocol() + "://" +
+                            localExportBean.getIp() + ":" +
+                            localExportBean.getPort() + "）失败！");
                 }
             }
         }
