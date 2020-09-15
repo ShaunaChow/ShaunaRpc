@@ -5,7 +5,7 @@
 
 ## 一个例子：
 
-* 1.引入maven依赖：
+** 1.引入maven依赖：**
 ```
 <dependency>
     <groupId>top.shauna</groupId>
