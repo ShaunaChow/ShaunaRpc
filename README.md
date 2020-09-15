@@ -6,12 +6,13 @@
 ## 一个例子：
 
 1.引入maven依赖：
+···
 <dependency>
     <groupId>top.shauna</groupId>
     <artifactId>service</artifactId>
     <version>1.0-SNAPSHOT</version>
 </dependency>
-
+···
 2.编写Provider和consumer的配置文件
 <beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns="http://www.springframework.org/schema/beans"
