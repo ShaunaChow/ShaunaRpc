@@ -6,14 +6,15 @@
 ## 一个例子：
 
 1.引入maven依赖：
-···
+```
 <dependency>
     <groupId>top.shauna</groupId>
     <artifactId>service</artifactId>
     <version>1.0-SNAPSHOT</version>
 </dependency>
-···
+```
 2.编写Provider和consumer的配置文件
+```
 <beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns="http://www.springframework.org/schema/beans"
        xmlns:context="http://www.springframework.org/schema/context"
@@ -34,7 +35,9 @@
 
     <shauna:service interface="top.shauna.example.interfaces.TeacherInfo" ref="top.shauna.example.provider.impl.TeacherInfoImpl"/>
 </beans>
+```
 =============================================
+```
 <beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns="http://www.springframework.org/schema/beans"
        xmlns:context="http://www.springframework.org/schema/context"
@@ -55,15 +58,18 @@
 
     <shauna:reference interface="top.shauna.example.interfaces.TeacherInfo"/>
 </beans>
-
+```
 3. 编写Provider和consumer启动类：
+```
 public class Provider {
     public static void main(String[] args) throws IOException {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("config.xml");
         System.in.read();
     }
 }
+```
 ==========================================
+```
 public class Consumer {
     public static void main(String[] args) throws Exception {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("config.xml");
@@ -71,5 +77,5 @@ public class Consumer {
         teacherInfo.listAll();
     }
 }
-
+```
 4. 启动Provider,在启动consumer即可实现远程调用！
