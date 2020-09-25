@@ -106,9 +106,11 @@ public class ShaunaInvokeHandler implements InvocationHandler {
         try{
             lock.lock();
             channel.write(JSON.toJSONString(requestBeanWrapper));
-            condition.await(PubConfig.getInstance().getTimeout(), TimeUnit.MILLISECONDS);
+            Long timeout = PubConfig.getInstance().getTimeout();
+            if(timeout==null||timeout<1000) timeout = 1000L;
+            condition.await(timeout, TimeUnit.MILLISECONDS);
         }catch (Exception e){
-            log.error("远端调用失败！！！！");
+            log.error("远端调用失败！！！！"+e.getMessage());
             return sendMessage;
         }finally{
             lock.unlock();

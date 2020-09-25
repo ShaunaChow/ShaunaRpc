@@ -35,6 +35,7 @@ public class NettyHandler extends ChannelInboundHandlerAdapter {
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
         Channel channel = ctx.channel();
+        while(!channel.isWritable());
         NettyChannel nettyChannel = new NettyChannel(channel);
         RemoteClient client = new RemoteClient(localExportBean.getIp(), localExportBean.getPort(), nettyChannel, 0, 0.0);
         if(ConnecterHolder.contains(interfaze)){

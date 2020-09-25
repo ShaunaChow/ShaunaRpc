@@ -90,10 +90,14 @@ public class ZookeeperFounder implements Founder {
             if(referenceBean.getRemoteClients().size()==0){
                 int count = 10;
                 while(referenceBean.getRemoteClients().size()==0&&count>0){
-                    TimeUnit.SECONDS.sleep(1);
+                    TimeUnit.MILLISECONDS.sleep(1000);
                 }
                 if(count==0) {
                     log.error("连接第一个服务提供者（" +
+                            localExportBean.getProtocol() + "://" +
+                            localExportBean.getIp() + ":" +
+                            localExportBean.getPort() + "）失败！");
+                    throw new Exception("连接第一个服务提供者（" +
                             localExportBean.getProtocol() + "://" +
                             localExportBean.getIp() + ":" +
                             localExportBean.getPort() + "）失败！");

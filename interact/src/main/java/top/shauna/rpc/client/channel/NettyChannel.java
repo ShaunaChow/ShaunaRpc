@@ -22,6 +22,11 @@ public class NettyChannel implements Channel {
     }
 
     @Override
+    public boolean isOk() {
+        return channel.isActive();
+    }
+
+    @Override
     public void close() {
         channel.close();
     }

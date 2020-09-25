@@ -11,6 +11,7 @@ import top.shauna.rpc.test.Hello;
 public class HelloImpl implements Hello {
     @Override
     public LocalExportBean helloCat(String name, LocalExportBean b) {
+        System.out.println("okkkkk");
         return new LocalExportBean("okkkkkkk", 9898, String.valueOf(System.currentTimeMillis()));
     }
 
