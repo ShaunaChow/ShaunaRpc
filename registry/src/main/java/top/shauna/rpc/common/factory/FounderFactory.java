@@ -14,7 +14,7 @@ public class FounderFactory {
         /** 使用用户自定义的Register类 **/
         String loc = PubConfig.getInstance().getFoundBean().getLoc();
         String url = PubConfig.getInstance().getFoundBean().getUrl();
-        if(loc!=null){
+        if(loc!=null&&!loc.equals("")){
             Class clazz = Class.forName(loc);
             Object founder = clazz.newInstance();
             if(founder instanceof Founder){

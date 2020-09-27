@@ -1,6 +1,7 @@
 package top.shauna.rpc.bean;
 
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 /**
  * @Author   Shauna.Chou
@@ -8,6 +9,7 @@ import lombok.NoArgsConstructor;
  */
 
 @NoArgsConstructor
+@ToString
 public class FoundBean {
     private String potocol;
     private String url;

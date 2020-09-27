@@ -12,7 +12,7 @@ public class ClientFactory {
 
     public static ClientStarter getClientStarter(LocalExportBean localExportBean) throws Exception {
         String loc = localExportBean.getClientClassLoc();
-        if(loc!=null){
+        if(loc!=null&&!loc.equals("")){
             Class clazz = Class.forName(loc);
             Object starter = clazz.newInstance();
             if(starter instanceof ClientStarter){

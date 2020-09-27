@@ -12,7 +12,7 @@ public class ExportFactory {
 
     public static LocalExporter getExporter(ServiceBean<?> serviceBean) throws Exception {
         String loc = serviceBean.getLocalExportBean().getServerClassLoc();
-        if(loc!=null){
+        if(loc!=null&&!loc.equals("")){
             Class clazz = Class.forName(loc);
             Object exporter = clazz.newInstance();
             if(exporter instanceof LocalExporter){

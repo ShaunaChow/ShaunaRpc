@@ -14,7 +14,7 @@ public class RegistryFactory {
         /** 使用用户自定义的Register类 **/
         String loc = PubConfig.getInstance().getRegisterBean().getLoc();
         String url = PubConfig.getInstance().getRegisterBean().getUrl();
-        if(loc!=null){
+        if(loc!=null&&!loc.equals("")){
             Class clazz = Class.forName(loc);
             Object register = clazz.newInstance();
             if(register instanceof Register){
