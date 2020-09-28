@@ -60,7 +60,7 @@ public class ShaunaInvokeHandler implements InvocationHandler {
         ResponseBean msg = (ResponseBean) messageBean.getMsg();
         switch (msg.getCode()){
             case SUCCESS:
-                return JSON.parseObject(msg.getRes().toString(),method.getGenericReturnType());
+                return parseObj(msg.getRes(),method);
             case PARAM_ERROR:
                 throw new Exception(msg.getRes().toString());
             case NO_SUCH_CLASS:
@@ -72,6 +72,12 @@ public class ShaunaInvokeHandler implements InvocationHandler {
             default:
                 throw new Exception("未知错误");
         }
+    }
+
+    private Object parseObj(Object res, Method method) throws Exception {
+        if(res instanceof byte[]) return res;
+        else if(res instanceof String) return JSON.parseObject(res.toString(),method.getGenericReturnType());
+        else throw new Exception("不支持的类型");
     }
 
     /** 对一般方法的过滤  比如toString **/

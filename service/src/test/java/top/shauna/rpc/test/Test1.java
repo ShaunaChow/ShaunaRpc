@@ -48,6 +48,7 @@ public class Test1 {
     @Test
     public void test2() throws IOException {
         PubConfig pubConfig = PubConfig.getInstance();
+        pubConfig.setTimeout(10000000L);
         if (pubConfig.getRegisterBean()==null) {
             RegisterBean registerBean = new RegisterBean("zookeeper","39.105.89.185:2181",null);
             pubConfig.setRegisterBean(registerBean);
@@ -65,8 +66,17 @@ public class Test1 {
         Hello hello = ShaunaRPCHandler.getReferenceProxy(Hello.class);
 
         System.out.println(hello.helloCat("mago", new LocalExportBean()));
-
+        byte[] bytes = hello.okkk();
+        for (byte aByte : bytes) {
+            System.out.print(aByte+" ");
+        }
+        System.out.println();
         //top.shauna.rpc.test.Hello
         System.in.read();
+    }
+
+    @Test
+    public void test3() throws IOException {
+        System.out.println(byte[].class);
     }
 }

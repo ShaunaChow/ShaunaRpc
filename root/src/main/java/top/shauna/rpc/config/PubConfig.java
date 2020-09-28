@@ -30,6 +30,15 @@ public class PubConfig {
     private FoundBean foundBean;
     private Integer threadPoolNums;
     private Long timeout;
+    private Integer maxLen;
+
+    public Integer getMaxLen() {
+        return maxLen;
+    }
+
+    public void setMaxLen(Integer maxLen) {
+        this.maxLen = maxLen;
+    }
 
     public Long getTimeout() {
         return timeout;
