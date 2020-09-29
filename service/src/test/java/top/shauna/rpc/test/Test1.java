@@ -1,10 +1,13 @@
 package top.shauna.rpc.test;
 
+import io.netty.buffer.ByteBuf;
+import io.netty.buffer.Unpooled;
 import org.junit.Test;
 import top.shauna.rpc.bean.FoundBean;
 import top.shauna.rpc.bean.LocalExportBean;
 import top.shauna.rpc.bean.RegisterBean;
 import top.shauna.rpc.config.PubConfig;
+import top.shauna.rpc.protocol.serializer.HessianSerializer;
 import top.shauna.rpc.service.ShaunaRPCHandler;
 import top.shauna.rpc.test.impl.HelloImpl;
 
@@ -66,17 +69,48 @@ public class Test1 {
         Hello hello = ShaunaRPCHandler.getReferenceProxy(Hello.class);
 
         System.out.println(hello.helloCat("mago", new LocalExportBean()));
+        long t1 = System.currentTimeMillis();
         byte[] bytes = hello.okkk();
-        for (byte aByte : bytes) {
-            System.out.print(aByte+" ");
-        }
-        System.out.println();
+        long t2 = System.currentTimeMillis();
+//        for (byte aByte : bytes) {
+//            System.out.print(aByte+" ");
+//        }
+//        System.out.println();
+        System.out.println(bytes.length);
+        System.out.println(t2-t1);
         //top.shauna.rpc.test.Hello
         System.in.read();
     }
 
     @Test
     public void test3() throws IOException {
-        System.out.println(byte[].class);
+        HessianSerializer hessianSerializer = new HessianSerializer();
+        Bean bean = new Bean();
+        SubBean subBean = new SubBean();
+        subBean.setOkkk("okkkkkkkkkkkkk");
+        bean.setAge(22);
+        bean.setName("Shauna");
+        bean.setSubBean(subBean);
+
+        byte[] data = hessianSerializer.getData(22);
+
+        int obj = (int)hessianSerializer.getObj(data);
+        System.out.println(obj);
+
+        long time = System.currentTimeMillis();
+
+        ByteBuf out = Unpooled.copiedBuffer(new byte[100]);
+        System.out.println("start1 "+out.readerIndex());
+        out.readInt();
+        System.out.println("start2 "+out.readerIndex());
+        System.out.println("index "+out.writerIndex());
+        int save = out.writerIndex();
+        out.writerIndex(save+16);
+        System.out.println("index "+out.writerIndex());
+    }
+
+    @Test
+    public void test4() throws IOException {
+
     }
 }

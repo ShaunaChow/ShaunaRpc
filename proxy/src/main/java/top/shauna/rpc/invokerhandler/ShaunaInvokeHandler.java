@@ -99,19 +99,19 @@ public class ShaunaInvokeHandler implements InvocationHandler {
             }
         }
         RequestBean requestBean = new RequestBean(referenceBean.getClassName(),getMethodFullName(method), values);
-        String uuid = UUID.randomUUID().toString();
-        RequestBeanWrapper requestBeanWrapper = new RequestBeanWrapper(uuid, requestBean);
+        long uniqueId = getUniqueId();
+        RequestBeanWrapper requestBeanWrapper = new RequestBeanWrapper(uniqueId, requestBean);
 
         ReentrantLock lock = new ReentrantLock();
         Condition condition = lock.newCondition();
         MessageBean sendMessage = new MessageBean(lock, condition, null);
-        NettyMessageHolder.put(uuid, sendMessage);
+        NettyMessageHolder.put(uniqueId, sendMessage);
         /**启动远端调用
          * 在此插入监视器代码或其他！！！
          * **/
         try{
             lock.lock();
-            channel.write(JSON.toJSONString(requestBeanWrapper));
+            channel.write(requestBeanWrapper);
             Long timeout = PubConfig.getInstance().getTimeout();
             if(timeout==null||timeout<1000) timeout = 1000L;
             condition.await(timeout, TimeUnit.MILLISECONDS);
@@ -122,8 +122,8 @@ public class ShaunaInvokeHandler implements InvocationHandler {
             lock.unlock();
         }
 
-        MessageBean messageBean = NettyMessageHolder.getMessage(uuid);
-        NettyMessageHolder.remote(uuid);
+        MessageBean messageBean = NettyMessageHolder.getMessage(uniqueId);
+        NettyMessageHolder.remote(uniqueId);
 
         return messageBean;
     }
@@ -138,5 +138,12 @@ public class ShaunaInvokeHandler implements InvocationHandler {
             }else sb.append(parameter.getType().getName()+" ,");
         }
         return sb.toString();
+    }
+
+    private long getUniqueId(){
+        long id = System.nanoTime();
+        int hashCode = Math.abs(UUID.randomUUID().hashCode());
+        id = id|(hashCode<<31);
+        return id;
     }
 }

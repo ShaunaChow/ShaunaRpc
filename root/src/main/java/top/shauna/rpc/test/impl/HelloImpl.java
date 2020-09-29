@@ -22,7 +22,7 @@ public class HelloImpl implements Hello {
 
     @Override
     public byte[] okkk() {
-        byte[] res = new byte[1024*180];
+        byte[] res = new byte[1024*1024*256];
         for(int i=0;i<res.length;i++) res[i] = (byte)i;
         System.out.println("okkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk");
         return res;

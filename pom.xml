@@ -69,6 +69,12 @@
             <artifactId>spring-context</artifactId>
             <version>5.2.6.RELEASE</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/com.caucho/hessian -->
+        <dependency>
+            <groupId>com.caucho</groupId>
+            <artifactId>hessian</artifactId>
+            <version>4.0.38</version>
+        </dependency>
 
     </dependencies>
 

@@ -6,12 +6,12 @@ import io.netty.channel.ChannelInitializer;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
-import io.netty.handler.codec.LengthFieldBasedFrameDecoder;
 import lombok.NoArgsConstructor;
 import top.shauna.rpc.bean.LocalExportBean;
 import top.shauna.rpc.client.handler.NettyHandler;
+import top.shauna.rpc.codec.ShaunaRPCDecoder;
+import top.shauna.rpc.codec.ShaunaRPCEncoder;
 import top.shauna.rpc.common.ShaunaThreadPool;
-import top.shauna.rpc.config.PubConfig;
 import top.shauna.rpc.interfaces.ClientStarter;
 
 /**
@@ -31,6 +31,8 @@ public class NettyClientStarter implements ClientStarter {
                 .handler(new ChannelInitializer<SocketChannel>() {
                     @Override
                     protected void initChannel(SocketChannel socketChannel) throws Exception {
+                        socketChannel.pipeline().addLast("ShaunaEncoder",new ShaunaRPCEncoder());
+                        socketChannel.pipeline().addLast("ShaunaDecoder",new ShaunaRPCDecoder());
                         socketChannel.pipeline().addLast(interfaze, new NettyHandler(interfaze,localExportBean));
                     }
                 });

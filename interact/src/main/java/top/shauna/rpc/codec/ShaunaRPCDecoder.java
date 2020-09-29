@@ -2,30 +2,31 @@ package top.shauna.rpc.codec;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
-import io.netty.handler.codec.MessageToByteEncoder;
+import io.netty.handler.codec.ByteToMessageDecoder;
 import lombok.extern.slf4j.Slf4j;
 import top.shauna.rpc.protocol.ShaunaProtocol;
 import top.shauna.rpc.protocol.interfaze.Protocol;
 
+import java.util.List;
+
 /**
  * @Author Shauna.Chou
- * @Date 2020/9/28 22:17
+ * @Date 2020/9/29 16:57
  * @E-Mail z1023778132@icloud.com
  */
 @Slf4j
-public class ShaunaRPCEncoder extends MessageToByteEncoder {
+public class ShaunaRPCDecoder extends ByteToMessageDecoder {
     private Protocol protocol;
 
-    public ShaunaRPCEncoder(){
+    public ShaunaRPCDecoder(){
         protocol = new ShaunaProtocol();
     }
 
-    public ShaunaRPCEncoder(Protocol protocol){
+    public ShaunaRPCDecoder(Protocol protocol){
         this.protocol = protocol;
     }
-
     @Override
-    protected void encode(ChannelHandlerContext ctx, Object msg, ByteBuf out) throws Exception {
-        protocol.getProtocolData(msg,out);
+    protected void decode(ChannelHandlerContext ctx, ByteBuf buf, List<Object> out) throws Exception {
+        protocol.getProtocolObj(buf,out);
     }
 }

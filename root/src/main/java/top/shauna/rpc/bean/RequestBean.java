@@ -1,5 +1,6 @@
 package top.shauna.rpc.bean;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -7,7 +8,7 @@ import java.util.List;
  * @E-Mail   z1023778132@icloud.com
  */
 
-public class RequestBean {
+public class RequestBean implements Serializable {
 
     private String clazzName;
     private String method;

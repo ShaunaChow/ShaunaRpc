@@ -9,17 +9,17 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 
 public class NettyMessageHolder {
-    private static ConcurrentHashMap<String,MessageBean> map = new ConcurrentHashMap<>();
+    private static ConcurrentHashMap<Long,MessageBean> map = new ConcurrentHashMap<>();
 
-    public static void put(String uuid, MessageBean messageBean){
+    public static void put(Long uuid, MessageBean messageBean){
         map.put(uuid,messageBean);
     }
 
-    public static MessageBean getMessage(String uuid){
+    public static MessageBean getMessage(Long uuid){
         return map.get(uuid);
     }
 
-    public static void remote(String uuid){
+    public static void remote(Long uuid){
         map.remove(uuid);
     }
 }

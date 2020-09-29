@@ -7,7 +7,7 @@ package top.shauna.rpc.interfaces;
 
 public interface Channel {
 
-    void write(String msg) throws Exception;
+    void write(Object msg) throws Exception;
 
     boolean isOk();
 

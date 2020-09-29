@@ -8,6 +8,8 @@ import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import top.shauna.rpc.bean.LocalExportBean;
+import top.shauna.rpc.codec.ShaunaRPCDecoder;
+import top.shauna.rpc.codec.ShaunaRPCEncoder;
 import top.shauna.rpc.common.ShaunaThreadPool;
 import top.shauna.rpc.server.handler.InBoundHandler;
 import top.shauna.rpc.interfaces.LocalExporter;
@@ -38,6 +40,8 @@ public class NettyExporter implements LocalExporter {
                     .childHandler(new ChannelInitializer<SocketChannel>() {
                         @Override
                         protected void initChannel(SocketChannel socketChannel) throws Exception {
+                            socketChannel.pipeline().addLast("ShaunaEncoder",new ShaunaRPCEncoder());
+                            socketChannel.pipeline().addLast("ShaunaDecoder",new ShaunaRPCDecoder());
                             socketChannel.pipeline().addLast("handler1",new InBoundHandler());
                         }
                     });
