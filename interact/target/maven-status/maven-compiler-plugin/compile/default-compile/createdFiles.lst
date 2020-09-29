@@ -3,7 +3,7 @@ top\shauna\rpc\server\exporter\NettyExporter.class
 top\shauna\rpc\server\ExportFactory.class
 top\shauna\rpc\server\handler\InBoundHandler.class
 top\shauna\rpc\client\ClientFactory.class
-top\shauna\rpc\codec\ShaunaServerEncoder.class
+top\shauna\rpc\codec\ShaunaRPCEncoder.class
 top\shauna\rpc\protocol\interfaze\Protocol.class
 top\shauna\rpc\protocol\interfaze\Serializer.class
 top\shauna\rpc\server\parser\MethodParser.class
@@ -11,6 +11,7 @@ top\shauna\rpc\client\handler\NettyHandler.class
 top\shauna\rpc\protocol\serializer\HessianSerializer.class
 top\shauna\rpc\common\ShaunaThreadPool.class
 top\shauna\rpc\server\exporter\NettyExporter$1.class
+top\shauna\rpc\codec\ShaunaRPCDecoder.class
 top\shauna\rpc\interfaces\LocalExporter.class
 top\shauna\rpc\client\connecter\NettyClientStarter.class
 top\shauna\rpc\client\channel\NettyChannel.class

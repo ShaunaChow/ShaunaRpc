@@ -44,7 +44,6 @@ public class Test1 {
 
         ShaunaRPCHandler.publishServiceBean(Hello.class, new HelloImpl(),localExportBean);
 
-        //top.shauna.rpc.test.Hello
         System.in.read();
     }
 
@@ -68,17 +67,12 @@ public class Test1 {
 
         Hello hello = ShaunaRPCHandler.getReferenceProxy(Hello.class);
 
-        System.out.println(hello.helloCat("mago", new LocalExportBean()));
         long t1 = System.currentTimeMillis();
         byte[] bytes = hello.okkk();
         long t2 = System.currentTimeMillis();
-//        for (byte aByte : bytes) {
-//            System.out.print(aByte+" ");
-//        }
-//        System.out.println();
-        System.out.println(bytes.length);
-        System.out.println(t2-t1);
-        //top.shauna.rpc.test.Hello
+        System.out.println("客户端接收到："+bytes.length+"字节数据");
+        System.out.println("RPC调用传输数据花费："+(t2-t1)+"毫秒");
+
         System.in.read();
     }
 

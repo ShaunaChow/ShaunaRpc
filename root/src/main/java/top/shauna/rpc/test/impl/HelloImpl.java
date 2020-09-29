@@ -11,8 +11,7 @@ import top.shauna.rpc.test.Hello;
 public class HelloImpl implements Hello {
     @Override
     public LocalExportBean helloCat(String name, LocalExportBean b) {
-        System.out.println("okkkkk");
-        return new LocalExportBean("okkkkkkk", 9898, String.valueOf(System.currentTimeMillis()));
+        return new LocalExportBean("ShaunaRPC", 9898, String.valueOf(System.currentTimeMillis()));
     }
 
     @Override
@@ -24,7 +23,7 @@ public class HelloImpl implements Hello {
     public byte[] okkk() {
         byte[] res = new byte[1024*1024*256];
         for(int i=0;i<res.length;i++) res[i] = (byte)i;
-        System.out.println("okkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk");
+        System.out.println("服务端发送了："+1024*1024*256+"字节大数据");
         return res;
     }
 }
