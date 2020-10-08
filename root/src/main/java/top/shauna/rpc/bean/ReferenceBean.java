@@ -73,38 +73,4 @@ public class ReferenceBean {
                 ", remoteClients=" + remoteClients +
                 '}';
     }
-
-//    @Override
-//    public Object getObject() throws Exception {
-//        return dealWithReferenceBean(this);
-//    }
-//
-//    @Override
-//    public Class<?> getObjectType() {
-//        return interfaze;
-//    }
-//
-//    private Object dealWithReferenceBean(ReferenceBean bean) {
-//        String interfazeName = bean.getClassName();
-//        if(interfazeName==null){
-//            log.error("ReferenceBean必须指定一个接口");
-//            return null;
-//        }
-//        Class interfaze = null;
-//        try {
-//            interfaze = Class.forName(interfazeName);
-//            bean.setInterfaze(interfaze);
-//        } catch (ClassNotFoundException e) {
-//            log.error("ReferenceBean解析接口时出错："+e.getMessage());
-//            return null;
-//        }
-//        /** bean的初始化工作 **/
-//        {
-//            bean.setLocalExportAddrList(new CopyOnWriteArrayList<>());
-//            bean.setLocalExportBeanList(new CopyOnWriteArrayList<>());
-//            bean.setRemoteClients(new CopyOnWriteArrayList<>());
-//            ConnecterHolder.put(interfazeName,bean);
-//        }
-//        return ReferenceProxyFactory.getProxy(bean);
-//    }
 }
