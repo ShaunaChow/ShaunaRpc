@@ -8,7 +8,6 @@ import top.shauna.rpc.bean.ReferenceBean;
 import top.shauna.rpc.common.factory.FounderFactory;
 import top.shauna.rpc.common.interfaces.Founder;
 import top.shauna.rpc.finalhelper.FinshAllHelper;
-import top.shauna.rpc.holder.ConnecterHolder;
 import top.shauna.rpc.proxy.ReferenceProxyFactory;
 
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -66,12 +65,11 @@ public class ReferenceBeanFactory implements FactoryBean, ApplicationListener<Co
             bean.setLocalExportAddrList(new CopyOnWriteArrayList<>());
             bean.setLocalExportBeanList(new CopyOnWriteArrayList<>());
             bean.setRemoteClients(new CopyOnWriteArrayList<>());
-            ConnecterHolder.put(interfazeName,bean);
         }
         try {
             Founder founder = FounderFactory.getFounder();
-            founder.found(bean.getInterfaze());
-            founder.listen(bean.getInterfaze());
+            founder.found(bean);
+            founder.listen(bean);
             log.info("服务发现ok");
         } catch (Exception e) {
             log.error(bean.getClassName()+" 服务发现失败："+e.getMessage());

@@ -6,7 +6,6 @@ import io.netty.channel.ChannelInboundHandlerAdapter;
 import top.shauna.rpc.bean.*;
 import top.shauna.rpc.client.channel.NettyChannel;
 import top.shauna.rpc.client.responseholder.NettyMessageHolder;
-import top.shauna.rpc.holder.ConnecterHolder;
 
 import java.util.concurrent.locks.Lock;
 
@@ -17,12 +16,12 @@ import java.util.concurrent.locks.Lock;
 
 public class NettyHandler extends ChannelInboundHandlerAdapter {
 
-    private String interfaze;
+    private ReferenceBean referenceBean;
     private LocalExportBean localExportBean;
 
-    public NettyHandler(String interfaze, LocalExportBean localExportBean) {
+    public NettyHandler(ReferenceBean referenceBean, LocalExportBean localExportBean) {
         super();
-        this.interfaze = interfaze;
+        this.referenceBean = referenceBean;
         this.localExportBean = localExportBean;
     }
 
@@ -32,8 +31,8 @@ public class NettyHandler extends ChannelInboundHandlerAdapter {
         while(!channel.isWritable());
         NettyChannel nettyChannel = new NettyChannel(channel);
         RemoteClient client = new RemoteClient(localExportBean.getIp(), localExportBean.getPort(), nettyChannel, 0, 0.0);
-        if(ConnecterHolder.contains(interfaze)){
-            ConnecterHolder.get(interfaze).getRemoteClients().add(client);
+        if(referenceBean!=null&&referenceBean.getRemoteClients()!=null){
+            referenceBean.getRemoteClients().add(client);
         }else{
             throw new Exception("没有初始化ReferenceBean!");
         }

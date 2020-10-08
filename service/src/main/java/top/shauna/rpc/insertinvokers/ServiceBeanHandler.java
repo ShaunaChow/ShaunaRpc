@@ -56,11 +56,10 @@ public class ServiceBeanHandler implements BeanPostProcessor, ApplicationContext
     }
 
     private void dealWithReferenceBean(ReferenceBean bean){
-        Class interfaze = bean.getInterfaze();
         try {
             Founder founder = FounderFactory.getFounder();
-            founder.found(interfaze);
-            founder.listen(interfaze);
+            founder.found(bean);
+            founder.listen(bean);
         } catch (Exception e) {
             log.error("ReferenceBean:"+bean.getClassName()+"服务发现出错："+e.getMessage());
             return;

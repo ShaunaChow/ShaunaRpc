@@ -25,7 +25,7 @@ public class Test1 {
         LocalExportBean localExportBean = new LocalExportBean();
         localExportBean.setProtocol("netty");
         localExportBean.setIp("127.0.0.1");
-        localExportBean.setPort(8088);
+        localExportBean.setPort(8090);
 
         PubConfig pubConfig = PubConfig.getInstance();
         if (pubConfig.getRegisterBean()==null) {
@@ -48,7 +48,7 @@ public class Test1 {
     }
 
     @Test
-    public void test2() throws IOException {
+    public void test2() throws IOException, InterruptedException {
         PubConfig pubConfig = PubConfig.getInstance();
         pubConfig.setTimeout(10000000L);
         if (pubConfig.getRegisterBean()==null) {
@@ -67,13 +67,15 @@ public class Test1 {
 
         Hello hello = ShaunaRPCHandler.getReferenceProxy(Hello.class);
 
-        long t1 = System.currentTimeMillis();
-        byte[] bytes = hello.okkk();
-        long t2 = System.currentTimeMillis();
-        System.out.println("客户端接收到："+bytes.length+"字节数据");
-        System.out.println("RPC调用传输数据花费："+(t2-t1)+"毫秒");
-
-        System.in.read();
+        while(true) {
+            long t1 = System.currentTimeMillis();
+            byte[] bytes = hello.okkk();
+            long t2 = System.currentTimeMillis();
+            System.out.println("客户端接收到：" + bytes.length + "字节数据");
+            System.out.println("RPC调用传输数据花费：" + (t2 - t1) + "毫秒");
+            hello.testOKK(new HelloImpl());
+            Thread.sleep(3000);
+        }
     }
 
     @Test

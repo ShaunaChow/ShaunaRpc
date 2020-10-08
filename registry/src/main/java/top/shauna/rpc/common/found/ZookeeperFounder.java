@@ -1,23 +1,20 @@
 package top.shauna.rpc.common.found;
 
 import com.alibaba.fastjson.JSON;
-import io.netty.channel.Channel;
 import lombok.extern.slf4j.Slf4j;
 import top.shauna.rpc.bean.LocalExportBean;
 import top.shauna.rpc.bean.ReferenceBean;
 import top.shauna.rpc.bean.RemoteClient;
 import top.shauna.rpc.client.ClientFactory;
 import top.shauna.rpc.common.interfaces.Founder;
-import top.shauna.rpc.holder.ConnecterHolder;
 import top.shauna.rpc.interfaces.ClientStarter;
 import top.shauna.rpc.supports.ZKSupportKit;
 import java.io.IOException;
 import java.util.List;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.CopyOnWriteArraySet;
 import java.util.concurrent.TimeUnit;
-import java.util.concurrent.locks.Condition;
-import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * @Author   Shauna.Chou
@@ -26,10 +23,12 @@ import java.util.concurrent.locks.ReentrantLock;
 @Slf4j
 public class ZookeeperFounder implements Founder {
     private ZKSupportKit zkSupportKit;
+    private static ConcurrentHashMap<String,ReferenceBean> connecterHolder = new ConcurrentHashMap<>();
 
     @Override
-    public void listen(Class interfaze) {
-        zkSupportKit.subscribeChildChanges(getZookeeperPath(interfaze), (parentPath, currentChilds) -> doChange(parentPath,currentChilds));
+    public void listen(ReferenceBean referenceBean) {
+        connecterHolder.put(referenceBean.getClassName(),referenceBean);
+        zkSupportKit.subscribeChildChanges(getZookeeperPath(referenceBean.getInterfaze()), (parentPath, currentChilds) -> doChange(parentPath,currentChilds));
     }
 
     private String getZookeeperPath(Class interfaze) {
@@ -40,9 +39,8 @@ public class ZookeeperFounder implements Founder {
      * @Param: path 约定为/shauna/className/providers
      * **/
     @Override
-    public void found(Class interfaze) throws Exception {
-        String className = interfaze.getName();
-        ReferenceBean referenceBean = ConnecterHolder.get(className);
+    public void found(ReferenceBean referenceBean) throws Exception {
+        Class interfaze = referenceBean.getInterfaze();
         String path = getZookeeperPath(interfaze);
         CopyOnWriteArraySet providers = new CopyOnWriteArraySet(zkSupportKit.readChildren(path));
         if(providers.size()==0) {
@@ -56,7 +54,9 @@ public class ZookeeperFounder implements Founder {
         if(!path.startsWith("/shauna/")) throw new Exception("发现功能监听路径错误 [doChange]");
         String className = path.substring(8);
         className = className.substring(0,className.indexOf("/"));
-        ReferenceBean referenceBean = ConnecterHolder.get(className);
+
+        ReferenceBean referenceBean = connecterHolder.get(className);
+
         CopyOnWriteArrayList<String> localExportAddrList = referenceBean.getLocalExportAddrList();
         CopyOnWriteArraySet alreadyIn;
         if(localExportAddrList==null) alreadyIn = new CopyOnWriteArraySet();
@@ -86,7 +86,7 @@ public class ZookeeperFounder implements Founder {
                 referenceBean.setLocalExportBeanList(tmp);
             }
             ClientStarter clientStarter = ClientFactory.getClientStarter(localExportBean);
-            clientStarter.connect(localExportBean,referenceBean.getClassName());
+            clientStarter.connect(localExportBean,referenceBean);
             if(referenceBean.getRemoteClients().size()==0){
                 int count = 10;
                 while(referenceBean.getRemoteClients().size()==0&&count>0){

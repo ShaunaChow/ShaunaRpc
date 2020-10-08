@@ -12,12 +12,12 @@ public class RequestBean implements Serializable {
 
     private String clazzName;
     private String method;
-    private List<String> values;
+    private List<Object> values;
 
     public RequestBean() {
     }
 
-    public RequestBean(String clazzName, String method, List<String> values) {
+    public RequestBean(String clazzName, String method, List<Object> values) {
 
         this.clazzName = clazzName;
         this.method = method;
@@ -41,11 +41,11 @@ public class RequestBean implements Serializable {
         this.method = method;
     }
 
-    public List<String> getValues() {
+    public List<Object> getValues() {
         return values;
     }
 
-    public void setValues(List<String> values) {
+    public void setValues(List<Object> values) {
         this.values = values;
     }
 }

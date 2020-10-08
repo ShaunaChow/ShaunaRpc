@@ -10,4 +10,5 @@ public interface Hello {
     public LocalExportBean helloCat(String name, LocalExportBean b);
     public void helloDog(int i);
     public byte[] okkk();
+    void testOKK(Hello hello);
 }

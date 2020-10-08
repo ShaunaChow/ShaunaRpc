@@ -7,7 +7,6 @@ import top.shauna.rpc.common.factory.RegistryFactory;
 import top.shauna.rpc.common.interfaces.Founder;
 import top.shauna.rpc.common.interfaces.Register;
 import top.shauna.rpc.config.PubConfig;
-import top.shauna.rpc.holder.ConnecterHolder;
 import top.shauna.rpc.holder.MethodsHolder;
 import top.shauna.rpc.interfaces.LocalExporter;
 import top.shauna.rpc.proxy.ReferenceProxyFactory;
@@ -33,14 +32,13 @@ public class ShaunaRPCHandler {
         referenceBean.setRemoteClients(new CopyOnWriteArrayList<>());
         referenceBean.setLocalExportBeanList(new CopyOnWriteArrayList<>());
         referenceBean.setLocalExportAddrList(new CopyOnWriteArrayList<>());
-        ConnecterHolder.put(interfaze.getName(),referenceBean);
 
         preparePubConfig();
 
         try {
             Founder founder = FounderFactory.getFounder();
-            founder.found(referenceBean.getInterfaze());
-            founder.listen(referenceBean.getInterfaze());
+            founder.found(referenceBean);
+            founder.listen(referenceBean);
             log.info("服务发现ok");
         } catch (Exception e) {
             log.error(referenceBean.getClassName()+" 服务发现失败："+e.getMessage());

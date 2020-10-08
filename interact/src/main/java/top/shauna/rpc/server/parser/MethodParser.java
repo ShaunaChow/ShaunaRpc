@@ -41,14 +41,14 @@ public class MethodParser {
         if(method==null) return new ResponseBean(ResponseEnum.NO_SUCH_METHOD,null);
 
         Parameter[] parameters = method.getParameters();
-        List<String> values = request.getValues();
+        List<Object> values = request.getValues();
         if(values.size()!=parameters.length) return new ResponseBean(ResponseEnum.MISSING_PARAMS,null);
 
         Object[] args = new Object[values.size()];
-        Object res = null;
+        Object res;
         try {
             for (int i = 0; i < parameters.length; i++) {
-                args[i] = JSON.parseObject(values.get(i), parameters[i].getType());
+                args[i] = values.get(i);
             }
             res = method.invoke(serviceBean.getInterfaceImpl(), args);
         }catch (Exception e){

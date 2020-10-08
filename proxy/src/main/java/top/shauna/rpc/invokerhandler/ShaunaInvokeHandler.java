@@ -92,10 +92,13 @@ public class ShaunaInvokeHandler implements InvocationHandler {
             return null;
         }
         Channel channel = client.getChannel();
-        List<String> values = new ArrayList<>();
+        if(!channel.isOk()){
+            return new MessageBean();
+        }
+        List<Object> values = new ArrayList<>();
         if(args!=null) {
             for (Object arg : args) {
-                values.add(JSON.toJSONString(arg));
+                values.add(arg);
             }
         }
         RequestBean requestBean = new RequestBean(referenceBean.getClassName(),getMethodFullName(method), values);

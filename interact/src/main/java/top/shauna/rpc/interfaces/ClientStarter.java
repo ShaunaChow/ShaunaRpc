@@ -1,6 +1,7 @@
 package top.shauna.rpc.interfaces;
 
 import top.shauna.rpc.bean.LocalExportBean;
+import top.shauna.rpc.bean.ReferenceBean;
 
 /**
  * @Author   Shauna.Chou
@@ -9,5 +10,5 @@ import top.shauna.rpc.bean.LocalExportBean;
 
 public interface ClientStarter {
 
-    public void connect(LocalExportBean localExportBean,String interfaze) throws Exception;
+    void connect(LocalExportBean localExportBean,ReferenceBean referenceBean) throws Exception;
 }
