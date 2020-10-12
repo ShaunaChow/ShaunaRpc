@@ -1,6 +1,5 @@
 package top.shauna.rpc.server.parser;
 
-import com.alibaba.fastjson.JSON;
 import top.shauna.rpc.bean.RequestBean;
 import top.shauna.rpc.bean.ResponseBean;
 import top.shauna.rpc.bean.ServiceBean;
@@ -54,7 +53,6 @@ public class MethodParser {
         }catch (Exception e){
             return new ResponseBean(ResponseEnum.PARAM_ERROR,e.getMessage());
         }
-        if(res instanceof byte[]) return new ResponseBean(ResponseEnum.SUCCESS,res);
-        return new ResponseBean(ResponseEnum.SUCCESS,JSON.toJSONString(res));
+        return new ResponseBean(ResponseEnum.SUCCESS,res);
     }
 }
