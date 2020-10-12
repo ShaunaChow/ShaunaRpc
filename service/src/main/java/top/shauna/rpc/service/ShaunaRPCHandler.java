@@ -2,12 +2,14 @@ package top.shauna.rpc.service;
 
 import lombok.extern.slf4j.Slf4j;
 import top.shauna.rpc.bean.*;
+import top.shauna.rpc.client.ClientFactory;
 import top.shauna.rpc.common.factory.FounderFactory;
 import top.shauna.rpc.common.factory.RegistryFactory;
 import top.shauna.rpc.common.interfaces.Founder;
 import top.shauna.rpc.common.interfaces.Register;
 import top.shauna.rpc.config.PubConfig;
 import top.shauna.rpc.holder.MethodsHolder;
+import top.shauna.rpc.interfaces.ClientStarter;
 import top.shauna.rpc.interfaces.LocalExporter;
 import top.shauna.rpc.proxy.ReferenceProxyFactory;
 import top.shauna.rpc.server.ExportFactory;
@@ -43,6 +45,20 @@ public class ShaunaRPCHandler {
         } catch (Exception e) {
             log.error(referenceBean.getClassName()+" 服务发现失败："+e.getMessage());
         }
+
+        return ReferenceProxyFactory.getProxy(referenceBean);
+    }
+
+    public static <T> T getReferenceProxy(Class interfaze,LocalExportBean localExportBean) throws Exception {
+        ReferenceBean referenceBean = new ReferenceBean();
+        referenceBean.setInterfaze(interfaze);
+        referenceBean.setClassName(interfaze.getName());
+        referenceBean.setRemoteClients(new CopyOnWriteArrayList<>());
+        referenceBean.setLocalExportBeanList(new CopyOnWriteArrayList<>());
+        referenceBean.setLocalExportAddrList(new CopyOnWriteArrayList<>());
+
+        ClientStarter clientStarter = ClientFactory.getClientStarter(localExportBean);
+        clientStarter.connect(localExportBean,referenceBean);
 
         return ReferenceProxyFactory.getProxy(referenceBean);
     }

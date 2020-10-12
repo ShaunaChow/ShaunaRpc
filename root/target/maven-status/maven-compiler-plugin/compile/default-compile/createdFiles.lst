@@ -3,7 +3,6 @@ top\shauna\rpc\bean\RemoteClient.class
 top\shauna\rpc\config\PubConfig.class
 top\shauna\rpc\type\ClientType.class
 top\shauna\rpc\holder\MethodsHolder.class
-top\shauna\rpc\holder\ConnecterHolder.class
 top\shauna\rpc\test\Hello.class
 top\shauna\rpc\type\ResponseEnum.class
 top\shauna\rpc\bean\ResponseBean.class

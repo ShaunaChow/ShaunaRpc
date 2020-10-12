@@ -107,6 +107,49 @@ public class Test1 {
 
     @Test
     public void test4() throws IOException {
+        LocalExportBean localExportBean = new LocalExportBean();
+        localExportBean.setProtocol("netty");
+        localExportBean.setIp("127.0.0.1");
+        localExportBean.setPort(9009);
 
+        PubConfig pubConfig = PubConfig.getInstance();
+        if (pubConfig.getRegisterBean()==null) {
+            RegisterBean registerBean = new RegisterBean("zookeeper","39.105.89.185:2181",null);
+            pubConfig.setRegisterBean(registerBean);
+        }
+        if (pubConfig.getFoundBean()==null) {
+            RegisterBean registerBean = pubConfig.getRegisterBean();
+            FoundBean foundBean = new FoundBean(
+                    registerBean.getPotocol(),
+                    registerBean.getUrl(),
+                    registerBean.getLoc()
+            );
+            pubConfig.setFoundBean(foundBean);
+        }
+
+        ShaunaRPCHandler.publishServiceBean(Hello.class, new HelloImpl(),localExportBean);
+
+        System.in.read();
+    }
+
+    @Test
+    public void test5() throws Exception {
+        LocalExportBean localExportBean = new LocalExportBean();
+        localExportBean.setProtocol("netty");
+        localExportBean.setIp("127.0.0.1");
+        localExportBean.setPort(9009);
+        PubConfig.getInstance().setTimeout(1000000L);
+
+        Hello hello = ShaunaRPCHandler.getReferenceProxy(Hello.class,localExportBean);
+
+        while(true) {
+            long t1 = System.currentTimeMillis();
+            byte[] bytes = hello.okkk();
+            long t2 = System.currentTimeMillis();
+            System.out.println("客户端接收到：" + bytes.length + "字节数据");
+            System.out.println("RPC调用传输数据花费：" + (t2 - t1) + "毫秒");
+            hello.testOKK(new HelloImpl());
+            Thread.sleep(3000);
+        }
     }
 }
