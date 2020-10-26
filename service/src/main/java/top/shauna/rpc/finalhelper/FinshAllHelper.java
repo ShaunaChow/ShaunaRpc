@@ -1,6 +1,5 @@
 package top.shauna.rpc.finalhelper;
 
-import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import top.shauna.rpc.bean.FoundBean;
 import top.shauna.rpc.bean.RegisterBean;

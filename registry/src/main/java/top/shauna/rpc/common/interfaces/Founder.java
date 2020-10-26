@@ -1,6 +1,9 @@
 package top.shauna.rpc.common.interfaces;
 
+import top.shauna.rpc.bean.LocalExportBean;
 import top.shauna.rpc.bean.ReferenceBean;
+
+import java.util.List;
 
 /**
  * @Author   Shauna.Chou
@@ -8,7 +11,8 @@ import top.shauna.rpc.bean.ReferenceBean;
  */
 
 public interface Founder {
-    public void listen(ReferenceBean referenceBean);
-    public void found(ReferenceBean referenceBean) throws Exception;
-    public void connect(String url);
+    void listen(ReferenceBean referenceBean);
+    void found(ReferenceBean referenceBean) throws Exception;
+    void connect(String url);
+    List<LocalExportBean> getLocalExportBeans(Class interfaze);
 }

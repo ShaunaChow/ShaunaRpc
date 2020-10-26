@@ -14,5 +14,6 @@ top\shauna\rpc\test\impl\HelloImpl.class
 top\shauna\rpc\bean\RegisterBean.class
 top\shauna\rpc\bean\RequestBean.class
 top\shauna\rpc\interfaces\Channel.class
+top\shauna\rpc\util\CommonUtil.class
 top\shauna\rpc\bean\MessageBean.class
 top\shauna\rpc\bean\FoundBean.class

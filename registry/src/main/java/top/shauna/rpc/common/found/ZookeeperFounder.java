@@ -9,7 +9,10 @@ import top.shauna.rpc.client.ClientFactory;
 import top.shauna.rpc.common.interfaces.Founder;
 import top.shauna.rpc.interfaces.ClientStarter;
 import top.shauna.rpc.supports.ZKSupportKit;
+import top.shauna.rpc.util.CommonUtil;
+
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -28,11 +31,7 @@ public class ZookeeperFounder implements Founder {
     @Override
     public void listen(ReferenceBean referenceBean) {
         connecterHolder.put(referenceBean.getClassName(),referenceBean);
-        zkSupportKit.subscribeChildChanges(getZookeeperPath(referenceBean.getInterfaze()), (parentPath, currentChilds) -> doChange(parentPath,currentChilds));
-    }
-
-    private String getZookeeperPath(Class interfaze) {
-        return "/shauna/"+interfaze.getName()+"/providers";
+        zkSupportKit.subscribeChildChanges(CommonUtil.getZookeeperPath(referenceBean.getInterfaze()), (parentPath, currentChilds) -> doChange(parentPath,currentChilds));
     }
 
     /**
@@ -41,13 +40,25 @@ public class ZookeeperFounder implements Founder {
     @Override
     public void found(ReferenceBean referenceBean) throws Exception {
         Class interfaze = referenceBean.getInterfaze();
-        String path = getZookeeperPath(interfaze);
+        String path = CommonUtil.getZookeeperPath(interfaze);
         CopyOnWriteArraySet providers = new CopyOnWriteArraySet(zkSupportKit.readChildren(path));
         if(providers.size()==0) {
             log.info("服务 "+interfaze+" 未找到提供者");
             return;
         }
         doPut(referenceBean,path, providers);
+    }
+
+    @Override
+    public List<LocalExportBean> getLocalExportBeans(Class interfaze) {
+        String path = CommonUtil.getZookeeperPath(interfaze);
+        List<String> children = zkSupportKit.readChildren(path);
+        List<LocalExportBean> res = new ArrayList<>();
+        for (String localExportBeanString : children) {
+            LocalExportBean localExportBean = JSON.parseObject(zkSupportKit.readData(path + "/" + localExportBeanString), LocalExportBean.class);
+            res.add(localExportBean);
+        }
+        return res;
     }
 
     private void doChange(String path, List<String> currentChilds) throws Exception {

@@ -51,7 +51,7 @@ public class Test1 {
     }
 
     @Test
-    public void test2() throws IOException, InterruptedException {
+    public void test2() throws Exception {
         PubConfig pubConfig = PubConfig.getInstance();
         pubConfig.setTimeout(10000000L);
         pubConfig.setLoadbalance("top.shauna.rpc.test.AAA");
