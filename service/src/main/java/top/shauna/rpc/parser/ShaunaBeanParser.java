@@ -183,5 +183,10 @@ public class ShaunaBeanParser implements BeanDefinitionParser {
             timeout = Long.parseLong(element.getAttribute("timeout"));
         }
         PubConfig.getInstance().setTimeout(timeout);
+        if (!element.hasAttribute("loadbalance")) {
+            PubConfig.getInstance().setLoadbalance(element.getAttribute("loadbalance"));
+        }else{
+            PubConfig.getInstance().setLoadbalance("top.shauna.rpc.loadbalance.ShaunaPollBalance");
+        }
     }
 }

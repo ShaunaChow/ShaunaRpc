@@ -8,6 +8,7 @@
             <xsd:attribute name="appname" type="xsd:string"/>
             <xsd:attribute name="threadnums" type="xsd:int"/>
             <xsd:attribute name="timeout" type="xsd:long"/>
+            <xsd:attribute name="loadbalance" type="xsd:string"/>
         </xsd:complexType>
     </xsd:element>
     <xsd:element name="register">

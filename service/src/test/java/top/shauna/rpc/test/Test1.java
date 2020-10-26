@@ -6,12 +6,15 @@ import org.junit.Test;
 import top.shauna.rpc.bean.FoundBean;
 import top.shauna.rpc.bean.LocalExportBean;
 import top.shauna.rpc.bean.RegisterBean;
+import top.shauna.rpc.bean.RemoteClient;
 import top.shauna.rpc.config.PubConfig;
+import top.shauna.rpc.interfaces.LoadBalance;
 import top.shauna.rpc.protocol.serializer.HessianSerializer;
 import top.shauna.rpc.service.ShaunaRPCHandler;
 import top.shauna.rpc.test.impl.HelloImpl;
 
 import java.io.IOException;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * @Author Shauna.Chou
@@ -51,6 +54,7 @@ public class Test1 {
     public void test2() throws IOException, InterruptedException {
         PubConfig pubConfig = PubConfig.getInstance();
         pubConfig.setTimeout(10000000L);
+        pubConfig.setLoadbalance("top.shauna.rpc.test.AAA");
         if (pubConfig.getRegisterBean()==null) {
             RegisterBean registerBean = new RegisterBean("zookeeper","39.105.89.185:2181",null);
             pubConfig.setRegisterBean(registerBean);
@@ -151,5 +155,13 @@ public class Test1 {
             hello.testOKK(new HelloImpl());
             Thread.sleep(3000);
         }
+    }
+}
+
+class AAA implements LoadBalance {
+
+    @Override
+    public RemoteClient getRemoteClient(CopyOnWriteArrayList<RemoteClient> list) {
+        return list.get(0);
     }
 }

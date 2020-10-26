@@ -1,6 +1,5 @@
 package top.shauna.rpc.invokerhandler;
 
-import com.alibaba.fastjson.JSON;
 import lombok.extern.slf4j.Slf4j;
 import top.shauna.rpc.bean.*;
 import top.shauna.rpc.client.responseholder.NettyMessageHolder;
@@ -30,7 +29,12 @@ public class ShaunaInvokeHandler implements InvocationHandler {
 
     public ShaunaInvokeHandler(ReferenceBean referenceBean){
         this.referenceBean = referenceBean;
-        this.loadBalancer = new ShaunaPollBalance();
+        String loadbalance = PubConfig.getInstance().getLoadbalance();
+        try {
+            this.loadBalancer = (LoadBalance) Class.forName(loadbalance).newInstance();
+        } catch (Exception e) {
+            this.loadBalancer = new ShaunaPollBalance();
+        }
     }
 
     public ShaunaInvokeHandler(ReferenceBean referenceBean, LoadBalance loadBalancer) {

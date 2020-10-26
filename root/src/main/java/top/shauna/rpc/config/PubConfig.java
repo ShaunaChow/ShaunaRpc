@@ -31,6 +31,15 @@ public class PubConfig {
     private Integer threadPoolNums;
     private Long timeout;
     private Integer maxLen;
+    private String loadbalance;
+
+    public String getLoadbalance() {
+        return loadbalance;
+    }
+
+    public void setLoadbalance(String loadbalance) {
+        this.loadbalance = loadbalance;
+    }
 
     public Integer getMaxLen() {
         return maxLen;
