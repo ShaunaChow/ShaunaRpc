@@ -45,7 +45,7 @@ public class Test1 {
             pubConfig.setFoundBean(foundBean);
         }
 
-        ShaunaRPCHandler.publishServiceBean(Hello.class, new HelloImpl(),localExportBean);
+        ShaunaRPCHandler.publishServiceBean(Hello.class, new HelloImpl(),localExportBean,false);
 
         System.in.read();
     }
@@ -68,8 +68,12 @@ public class Test1 {
             );
             pubConfig.setFoundBean(foundBean);
         }
+        LocalExportBean localExportBean = new LocalExportBean();
+        localExportBean.setProtocol("netty");
+        localExportBean.setIp("127.0.0.1");
+        localExportBean.setPort(8090);
 
-        Hello hello = ShaunaRPCHandler.getReferenceProxy(Hello.class);
+        Hello hello = ShaunaRPCHandler.getReferenceProxy(Hello.class,localExportBean);
 
         while(true) {
             long t1 = System.currentTimeMillis();

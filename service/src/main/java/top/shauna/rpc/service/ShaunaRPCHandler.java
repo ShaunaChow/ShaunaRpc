@@ -63,14 +63,18 @@ public class ShaunaRPCHandler {
         return ReferenceProxyFactory.getProxy(referenceBean);
     }
 
-    public static void publishServiceBean(Class interfaze, Object impl, LocalExportBean localExportBean){
+    public static ServiceBean publishServiceBean(Class interfaze, Object impl, LocalExportBean localExportBean){
+        return publishServiceBean(interfaze,impl,localExportBean, true);
+    }
+
+    public static ServiceBean publishServiceBean(Class interfaze, Object impl, LocalExportBean localExportBean, boolean regist){
         boolean flag = false;
         for (Class<?> interfazee : impl.getClass().getInterfaces()) {
             if(interfazee==interfaze) flag = true;
         }
         if (!flag) {
             log.error("实现类"+impl+"没有实现指定接口："+interfaze.getName());
-            return;
+            return null;
         }
 
         preparePubConfig();
@@ -88,10 +92,11 @@ public class ShaunaRPCHandler {
         MethodsHolder.putMethod(interfaze.getName(), serviceBean);
 
         doExport(serviceBean);
-        doRegister(serviceBean);
+        if (regist) doRegister(serviceBean);
+        return serviceBean;
     }
 
-    private static void doRegister(ServiceBean bean) {
+    public static void doRegister(ServiceBean bean) {
         try {
             Register register = RegistryFactory.getRegister();
             register.doRegist(bean);
@@ -100,7 +105,7 @@ public class ShaunaRPCHandler {
         }
     }
 
-    private static void doExport(ServiceBean bean) {
+    public static void doExport(ServiceBean bean) {
         try {
             LocalExporter exporter = ExportFactory.getExporter(bean);
             exporter.init(bean.getLocalExportBean());
