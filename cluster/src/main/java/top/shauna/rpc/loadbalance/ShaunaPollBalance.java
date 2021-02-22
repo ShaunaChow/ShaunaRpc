@@ -1,5 +1,6 @@
 package top.shauna.rpc.loadbalance;
 
+import top.shauna.rpc.bean.InvokeInfo;
 import top.shauna.rpc.bean.RemoteClient;
 import top.shauna.rpc.interfaces.LoadBalance;
 
@@ -18,7 +19,7 @@ public class ShaunaPollBalance implements LoadBalance {
     }
 
     @Override
-    public RemoteClient getRemoteClient(CopyOnWriteArrayList<RemoteClient> remoteClients) {
+    public RemoteClient getRemoteClient(CopyOnWriteArrayList<RemoteClient> remoteClients, InvokeInfo invokeInfo) {
         if (remoteClients.size()==0) return null;
         return remoteClients.get(pin++%remoteClients.size());
     }

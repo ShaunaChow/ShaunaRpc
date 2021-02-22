@@ -7,12 +7,12 @@ import top.shauna.rpc.config.PubConfig;
 import top.shauna.rpc.interfaces.Channel;
 import top.shauna.rpc.interfaces.LoadBalance;
 import top.shauna.rpc.loadbalance.ShaunaPollBalance;
+import top.shauna.rpc.type.ResponseEnum;
+
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
@@ -85,7 +85,8 @@ public class ShaunaInvokeHandler implements InvocationHandler {
     }
 
     private MessageBean getResponse(Method method, Object[] args){
-        RemoteClient client = loadBalancer.getRemoteClient(referenceBean.getRemoteClients());
+        InvokeInfo invokeInfo = new InvokeInfo(getUniqueId(), Arrays.asList(args==null?new Object[]{}:args));
+        RemoteClient client = loadBalancer.getRemoteClient(referenceBean.getRemoteClients(),invokeInfo);
         if(client==null) {
             return null;
         }
@@ -110,17 +111,21 @@ public class ShaunaInvokeHandler implements InvocationHandler {
         /**启动远端调用
          * 在此插入监视器代码或其他！！！
          * **/
+        long startTime = System.currentTimeMillis();
         try{
             lock.lock();
             channel.write(requestBeanWrapper);
             Long timeout = PubConfig.getInstance().getTimeout();
             if(timeout==null||timeout<1000) timeout = 1000L;
-            condition.await(timeout, TimeUnit.MILLISECONDS);
+            boolean await = condition.await(timeout, TimeUnit.MILLISECONDS);
+            if (!await) log.warn("调用超时");
         }catch (Exception e){
             log.error("远端调用失败！！！！"+e.getMessage());
             return sendMessage;
         }finally{
             lock.unlock();
+            long endTime = System.currentTimeMillis();
+            client.updateAvgTime(endTime-startTime);
         }
 
         MessageBean messageBean = NettyMessageHolder.getMessage(uniqueId);

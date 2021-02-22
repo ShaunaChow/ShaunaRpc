@@ -2,12 +2,17 @@ package top.shauna.rpc.bean;
 
 import top.shauna.rpc.interfaces.Channel;
 
+import java.util.Objects;
+import java.util.UUID;
+
+
 /**
  * @Author   Shauna.Chou
  * @E-Mail   z1023778132@icloud.com
  */
 
 public class RemoteClient {
+    private Integer id;
     private String hostName;
     private Integer port;
     private Channel channel;
@@ -16,10 +21,12 @@ public class RemoteClient {
     private Double factor;
 
     public RemoteClient() {
+        this.id = UUID.randomUUID().hashCode();
         factor = 0.4;
     }
 
     public RemoteClient(String hostName, Integer port, Channel channel, Integer invokeNums, Double avgTimeMills, Double factor) {
+        this.id = UUID.randomUUID().hashCode();
         this.hostName = hostName;
         this.port = port;
         this.channel = channel;
@@ -30,6 +37,7 @@ public class RemoteClient {
 
     public RemoteClient(String hostName, Integer port, Channel channel, Integer invokeNums, Double avgTimeMills) {
         this();
+        this.id = UUID.randomUUID().hashCode();
         this.hostName = hostName;
         this.port = port;
         this.channel = channel;
@@ -89,5 +97,10 @@ public class RemoteClient {
 
     public void setPort(Integer port) {
         this.port = port;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, hostName, port, channel, invokeNums, avgTimeMills, factor);
     }
 }

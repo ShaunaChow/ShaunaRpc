@@ -1,5 +1,6 @@
 package top.shauna.rpc.interfaces;
 
+import top.shauna.rpc.bean.InvokeInfo;
 import top.shauna.rpc.bean.RemoteClient;
 
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -10,5 +11,5 @@ import java.util.concurrent.CopyOnWriteArrayList;
  */
 
 public interface LoadBalance {
-    RemoteClient getRemoteClient(CopyOnWriteArrayList<RemoteClient> list);
+    RemoteClient getRemoteClient(CopyOnWriteArrayList<RemoteClient> list, InvokeInfo invokeInfo);
 }

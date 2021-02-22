@@ -3,6 +3,7 @@ package top.shauna.rpc.bean;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+
 /**
  * @Author   Shauna.Chou
  * @E-Mail   z1023778132@icloud.com

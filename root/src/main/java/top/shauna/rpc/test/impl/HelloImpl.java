@@ -23,7 +23,7 @@ public class HelloImpl implements Hello,Serializable {
 
     @Override
     public byte[] okkk() {
-        byte[] res = new byte[10];//new byte[1024*1024*256];
+        byte[] res = new byte[1024*1024*256];
         for(int i=0;i<res.length;i++) res[i] = (byte)i;
         System.out.println("服务端发送了："+1024*1024*256+"字节大数据");
         return res;

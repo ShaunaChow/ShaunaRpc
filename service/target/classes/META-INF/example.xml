@@ -1,0 +1,25 @@
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:shauna="http://www.shauna.top/schema/shauna"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.shauna.top/schema/shauna
+        http://www.shauna.top/schema/shauna/shauna.xsd">
+
+    <context:component-scan base-package="top.shauna.rpc.test"/>
+
+    <shauna:pubconfig appname="okkk" timeout="2000" threadnums="5"/>
+
+    <shauna:register protocol="zookeeper" url="39.105.89.185:2181"/>
+
+    <shauna:export protocol="netty" port="8008" ip="127.0.0.1"/>
+
+    <shauna:service interface="top.shauna.rpc.test.services.Hello" ref="top.shauna.rpc.test.services.impl.HelloCat"/>
+
+    <shauna:reference interface="top.shauna.rpc.test.services.Hello"/>
+
+</beans>

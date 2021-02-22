@@ -14,6 +14,7 @@ import top.shauna.rpc.service.ShaunaRPCHandler;
 import top.shauna.rpc.test.impl.HelloImpl;
 
 import java.io.IOException;
+import java.util.*;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
@@ -118,7 +119,7 @@ public class Test1 {
         LocalExportBean localExportBean = new LocalExportBean();
         localExportBean.setProtocol("netty");
         localExportBean.setIp("127.0.0.1");
-        localExportBean.setPort(9009);
+        localExportBean.setPort(9001);
 
         PubConfig pubConfig = PubConfig.getInstance();
         if (pubConfig.getRegisterBean()==null) {
@@ -146,9 +147,11 @@ public class Test1 {
         localExportBean.setProtocol("netty");
         localExportBean.setIp("127.0.0.1");
         localExportBean.setPort(9009);
-        PubConfig.getInstance().setTimeout(1000000L);
+        PubConfig.getInstance().setTimeout(10000L);
+        PubConfig.getInstance().setLoadbalance("top.shauna.rpc.loadbalance.LeastActiveLoadBalance");
+        PubConfig.getInstance().setFoundBean(new FoundBean("zookeeper","39.105.89.185:2181",null));
 
-        Hello hello = ShaunaRPCHandler.getReferenceProxy(Hello.class,localExportBean);
+        Hello hello = ShaunaRPCHandler.getReferenceProxy(Hello.class);
 
         while(true) {
             long t1 = System.currentTimeMillis();
@@ -156,16 +159,23 @@ public class Test1 {
             long t2 = System.currentTimeMillis();
             System.out.println("客户端接收到：" + bytes.length + "字节数据");
             System.out.println("RPC调用传输数据花费：" + (t2 - t1) + "毫秒");
-            hello.testOKK(new HelloImpl());
             Thread.sleep(3000);
+        }
+    }
+
+    @Test
+    public void test6() throws Exception {
+        Object[] args = {};
+        List<Object> objects = Arrays.asList(args);
+        for (Object obj:objects) System.out.println(obj.hashCode()%Integer.MAX_VALUE);
+
+        Set<Object> set = new HashSet<>();
+        set.add("nihsad");
+        set.add(new Date());
+        set.add(new Bean());
+        for(Object o: set){
+            System.out.println(o+"  "+o.hashCode());
         }
     }
 }
 
-class AAA implements LoadBalance {
-
-    @Override
-    public RemoteClient getRemoteClient(CopyOnWriteArrayList<RemoteClient> list) {
-        return list.get(0);
-    }
-}

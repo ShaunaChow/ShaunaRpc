@@ -10,7 +10,8 @@ public enum ResponseEnum {
     MISSING_PARAMS(400,"missing_params"),
     NO_SUCH_METHOD(401,"no_such_method"),
     NO_SUCH_CLASS(402,"no_such_class"),
-    PARAM_ERROR(403,"param_error");
+    PARAM_ERROR(403,"param_error"),
+    TIME_OUT(404,"time_out");
 
     private int code;
     private String meg;
