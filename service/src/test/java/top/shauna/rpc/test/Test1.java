@@ -33,7 +33,7 @@ public class Test1 {
 
         PubConfig pubConfig = PubConfig.getInstance();
         if (pubConfig.getRegisterBean()==null) {
-            RegisterBean registerBean = new RegisterBean("zookeeper","39.105.89.185:2181",null);
+            RegisterBean registerBean = new RegisterBean("zookeeper","106.13.44.177:2181",null);
             pubConfig.setRegisterBean(registerBean);
         }
         if (pubConfig.getFoundBean()==null) {
@@ -46,7 +46,7 @@ public class Test1 {
             pubConfig.setFoundBean(foundBean);
         }
 
-        ShaunaRPCHandler.publishServiceBean(Hello.class, new HelloImpl(),localExportBean,false);
+        ShaunaRPCHandler.publishServiceBean(Hello.class, new HelloImpl(),localExportBean);
 
         System.in.read();
     }
@@ -55,9 +55,8 @@ public class Test1 {
     public void test2() throws Exception {
         PubConfig pubConfig = PubConfig.getInstance();
         pubConfig.setTimeout(10000000L);
-        pubConfig.setLoadbalance("top.shauna.rpc.test.AAA");
         if (pubConfig.getRegisterBean()==null) {
-            RegisterBean registerBean = new RegisterBean("zookeeper","39.105.89.185:2181",null);
+            RegisterBean registerBean = new RegisterBean("zookeeper","106.13.44.177:2181",null);
             pubConfig.setRegisterBean(registerBean);
         }
         if (pubConfig.getFoundBean()==null) {
@@ -74,17 +73,53 @@ public class Test1 {
         localExportBean.setIp("127.0.0.1");
         localExportBean.setPort(8090);
 
-        Hello hello = ShaunaRPCHandler.getReferenceProxy(Hello.class,localExportBean);
+        Hello hello = ShaunaRPCHandler.getReferenceProxy(Hello.class);
+        Hello hello2 = ShaunaRPCHandler.getReferenceProxy(Hello.class);
+        Hello hello3 = ShaunaRPCHandler.getReferenceProxy(Hello.class);
 
-        while(true) {
-            long t1 = System.currentTimeMillis();
-            byte[] bytes = hello.okkk();
-            long t2 = System.currentTimeMillis();
-            System.out.println("客户端接收到：" + bytes.length + "字节数据");
-            System.out.println("RPC调用传输数据花费：" + (t2 - t1) + "毫秒");
-            hello.testOKK(new HelloImpl());
-            Thread.sleep(3000);
-        }
+        new Thread(()->{
+            while(true) {
+                try {
+                long t1 = System.currentTimeMillis();
+                byte[] bytes = hello.okkk();
+                long t2 = System.currentTimeMillis();
+                System.out.println("客户端1接收到：" + bytes.length + "字节数据");
+                System.out.println("RPC调用传输数据花费：" + (t2 - t1) + "毫秒");
+                    Thread.sleep(3000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+        new Thread(()->{
+            while(true) {
+                try {
+                long t1 = System.currentTimeMillis();
+                byte[] bytes = hello2.okkk();
+                long t2 = System.currentTimeMillis();
+                System.out.println("客户端2接收到：" + bytes.length + "字节数据");
+                System.out.println("RPC调用传输数据花费：" + (t2 - t1) + "毫秒");
+                    Thread.sleep(3000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+        new Thread(()->{
+            while(true) {
+                try {
+                    long t1 = System.currentTimeMillis();
+                    byte[] bytes = hello3.okkk();
+                    long t2 = System.currentTimeMillis();
+                    System.out.println("客户端3接收到：" + bytes.length + "字节数据");
+                    System.out.println("RPC调用传输数据花费：" + (t2 - t1) + "毫秒");
+                    Thread.sleep(3000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+        while (true);
     }
 
     @Test
@@ -123,7 +158,7 @@ public class Test1 {
 
         PubConfig pubConfig = PubConfig.getInstance();
         if (pubConfig.getRegisterBean()==null) {
-            RegisterBean registerBean = new RegisterBean("zookeeper","39.105.89.185:2181",null);
+            RegisterBean registerBean = new RegisterBean("zookeeper","8.131.57.153:2181",null);
             pubConfig.setRegisterBean(registerBean);
         }
         if (pubConfig.getFoundBean()==null) {
@@ -149,7 +184,7 @@ public class Test1 {
         localExportBean.setPort(9009);
         PubConfig.getInstance().setTimeout(10000L);
         PubConfig.getInstance().setLoadbalance("top.shauna.rpc.loadbalance.LeastActiveLoadBalance");
-        PubConfig.getInstance().setFoundBean(new FoundBean("zookeeper","39.105.89.185:2181",null));
+        PubConfig.getInstance().setFoundBean(new FoundBean("zookeeper","8.131.57.153:2181",null));
 
         Hello hello = ShaunaRPCHandler.getReferenceProxy(Hello.class);
 

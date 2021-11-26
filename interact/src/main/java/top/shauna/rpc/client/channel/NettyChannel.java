@@ -1,7 +1,5 @@
 package top.shauna.rpc.client.channel;
 
-import io.netty.buffer.Unpooled;
-import io.netty.util.CharsetUtil;
 import top.shauna.rpc.interfaces.Channel;
 
 /**
